@@ -742,8 +742,7 @@ export default function AlumniConnect() {
     setIsSubmitting(true);
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL || adminUrl;
-      const response = await fetch(`${apiUrl}submitAlumniRegistration`, {
+      const response = await fetch(`${adminUrl}submitAlumniRegistration`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
