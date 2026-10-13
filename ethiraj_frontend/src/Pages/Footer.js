@@ -15,6 +15,7 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import actions from "../ReduxStore/actions";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const contactValidationSchema = Yup.object({
   email: Yup.string()
@@ -36,6 +37,17 @@ const quickLinks = [
 
 export default function Footer() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLinkClick = (e, href) => {
+    if (href && (href.startsWith("/") || href.startsWith("#/"))) {
+      e.preventDefault();
+      const target = href.startsWith("#") ? href.slice(1) : href;
+      navigate(target);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   const handleContactSubmit = async (values, { resetForm }) => {
     console.log(values,"values");
 
@@ -165,11 +177,13 @@ export default function Footer() {
                       component="a"
                       variant="typographyFooterText"
                       key={i}
-                      href={link.href}
+                      href={link.href.startsWith("/") ? `#${link.href}` : link.href}
+                      onClick={(e) => handleLinkClick(e, link.href)}
                       color="inherit"
                       display="block"
                       sx={{
                         textDecoration: "none",
+                        cursor: "pointer",
                         mb: "24px",
                         "&:hover": {
                           textDecoration: "underline",
@@ -188,11 +202,13 @@ export default function Footer() {
                       component="a"
                       variant="typographyFooterText"
                       key={i}
-                      href={link.href}
+                      href={link.href.startsWith("/") ? `#${link.href}` : link.href}
+                      onClick={(e) => handleLinkClick(e, link.href)}
                       color="inherit"
                       display="block"
                       sx={{
                         textDecoration: "none",
+                        cursor: "pointer",
                         mb: "24px",
                         "&:hover": {
                           textDecoration: "underline",
@@ -443,11 +459,13 @@ export default function Footer() {
                         component="a"
                         variant="typographyFooterText"
                         key={i}
-                        href={link.href}
+                        href={link.href.startsWith("/") ? `#${link.href}` : link.href}
+                        onClick={(e) => handleLinkClick(e, link.href)}
                         color="inherit"
                         display="block"
                         sx={{
                           textDecoration: "none",
+                          cursor: "pointer",
                           mb: "24px",
                           "&:hover": {
                             textDecoration: "underline",
@@ -468,11 +486,13 @@ export default function Footer() {
                         component="a"
                         variant="typographyFooterText"
                         key={i}
-                        href={link.href}
+                        href={link.href.startsWith("/") ? `#${link.href}` : link.href}
+                        onClick={(e) => handleLinkClick(e, link.href)}
                         color="inherit"
                         display="block"
                         sx={{
                           textDecoration: "none",
+                          cursor: "pointer",
                           mb: "24px",
                           "&:hover": {
                             textDecoration: "underline",
@@ -587,11 +607,13 @@ export default function Footer() {
                       component="a"
                       variant="typographyFooterText"
                       key={i}
-                      href={link.href}
+                      href={link.href.startsWith("/") ? `#${link.href}` : link.href}
+                      onClick={(e) => handleLinkClick(e, link.href)}
                       color="inherit"
                       display="block"
                       sx={{
                         textDecoration: "none",
+                        cursor: "pointer",
                         mb: "24px",
                         "&:hover": {
                           textDecoration: "underline",
@@ -612,11 +634,13 @@ export default function Footer() {
                       component="a"
                       variant="typographyFooterText"
                       key={i}
-                      href={link.href}
+                      href={link.href.startsWith("/") ? `#${link.href}` : link.href}
+                      onClick={(e) => handleLinkClick(e, link.href)}
                       color="inherit"
                       display="block"
                       sx={{
                         textDecoration: "none",
+                        cursor: "pointer",
                         mb: "24px",
                         "&:hover": {
                           textDecoration: "underline",
