@@ -37,6 +37,7 @@ import CustomBannerSection from "../../Components/CustomBannerSection/CustomBann
 import FacultySection from "./FacultySection";
 import { Link } from "react-router-dom";
 import ImageWidthSlider from "../CampusLife/Hostel/ImageWidthSlider";
+import { adminUrl } from "../../constants/url";
 
 /* ──────────────────────────────────────────────────────────
    IMPORT ALL IMAGES
@@ -741,7 +742,7 @@ export default function AlumniConnect() {
     setIsSubmitting(true);
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5005/api/v1/";
+      const apiUrl = process.env.REACT_APP_API_URL || adminUrl;
       const response = await fetch(`${apiUrl}submitAlumniRegistration`, {
         method: "POST",
         headers: {
