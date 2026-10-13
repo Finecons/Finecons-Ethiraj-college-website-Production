@@ -1,0 +1,24 @@
+.custominput-field {
+
+  height: 37px !important;
+  width: 100% !important;
+  padding-left: 20px;
+  /* border-radius: 12px; */
+  font-size: 14px;
+  outline: none;
+  border: 1px solid #ced4da;
+}
+
+.custominput-field:focus {
+  border-color: black;
+}
+
+.passedClassName {
+  height: 37px !important;
+  width: 100% !important;
+  /* padding-left: 40px; */
+  font-size: 14px;
+  outline: none;
+  border: 1px solid #ced4da;
+  box-sizing: border-box;
+}

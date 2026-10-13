@@ -1,0 +1,120 @@
+
+/* Css for add cart items start */
+.Item-img {
+
+    min-height: 330px;  
+    overflow: hidden;
+    position: relative;
+    margin-left: 15px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-right: 15px;
+    
+  
+  }
+  
+  .Item-img-1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* min-width: 260px;
+    min-height: 330px; */
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+  }
+  .Item-img-2 {
+    z-index: 1;
+    transition: 0.3s;
+    /* min-width: 260px;
+    min-height: 330px; */
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+  }
+  .item-sale{
+    width: 58px;
+    height: 29px;
+    z-index: 3;
+    top: -327px;
+    position: absolute;
+    left: 29px;
+    padding-left: 14px;
+    font-family: "Mulish", sans-serif;
+  
+  }
+  
+  .item-sale-div{
+    position: relative;
+  
+  }
+  .full-cart:hover .Item-img-1 {
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+  
+  .full-cart:hover .Item-img-2 {
+    transform: scale(1.05);
+  }
+  .Item-img::before {
+    content: "";
+    display: block;
+  }
+  .full-cart {
+    /* border: 1px dashed black; */
+    /* min-width: 268px;
+    min-height: 486px; */
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    background-color: var(--cart-bgcolor);
+  }
+  
+  .card-body .Item-a{
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: bolder;
+      color: var(--primary-color);
+      padding-top: 10px;
+      
+  }
+  .card-body .Item-p{
+     font-size: 17px;
+    margin-left: 15px; 
+  }
+  .offer-price{
+    font-size: 14px;
+    text-decoration: line-through;
+    color: var(--primary-opacity-color);
+  
+  }
+  .full-cart:hover .card-body .Item-a{
+      text-decoration: underline;
+      
+  }
+  .card-body .Item-button{
+      width: 80%;
+      height: 47px;
+      border-radius: 25Px;
+      border: 1px solid var(--primary-color);
+      font-family: "Mulish", sans-serif;
+      color:var(--primary-color) ;
+      margin-bottom: 20px;
+      
+  }
+  .card-body .Item-button:hover{
+      border: 2px solid var(--primary-color);
+      
+  }
+  
+  /* Css for add cart items end */
+  /* css for Link react component start */
+  .item-Link{
+    text-decoration: none;
+    color:var(--primary-color) ;
+  }
+  /* css for Link react component start */

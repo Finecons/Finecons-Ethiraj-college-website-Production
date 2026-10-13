@@ -1,0 +1,102 @@
+* * * * * *
+| | | | | |
+| | | | | +-- Day of the week (0 - 6) (Sunday = 0)
+| | | | +---- Month (1 - 12)
+| | | +------ Day of the month (1 - 31)
+| | +-------- Hour (0 - 23)
+| +---------- Minute (0 - 59)
++------------ Second (optional, 0-59)
+
+
+1. Every Minute
+This will run the cron job every minute.
+
+cron.schedule("* * * * *", async () => {
+  console.log("Running every minute...");
+});
+
+
+2. Every Hour
+This will run the cron job at the top of every hour (i.e., 00:00, 01:00, 02:00, etc.).
+
+cron.schedule("0 * * * *", async () => {
+  console.log("Running every hour...");
+});
+
+
+3. Every Day at Midnight (00:00)
+This runs the cron job every day at midnight.
+
+cron.schedule("0 0 * * *", async () => {
+  console.log("Running every day at midnight...");
+});
+
+
+4. Every 10 Minutes
+This runs every 10 minutes (e.g., 00:00, 00:10, 00:20, etc.).
+
+cron.schedule("*/10 * * * *", async () => {
+  console.log("Running every 10 minutes...");
+});
+
+
+5. Every 2 Hours
+This will run the cron job every 2 hours.
+
+cron.schedule("0 */2 * * *", async () => {
+  console.log("Running every 2 hours...");
+});
+
+
+6. Every 4 Days
+This runs every 4th day, starting at midnight (00:00).
+
+cron.schedule("0 0 */4 * *", async () => {
+  console.log("Running every 4 days at midnight...");
+});
+
+
+7. Every Week (Every Sunday at Midnight)
+This will run every Sunday at midnight (00:00).
+
+cron.schedule("0 0 * * 0", async () => {
+  console.log("Running every Sunday at midnight...");
+});
+
+
+8. Every Month (1st day of every month at midnight)
+This will run on the 1st day of every month at midnight.
+
+cron.schedule("0 0 1 * *", async () => {
+  console.log("Running on the 1st day of every month at midnight...");
+});
+
+
+9. Every 5 Minutes
+This will run every 5 minutes.
+
+cron.schedule("*/5 * * * *", async () => {
+  console.log("Running every 5 minutes...");
+});
+
+
+10. Every Friday at Midnight
+This will run every Friday at midnight.
+
+cron.schedule("0 0 * * 5", async () => {
+  console.log("Running every Friday at midnight...");
+});
+
+
+11. Every Weekend (Saturday and Sunday at midnight)
+This runs every Saturday and Sunday at midnight (00:00).
+
+cron.schedule("0 0 * * 6,7", async () => {
+  console.log("Running every weekend at midnight...");
+});
+
+
+
+
+
+

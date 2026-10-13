@@ -1,0 +1,169 @@
+
+
+.login_button {
+    color: var(--button-color);
+    background-color: var(--button-bgcolor);
+    width: 95% !important;
+  }
+  .App-login-signup {
+    min-height: 100vh;
+    /* max-height: 100%; */
+  }
+
+  .App-login-signup-left-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+ 
+ 
+  
+  /* Common Breakpoints */
+  
+  @media (min-width: 993px) {
+    /* Desktop */
+    /* Styles go here */
+    .App-login-signup {
+      display: flex;
+    }
+    .App-login-signup-left-box {
+      width: 50%;
+      position: relative;
+    }
+    .App-login-signup-left-box .left-box-login-signup-heading{
+      background-color: rgb(0, 0, 0,.5);
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .App-login-signup-left-box .left-box-login-signup-heading img{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* color: white; */
+      /* font-weight: 900; */
+      width:270px;
+      height: 90px;
+    }
+    .App-login-signup-right-box {
+      width: 50%;
+      /* background-color: var(--sidenav-bgcolor); */
+      background-color:white;
+      /* background-color:rgb(163, 189, 190); */
+  
+    }
+  
+    .App-login-signup-right-box {
+      /* width: 50%; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .App-login-signup-right-box-main-box {
+      width: 70%;
+      /* background-color:white; */
+      background-color: var(--sidenav-bgcolor);
+      color: white !important;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+  .App-login-signup .phone-log{
+      display: none;
+      /* display: flex;
+      justify-content: center; */
+  }
+  }
+  
+  @media (min-width: 601px) and (max-width: 992px) {
+    /* Tablet */
+    /* Styles go here */
+    .App-login-signup {
+      position: relative;
+    }
+    .App-login-signup-left-box {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      
+    }
+    .App-login-signup-left-box img {
+      z-index: -1;
+    }
+    .App-login-signup-right-box {
+        
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .App-login-signup-right-box-main-box {
+      width: 500px;
+    }
+    .App-login-signup-right-box-main-box {
+      /* width: 70%; */
+      background-color: var(--sidenav-bgcolor);
+      color: white !important;
+      padding: 25px 40px 40px ;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+  .App-login-signup-left-box .left-box-login-signup-heading{
+      /* background-color: rgb(0, 0, 0,.5); */
+      display: none;
+  }
+  .App-login-signup .phone-log{
+      /* display: none; */
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+  }
+  }
+  
+  @media (max-width: 600px) {
+    /* Mobile */
+    /* Styles go here */
+  
+    .App-login-signup-left-box {
+      display: none;
+    }
+  
+    .App-login-signup-right-box {
+      width: 100%;
+      height: 100%;
+    /* background-color: green; */
+  
+  
+    }
+    .App-login-signup {
+      position: static;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; 
+      background-color: var(--sidenav-bgcolor);
+      color: white !important;
+  
+    }
+    .App-login-signup-right-box-main-box {
+      /* width: 70%; */
+      /* background-color: green; */
+      height: 100%;
+      padding: 20px;
+  }
+  .App-login-signup .phone-log{
+      /* display: none; */
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+  }
+}

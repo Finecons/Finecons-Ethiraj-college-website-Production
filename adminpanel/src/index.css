@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  --main-color:#6B3C58;
+  
+}
+
+/* code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+
+
+body {
+  font-family: 'Roboto', sans-serif; /* Default font */
+}
+
+body h1, h2, h3 {
+  font-family: 'Poppins', sans-serif; /* Use Poppins for headings */
+}
+
+
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+  /* font-weight: 400; */
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./fonts/Poppins/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+}

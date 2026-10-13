@@ -1,0 +1,128 @@
+.input-container1 {
+  position: relative;
+  width: 100%;
+  /* margin-top: 7px; */
+}
+
+.input-icon1 {
+  position: absolute;
+  left: 10px; /* Adjust based on your padding needs */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; 
+ 
+}
+
+.custominput-field2{
+  height: 210px !important;
+  width: 100% !important;
+  /* padding-left: 45%; */
+  text-align: center;
+  /* Increased padding to make space for the icon */
+  font-size: 14px;
+  font-weight: 600;
+  outline: none; 
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  background-color: rgb(70 26 66);
+  border: none;
+  color: rgb(255 255 255);
+
+}
+
+.custominput-field1 {
+  height: 180px !important;
+  width: 100% !important;
+  /* padding-left: 45%; */
+  text-align: center;
+  /* Increased padding to make space for the icon */
+  font-size: 14px;
+  font-weight: 600;
+  outline: none; 
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  background-color: rgb(70 26 66);
+  border: none;
+  color: rgb(255 255 255);
+}
+
+.custominput-field2:focus {
+  border-color: black;
+}
+.custominput-field1:focus {
+  border-color: black;
+}
+
+.quizz-inputicon{
+  padding: 5px;
+  border: 1px solid black;
+  margin: 5px 5px 0 5px;
+  
+  width: 20px;
+  border-radius: 4px;
+  background: #ffffff54;
+  margin-top: 5px;
+}
+
+.full-div{
+  border: 1px solid #fff3;
+  background: rgb(70 26 66);
+  border-radius: 5px;
+}
+.icon-container{
+  border: none;
+  /* padding-top: 5px; */
+}
+
+/* .full-div {
+  
+  transition: background-color 0.3s;
+} */
+
+.full-div.focused {
+  background-color: black; /* Change to your desired color */
+  border: 1px solid rgb(136 84 192);
+}
+
+.custominput-field1 {
+  /* Default styles */
+  transition: font-size 0.3s;
+}
+.custominput-field2 {
+  /* Default styles */
+  transition: font-size 0.3s;
+}
+
+.custominput-field1::placeholder {
+  font-size: 20px; /* Change to your desired font size */
+}
+.custominput-field2::placeholder {
+  font-size: 20px; /* Change to your desired font size */
+}
+
+.custominput-field1.focused-placeholder {
+  background: black;
+}
+.custominput-field2.focused-placeholder {
+  background: black;
+}
+
+.icon-overlay {
+  display: none;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 8px;
+  z-index: 1;
+}
+
+img:hover + .icon-overlay {
+  display: flex;
+}
+
+.icon-overlay:hover {
+  display: flex;
+}
+
+.audio-container:hover .delete-button {
+  opacity: 1; /* Show the button on hover */
+}

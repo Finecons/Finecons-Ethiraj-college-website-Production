@@ -1,0 +1,424 @@
+================================================================================
+                RECENT API DOCUMENTATION - NEW MODULES & PROGRAM FILTERS
+================================================================================
+
+This document contains API documentation for recently created APIs:
+1. Button Module
+2. Admission Policy Module
+3. Merit List Module
+4. Program Category APIs (Undergraduate/Postgraduate + Aided/Self-Supporting)
+
+
+================================================================================
+                             BUTTON MODULE APIS
+================================================================================
+
+1. ADD BUTTON (Create)
+   Method: POST
+   Endpoint: /addButton
+   Authentication: YES (Required)
+
+   Request Body (JSON):
+   {
+     "button_name": "string (required)",
+     "text": "string (required)",
+     "link": "string (required)"
+   }
+
+   Response:
+   Success: 201 - { "Success": true, "Message": "Button added successfully.", "data": [{ "button_id": 1 }] }
+   Error: 400/401/409/500 - { "Success": false, "Message": "Error message" }
+
+---
+
+2. GET ALL BUTTONS
+   Method: GET
+   Endpoint: /getAllButtons
+   Authentication: NO
+   Parameters: None
+
+   Response:
+   Success: 200 - { "Success": true, "Message": "Buttons retrieved successfully.", "data": [...] }
+
+---
+
+3. GET BUTTONS BY NAME
+   Method: POST
+   Endpoint: /getAllButtonsByName
+   Authentication: NO
+
+   Request Body (JSON):
+   {
+     "button_name": "string (required)"
+   }
+
+   Response:
+   Success: 200 - Returns matching buttons by exact button_name
+
+---
+
+4. GET BUTTON BY ID
+   Method: GET
+   Endpoint: /getButtonById/:button_id
+   Authentication: NO
+
+   URL Parameters:
+     - button_id: integer (required)
+
+   Response:
+   Success: 200 - Returns single button record
+   Error: 404 - Button not found
+
+---
+
+5. UPDATE BUTTON
+   Method: PUT
+   Endpoint: /updateButton/:button_id
+   Authentication: NO
+
+   URL Parameters:
+     - button_id: integer (required)
+
+   Request Body (JSON) - All fields optional:
+   {
+     "button_name": "string",
+     "text": "string",
+     "link": "string"
+   }
+
+   Response:
+   Success: 200 - { "Success": true, "Message": "Button updated successfully.", "data": [] }
+
+---
+
+6. DELETE BUTTON (Soft Delete)
+   Method: DELETE
+   Endpoint: /deleteButton/:button_id
+   Authentication: NO
+
+   URL Parameters:
+     - button_id: integer (required)
+
+   Response:
+   Success: 200 - Record marked as deleted (delete_status = 1)
+
+---
+
+7. RESTORE BUTTON
+   Method: PATCH
+   Endpoint: /restoreButton/restore/:button_id
+   Authentication: NO
+
+   URL Parameters:
+     - button_id: integer (required)
+
+   Response:
+   Success: 200 - Record restored (delete_status = 0)
+
+
+================================================================================
+                         ADMISSION POLICY MODULE APIS
+================================================================================
+
+1. ADD ADMISSION POLICY SECTION (Create)
+   Method: POST
+   Endpoint: /addAdmissionPolicySection
+   Authentication: YES (Required)
+
+   Request Body (JSON):
+   {
+     "section_name": "string (required)",
+     "heading": "string (required)",
+     "sub_heading": "string",
+     "content": "string (required)",
+     "additional_data": "object/array (optional)"
+   }
+
+   Response:
+   Success: 201 - { "Success": true, "Message": "Admission Policy section added successfully.", "data": [{ "admission_policy_id": 1 }] }
+   Error: 400/401/409/500 - { "Success": false, "Message": "Error message" }
+
+---
+
+2. GET ALL ADMISSION POLICY SECTIONS
+   Method: GET
+   Endpoint: /getAllAdmissionPolicySections
+   Authentication: NO
+   Parameters: None
+
+   Response:
+   Success: 200 - Returns all active admission policy sections with parsed additional_data
+
+---
+
+3. GET ADMISSION POLICY SECTIONS BY SECTION NAME
+   Method: POST
+   Endpoint: /getAllAdmissionPolicySectionsBySectionName
+   Authentication: NO
+
+   Request Body (JSON):
+   {
+     "section_name": "string (required)"
+   }
+
+   Response:
+   Success: 200 - Returns all sections matching section_name
+
+---
+
+4. GET ADMISSION POLICY SECTION BY ID
+   Method: GET
+   Endpoint: /getAdmissionPolicySectionById/:admission_policy_id
+   Authentication: NO
+
+   URL Parameters:
+     - admission_policy_id: integer (required)
+
+   Response:
+   Success: 200 - Returns single section with parsed additional_data
+   Error: 404 - Section not found
+
+---
+
+5. UPDATE ADMISSION POLICY SECTION
+   Method: PUT
+   Endpoint: /updateAdmissionPolicySection/:admission_policy_id
+   Authentication: NO
+
+   URL Parameters:
+     - admission_policy_id: integer (required)
+
+   Request Body (JSON) - All fields optional:
+   {
+     "section_name": "string",
+     "heading": "string",
+     "sub_heading": "string",
+     "content": "string",
+     "additional_data": "object/array"
+   }
+
+   Response:
+   Success: 200 - { "Success": true, "Message": "Admission Policy section updated successfully.", "data": [] }
+
+---
+
+6. DELETE ADMISSION POLICY SECTION (Soft Delete)
+   Method: DELETE
+   Endpoint: /deleteAdmissionPolicySection/:admission_policy_id
+   Authentication: NO
+
+   URL Parameters:
+     - admission_policy_id: integer (required)
+
+   Response:
+   Success: 200 - Record marked as deleted (delete_status = 1)
+
+---
+
+7. RESTORE ADMISSION POLICY SECTION
+   Method: PATCH
+   Endpoint: /restoreAdmissionPolicySection/restore/:admission_policy_id
+   Authentication: NO
+
+   URL Parameters:
+     - admission_policy_id: integer (required)
+
+   Response:
+   Success: 200 - Record restored (delete_status = 0)
+
+
+================================================================================
+                            MERIT LIST MODULE APIS
+================================================================================
+
+1. ADD MERIT LIST SECTION (Create)
+   Method: POST
+   Endpoint: /addMeritListSection
+   Authentication: YES (Required)
+
+   Request Body (JSON):
+   {
+     "section_name": "string (required)",
+     "heading": "string (required)",
+     "sub_heading": "string",
+     "content": "string (required)",
+     "additional_data": "object/array (optional)"
+   }
+
+   Response:
+   Success: 201 - { "Success": true, "Message": "Merit List section added successfully.", "data": [{ "merit_list_id": 1 }] }
+   Error: 400/401/409/500 - { "Success": false, "Message": "Error message" }
+
+---
+
+2. GET ALL MERIT LIST SECTIONS
+   Method: GET
+   Endpoint: /getAllMeritListSections
+   Authentication: NO
+   Parameters: None
+
+   Response:
+   Success: 200 - Returns all active merit list sections with parsed additional_data
+
+---
+
+3. GET MERIT LIST SECTIONS BY SECTION NAME
+   Method: POST
+   Endpoint: /getAllMeritListSectionsBySectionName
+   Authentication: NO
+
+   Request Body (JSON):
+   {
+     "section_name": "string (required)"
+   }
+
+   Response:
+   Success: 200 - Returns all sections matching section_name
+
+---
+
+4. GET MERIT LIST SECTION BY ID
+   Method: GET
+   Endpoint: /getMeritListSectionById/:merit_list_id
+   Authentication: NO
+
+   URL Parameters:
+     - merit_list_id: integer (required)
+
+   Response:
+   Success: 200 - Returns single section with parsed additional_data
+   Error: 404 - Section not found
+
+---
+
+5. UPDATE MERIT LIST SECTION
+   Method: PUT
+   Endpoint: /updateMeritListSection/:merit_list_id
+   Authentication: NO
+
+   URL Parameters:
+     - merit_list_id: integer (required)
+
+   Request Body (JSON) - All fields optional:
+   {
+     "section_name": "string",
+     "heading": "string",
+     "sub_heading": "string",
+     "content": "string",
+     "additional_data": "object/array"
+   }
+
+   Response:
+   Success: 200 - { "Success": true, "Message": "Merit List section updated successfully.", "data": [] }
+
+---
+
+6. DELETE MERIT LIST SECTION (Soft Delete)
+   Method: DELETE
+   Endpoint: /deleteMeritListSection/:merit_list_id
+   Authentication: NO
+
+   URL Parameters:
+     - merit_list_id: integer (required)
+
+   Response:
+   Success: 200 - Record marked as deleted (delete_status = 1)
+
+---
+
+7. RESTORE MERIT LIST SECTION
+   Method: PATCH
+   Endpoint: /restoreMeritListSection/restore/:merit_list_id
+   Authentication: NO
+
+   URL Parameters:
+     - merit_list_id: integer (required)
+
+   Response:
+   Success: 200 - Record restored (delete_status = 0)
+
+
+================================================================================
+                      PROGRAM CATEGORY FILTER APIS
+================================================================================
+
+1. GET ALL UNDERGRADUATE AIDED PROGRAMS
+   Method: GET
+   Endpoint: /getUndergraduateAidedPrograms
+   Authentication: NO
+   Parameters: None
+
+   Applied Filters:
+     - programme_levels.level_name = "Undergraduate"
+     - funding_types.type_name = "Aided"
+     - programs.delete_status = 0
+
+   Response:
+   Success: 200 - { "Success": true, "Message": "Undergraduate Aided programs fetched successfully.", "data": [...] }
+
+---
+
+2. GET ALL UNDERGRADUATE SELF-SUPPORTING PROGRAMS
+   Method: GET
+   Endpoint: /getUndergraduateSelfSupportingPrograms
+   Authentication: NO
+   Parameters: None
+
+   Applied Filters:
+     - programme_levels.level_name = "Undergraduate"
+     - funding_types.type_name = "Self-Supporting"
+     - programs.delete_status = 0
+
+   Response:
+   Success: 200 - { "Success": true, "Message": "Undergraduate Self-Supporting programs fetched successfully.", "data": [...] }
+
+---
+
+3. GET ALL POSTGRADUATE AIDED PROGRAMS
+   Method: GET
+   Endpoint: /getPostgraduateAidedPrograms
+   Authentication: NO
+   Parameters: None
+
+   Applied Filters:
+     - programme_levels.level_name = "Postgraduate"
+     - funding_types.type_name = "Aided"
+     - programs.delete_status = 0
+
+   Response:
+   Success: 200 - { "Success": true, "Message": "Postgraduate Aided programs fetched successfully.", "data": [...] }
+
+---
+
+4. GET ALL POSTGRADUATE SELF-SUPPORTING PROGRAMS
+   Method: GET
+   Endpoint: /getPostgraduateSelfSupportingPrograms
+   Authentication: NO
+   Parameters: None
+
+   Applied Filters:
+     - programme_levels.level_name = "Postgraduate"
+     - funding_types.type_name = "Self-Supporting"
+     - programs.delete_status = 0
+
+   Response:
+   Success: 200 - { "Success": true, "Message": "Postgraduate Self-Supporting programs fetched successfully.", "data": [...] }
+
+
+================================================================================
+                      COMMON SUCCESS/ERROR RESPONSE FORMAT
+================================================================================
+
+Success Response:
+{
+  "Success": true,
+  "Message": "Operation message",
+  "data": []
+}
+
+Error Response:
+{
+  "Success": false,
+  "Message": "Error message",
+  "data": null
+}

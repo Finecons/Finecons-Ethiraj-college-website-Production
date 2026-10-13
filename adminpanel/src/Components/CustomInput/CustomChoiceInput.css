@@ -1,0 +1,154 @@
+
+.input-container1 {
+    position: relative;
+    width: 100%;
+    border: 1px solid var(--card-bg-color);
+    /* margin-top: 7px; */
+  }
+  
+  .input-icon1 {
+    position: absolute;
+    left: 10px; /* Adjust based on your padding needs */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; 
+   
+  }
+  .custominput-field2 {
+    /* min-height: 100px; 
+    max-height: 180px;
+    height: 100%; */
+    
+    /* min-height: 100px;  */
+
+    overflow-y: auto; /* Allows scrolling if content exceeds max-height */
+    width: 100% !important;
+    text-align: left; /* Left alignment is often better for text fields */
+    font-size: 14px;
+    font-weight: 600;
+    outline: none;
+    box-sizing: border-box;
+    background-color: var(--card-bg-color);
+    /* background-color: var(--card-bg-color); */
+    border: 1px solid var(--card-bg-color);
+    color: rgb(255, 255, 255);
+  }
+  
+  
+  
+
+  .quizz-inputicon1{
+    padding: 3px;
+    /* border: 1px solid var(--card-bg-color); */
+    /* margin: 5px 5px 0 5px; */
+    height: 25px;
+    width: 24px;
+    border-radius: 4px;
+    background: #ffffff54;
+    margin-top: 5px;
+    color: white;
+  }
+  .quizz-inputicon2{
+    padding: 3px;
+    border: 3px solid white;
+    /* margin: 5px 5px 0 5px; */
+    height: 25px;
+    width: 24px;
+    border-radius: 50%;
+    background: #95939354;
+    margin-top: 5px;
+    color: white;
+  }
+  
+  .full-div1{
+    border: 1px solid var(--card-bg-color);
+    background: var(--card-bg-color);
+    border-radius: 5px;
+    /* margin-top: 20px; */
+  }
+  .icon-container1{
+    border: 1px solid var(--card-bg-color);
+    /* padding-top: 5px; */
+  }
+  
+  
+  
+  .custominput-field2 {
+    /* Default styles */
+    transition: font-size 0.3s;
+    text-align: center !important;
+  }
+  
+  .custominput-field2::placeholder {
+    font-size: 18px; /* Change to your desired font size */
+    color: white;
+  }
+  
+  .custominput-field2.focused-placeholder {
+    /* background: black;  */
+    
+    background-color: black;
+    opacity: 0.5;
+    color: white;
+
+    /* background: rgb(225, 21, 21);  */
+  }
+
+  
+ 
+  
+  .custominput-field2::placeholder {
+    font-size: 14px; /* Consistent with input text size */
+  }
+  
+ 
+/* 
+  .image-container {
+    position: relative;
+
+  }
+  
+  .icon-overlay {
+    display: none;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    gap: 8px;
+    z-index: 1;
+  
+  }
+  
+  .image-hover:hover + .icon-overlay,
+  .image-hover:hover ~ .icon-overlay {
+    display: flex;
+  }
+    */
+
+    .image-container {
+      position: relative;
+    }
+    
+    .icon-overlay {
+      display: none;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      gap: 8px;
+      z-index: 1;
+    }
+    
+    .image-hover:hover + .icon-overlay,
+    .image-hover:hover ~ .icon-overlay {
+      display: flex;
+    }
+    
+    .icon-overlay .MuiIconButton-root {
+      background-color: transparent; /* Default background */
+      transition: background-color 0.3s; /* Smooth transition for hover effect */
+    }
+    
+    .icon-overlay .MuiIconButton-root:hover {
+      background-color: rgba(224, 24, 24, 0.2); /* Background color on hover */
+    }
+    
+  

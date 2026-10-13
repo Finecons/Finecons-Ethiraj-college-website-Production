@@ -1,0 +1,91 @@
+/* Wrapper for the dropdown */
+.dropdown-wrapper-Switch {
+    position: relative;
+    /* width: 250px; */
+    margin-bottom: 20px;
+    margin-right: 5px;
+  }
+  
+  /* Toggle button for the dropdown */
+  .dropdown-wrapper-Switch .Switch-dropdown-toggle {
+    width: 130px;
+    padding: 10px;
+    background-color: var(--button-bgcolor);
+    color: var(--button-color);
+    /* border: 1px solid blueviolet !important; */
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    height: 30px;
+  }
+  
+  .dropdown-wrapper-Switch .dropdown-toggle:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Dropdown list styling */
+  .dropdown-wrapper-Switch .dropdown-list {
+    position: absolute;
+    top: 35px;
+    width: 130px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    border-radius: 4px;
+    z-index: 1;
+  }
+  
+  /* Open state for the dropdown */
+  .dropdown-wrapper-Switch .dropdown-list.open {
+    max-height: 115px; /* This controls the height of the dropdown */
+    opacity: 1;
+    overflow-y: auto; /* Enable scrolling when items overflow */
+  }
+  
+  /* Styling for each dropdown item */
+  .dropdown-wrapper-Switch .dropdown-item {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .dropdown-wrapper-Switch .dropdown-item:last-child {
+    border-bottom: none;
+  }
+  
+  /* Text label for the dropdown item */
+  .dropdown-wrapper-Switch .dropdown-item-label {
+    flex: 1;
+    font-size: 15.5px;
+  }
+  
+  /* MUI Switch styling */
+  .dropdown-wrapper-Switch .MuiSwitch-root {
+    margin-left: 10px;
+  }
+  
+  /* Error message styling */
+  .dropdown-wrapper-Switch .inputs-error-msg {
+    color: red;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }

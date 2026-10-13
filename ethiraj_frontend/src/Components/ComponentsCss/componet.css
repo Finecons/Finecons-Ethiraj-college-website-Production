@@ -1,0 +1,21 @@
+.input-heading{
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    color: white;
+}
+.input-heading1{
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    color: white;
+    margin-bottom: 10px
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border: 1px solid rgba(0, 0, 0) !important; /* Set border color to 1px when focused */
+  }
+
+  .error{
+    color: red;
+    font-size: 12px;
+    padding-top: 5px;
+  }

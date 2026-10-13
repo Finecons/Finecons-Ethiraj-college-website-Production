@@ -1,0 +1,27 @@
+.first-navbar-button {
+  color: #fff !important;
+
+  /* Web-Old/Pargraph 2/Regular */
+  font-family: "Inter" !important;
+  /* font-size: 20.26px !important; */
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: normal !important;
+  text-transform: none !important;
+}
+.navbar-container {
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  background: white;
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.4s ease, opacity 0.4s ease, z-index 0.4s ease;
+}
+
+.navbar-hidden {
+  /* position: relative; */
+  opacity: 0;
+  transform: translateY(-100%); /* slide up */
+  pointer-events: none; /* avoid blocking clicks when hidden */
+}

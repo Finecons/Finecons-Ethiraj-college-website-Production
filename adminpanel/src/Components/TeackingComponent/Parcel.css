@@ -1,0 +1,170 @@
+.CargoTable{
+    background-color: #f4f6f7;
+    padding: 10px;
+    border-radius: 7px;
+}
+.tracker-btn-div{
+    display: inline-flex;
+}
+.parcel-main-div .tracker-btn-div>div {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 22px;
+  }
+  
+  .tracker-model {
+    background-color: #707070;
+  }
+  .tracker-model-box-heading {
+    text-align: center;
+    margin-bottom: 35px;
+    font-weight: bold;
+  }
+  .tracker-model-box {
+    border-radius: 10px;
+    border: none !important;
+    padding-left: 7% !important;
+    padding-right: 7% !important;
+    padding-bottom: 7% !important;
+    padding-top: 5px;
+  }
+  .StepLabel-tag {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgb(251, 251, 251);
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  
+  .TrackParcelBox-div p:nth-child(1) {
+    padding-left: 18px !important;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .TrackParcelBox-div p:nth-child(1) {
+    font-size: 14px;
+  }
+  .step-icon-root {
+    color: #d5dbd7 !important; /* Change the color of the inactive circles */
+  }
+  
+  /* .step-icon-active {
+      color: green !important; 
+    }
+     */
+  .step-icon-completed {
+    color: #4dc4ff !important; /* Change the color of the completed circle */
+  }
+  
+  .StepLabel-date {
+    font-size: 9px;
+  }
+  
+  .StepLabel-date-div {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+  }
+
+  .tdStyle{
+    margin: 10px;
+  }
+
+  /* Parcel.css */
+
+.tableContainer {
+    margin-top: 20px;
+  }
+  
+ 
+  .tableContainer thead{
+    background-color: #204768;
+    color: #fff;
+    font-family: Poppins_R !important;
+    font-size: 10px;
+  }
+  .tableContainer tbody tr th{
+    font-size: 12px;
+  }
+  
+  .tableContainer th,
+  .tableContainer td {
+    /* border: 1px solid #dddddd; */
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .tableContainer input[type="number"],
+  .tableContainer input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #E2E2E2;
+  }
+  
+  .tableContainer .tdStyle {
+    margin-right: 5px;
+  }
+  
+.sender_input1{
+  background-color: #fff  !important;
+  border-radius: 5px !important;
+  border: 1px solid #E2E2E2 !important;
+}
+.sender_text{
+  color: #000 !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    font-size: 14px !important;
+    /* padding: 12px 3px 7px 5px; */
+    font-family: Poppins_R !important;
+}
+
+.sender_input1>div input {
+  border: none !important;
+}
+.dropdown_id{
+  background: #ffff !important;
+}
+.CustomFileUploader .upload_id{
+  margin-top: 26px !important;
+}
+.containerType{
+  display: inline-flex;
+}
+.parcelTextName{
+  font-family: Poppins_R !important;
+  font-size: 12px !important;
+  color: #1D2226;
+}
+.parcelTextLabel{
+  font-family: Poppins_R !important;
+  font-size: 12px !important;
+  color: #102030;
+  font-weight: bold !important;
+}
+.parcelSec .GridSec:nth-child(2){
+  display: inline-flex;
+  align-items: center;
+}
+.parcelSec .GridSec:nth-child(3){
+  display: inline-flex;
+  align-items: center;
+}
+.parcelSec .GridSec:nth-child(4){
+  display: inline-flex;
+  align-items: center;
+}
+.cargo_btnPosition{
+  display: inline-flex;
+  justify-content: right;
+  align-items: center;
+  padding: 20px 0 12px 40px;
+  /* max-width: 100%; */
+}
+.TrackParcelBox-div-with-icon  .MuiStepConnector-lineVertical{
+  margin-left: 5px;
+}
+

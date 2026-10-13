@@ -1,0 +1,963 @@
+================================================================================
+                    API DOCUMENTATION - ALL MODULES
+================================================================================
+
+This document contains complete API documentation for:
+1. Research Highlights Module
+2. Student Publications Module
+3. Faculty Publications Module (with ISBN field)
+4. Examinations Module
+5. Year-Grouped APIs for all modules
+
+================================================================================
+                        RESEARCH HIGHLIGHTS APIS
+================================================================================
+
+1. ADD RESEARCH HIGHLIGHT (Create)
+   Method: POST
+   Endpoint: /addResearchHighlight
+   Authentication: YES (Required)
+   
+   Request Body (JSON):
+   {
+     "title": "string (required)",
+     "publisher": "string",
+     "description": "string",
+     "faculty_name": "string",
+     "academic_id": "integer (required)",
+     "department_id": "integer (required)",
+     "year": "integer",
+     "mark_as_important": "boolean (optional) - Set to true to mark as important (max 4)"
+   }
+   
+   Response:
+   Success: 201 - { "Success": true, "Message": "Research Highlight added successfully.", "data": [{ "researchHighlights_id": 1 }] }
+   Error: 400/500 - { "Success": false, "Message": "Error message" }
+
+---
+
+2. GET ALL RESEARCH HIGHLIGHTS
+   Method: GET
+   Endpoint: /getAllResearchHighlights
+   Authentication: NO
+   Parameters: None
+   
+   Response:
+   Success: 200 - { "Success": true, "Message": "Research Highlights retrieved successfully.", "data": [...] }
+   Returns fields: researchHighlights_id, title, publisher, description, faculty_name, academic_id, department_id, year, is_important, academic, department, timestamps
+
+---
+
+3. GET IMPORTANT RESEARCH HIGHLIGHTS ONLY
+   Method: GET
+   Endpoint: /getImportantResearchHighlights
+   Authentication: NO
+   Parameters: None
+   
+   Response:
+   Success: 200 - Returns only records where is_important = 1, ordered by newest first
+
+---
+
+4. GET RESEARCH HIGHLIGHT BY ID
+   Method: GET
+   Endpoint: /getResearchHighlightById/:researchHighlights_id
+   Authentication: NO
+   URL Parameters:
+     - researchHighlights_id: integer (required)
+   
+   Response:
+   Success: 200 - Returns single research highlight with all fields and associations
+   Error: 404 - Record not found
+
+---
+
+5. UPDATE RESEARCH HIGHLIGHT
+   Method: PUT
+   Endpoint: /updateResearchHighlight/:researchHighlights_id
+   Authentication: NO
+   
+   URL Parameters:
+     - researchHighlights_id: integer (required)
+   
+   Request Body (JSON) - All fields optional:
+   {
+     "title": "string",
+     "publisher": "string",
+     "description": "string",
+     "faculty_name": "string",
+     "academic_id": "integer",
+     "department_id": "integer",
+     "year": "integer"
+   }
+   
+   Response:
+   Success: 200 - { "Success": true, "Message": "Research Highlight updated successfully.", "data": [{ "researchHighlights_id": 1 }] }
+
+---
+
+6. DELETE RESEARCH HIGHLIGHT (Soft Delete)
+   Method: DELETE
+   Endpoint: /deleteResearchHighlight/:researchHighlights_id
+   Authentication: NO
+   
+   URL Parameters:
+     - researchHighlights_id: integer (required)
+   
+   Response:
+   Success: 200 - Record marked as deleted (delete_status = 1)
+
+---
+
+7. RESTORE RESEARCH HIGHLIGHT
+   Method: PATCH
+   Endpoint: /restoreResearchHighlight/restore/:researchHighlights_id
+   Authentication: NO
+   
+   URL Parameters:
+     - researchHighlights_id: integer (required)
+   
+   Response:
+   Success: 200 - Record restored (delete_status = 0)
+
+---
+
+8. MARK RESEARCH HIGHLIGHT AS IMPORTANT / NOT IMPORTANT
+   Method: PATCH
+   Endpoint: /markResearchHighlightAsImportant/:researchHighlights_id
+   Authentication: NO
+   
+   URL Parameters:
+     - researchHighlights_id: integer (required)
+   
+   Request Body (JSON):
+   {
+     "is_important": 0 or 1 (required)
+   }
+   
+   Note: Maximum 4 records can be marked as important. When marking 5th record, oldest is automatically unmarked.
+   
+   Response:
+   Success: 200 - { "Success": true, "Message": "Research Highlight marked as important/not important successfully.", "data": [{ "researchHighlights_id": 1, "is_important": 1 }] }
+
+---
+
+9. GET RESEARCH HIGHLIGHTS BY ACADEMIC ID
+   Method: GET
+   Endpoint: /getResearchHighlightsByAcademic/:academic_id
+   Authentication: NO
+   
+   URL Parameters:
+     - academic_id: integer (required)
+   
+   Response:
+   Success: 200 - Returns all research highlights for specified academic
+
+---
+
+10. GET RESEARCH HIGHLIGHTS BY DEPARTMENT ID
+    Method: GET
+    Endpoint: /getResearchHighlightsByDepartment/:department_id
+    Authentication: NO
+    
+    URL Parameters:
+      - department_id: integer (required)
+    
+    Response:
+    Success: 200 - Returns all research highlights for specified department
+
+---
+
+11. GET ALL ACADEMICS WITH RESEARCH HIGHLIGHTS
+    Method: GET
+    Endpoint: /getAcademicsWithResearchHighlights
+    Authentication: NO
+    Parameters: None
+    
+    Response:
+    Success: 200 - Returns all academics that have research highlights (with nested highlight data)
+
+---
+
+12. GET DEPARTMENTS BY ACADEMIC IN RESEARCH HIGHLIGHTS
+    Method: GET
+    Endpoint: /getDepartmentsByAcademicInResearchHighlights/:academic_id
+    Authentication: NO
+    
+    URL Parameters:
+      - academic_id: integer (required)
+    
+    Response:
+    Success: 200 - Returns all departments under specific academic with nested research highlights
+
+---
+
+13. ADVANCED FILTER - RESEARCH HIGHLIGHTS
+    Method: GET
+    Endpoint: /filterResearchHighlights
+    Authentication: NO
+    
+    Query Parameters (All Optional - Can be combined):
+      - keyword: string - Searches in title, publisher, description, faculty_name
+      - academic_id: integer - Filter by academic
+      - department_id: integer - Filter by department
+      - year: integer - Filter by year
+    
+    Examples:
+      GET /filterResearchHighlights
+      GET /filterResearchHighlights?keyword=AI
+      GET /filterResearchHighlights?academic_id=1&department_id=2
+      GET /filterResearchHighlights?academic_id=1&year=2024
+      GET /filterResearchHighlights?keyword=research&academic_id=1&department_id=2&year=2023
+    
+    Response:
+    Success: 200 - Returns filtered results sorted by newest first (updatedAt DESC)
+    
+    Rules:
+    - No parameters: Returns ALL records
+    - Any combination of parameters allowed
+    - Multiple filters use AND logic
+    - Keyword search uses LIKE with wildcards (case-insensitive)
+
+
+================================================================================
+                        STUDENT PUBLICATIONS APIS
+================================================================================
+
+1. ADD STUDENT PUBLICATION (Create)
+   Method: POST
+   Endpoint: /addStudentPublication
+   Authentication: YES (Required)
+   
+   Request Body (JSON):
+   {
+     "title": "string (required)",
+     "publisher": "string",
+     "description": "string",
+     "student_name": "string",
+     "academic_id": "integer (required)",
+     "department_id": "integer (required)",
+     "year": "integer",
+     "isbn": "string",
+     "mark_as_important": "boolean (optional) - Set to true to mark as important (max 4)"
+   }
+   
+   Response:
+   Success: 201 - { "Success": true, "Message": "Student Publication added successfully.", "data": [{ "studentPublications_id": 1 }] }
+   Error: 400/500 - { "Success": false, "Message": "Error message" }
+
+---
+
+2. GET ALL STUDENT PUBLICATIONS
+   Method: GET
+   Endpoint: /getAllStudentPublications
+   Authentication: NO
+   Parameters: None
+   
+   Response:
+   Success: 200 - { "Success": true, "Message": "Student Publications retrieved successfully.", "data": [...] }
+
+---
+
+3. GET IMPORTANT STUDENT PUBLICATIONS ONLY
+   Method: GET
+   Endpoint: /getImportantStudentPublications
+   Authentication: NO
+   Parameters: None
+   
+   Response:
+   Success: 200 - Returns only records where is_important = 1, ordered by newest first
+
+---
+
+4. GET STUDENT PUBLICATION BY ID
+   Method: GET
+   Endpoint: /getStudentPublicationById/:studentPublications_id
+   Authentication: NO
+   
+   URL Parameters:
+     - studentPublications_id: integer (required)
+   
+   Response:
+   Success: 200 - Returns single student publication with all fields
+   Error: 404 - Record not found
+
+---
+
+5. UPDATE STUDENT PUBLICATION
+   Method: PUT
+   Endpoint: /updateStudentPublication/:studentPublications_id
+   Authentication: NO
+   
+   URL Parameters:
+     - studentPublications_id: integer (required)
+   
+   Request Body (JSON) - All fields optional:
+   {
+     "title": "string",
+     "publisher": "string",
+     "description": "string",
+     "student_name": "string",
+     "academic_id": "integer",
+     "department_id": "integer",
+     "year": "integer",
+     "isbn": "string"
+   }
+   
+   Response:
+   Success: 200 - { "Success": true, "Message": "Student Publication updated successfully.", "data": [{ "studentPublications_id": 1 }] }
+
+---
+
+6. DELETE STUDENT PUBLICATION (Soft Delete)
+   Method: DELETE
+   Endpoint: /deleteStudentPublication/:studentPublications_id
+   Authentication: NO
+   
+   URL Parameters:
+     - studentPublications_id: integer (required)
+   
+   Response:
+   Success: 200 - Record marked as deleted
+
+---
+
+7. RESTORE STUDENT PUBLICATION
+   Method: PATCH
+   Endpoint: /restoreStudentPublication/restore/:studentPublications_id
+   Authentication: NO
+   
+   URL Parameters:
+     - studentPublications_id: integer (required)
+   
+   Response:
+   Success: 200 - Record restored
+
+---
+
+8. MARK STUDENT PUBLICATION AS IMPORTANT / NOT IMPORTANT
+   Method: PATCH
+   Endpoint: /markStudentPublicationAsImportant/:studentPublications_id
+   Authentication: NO
+   
+   URL Parameters:
+     - studentPublications_id: integer (required)
+   
+   Request Body (JSON):
+   {
+     "is_important": 0 or 1 (required)
+   }
+   
+   Note: Maximum 4 records can be marked as important. When marking 5th record, oldest is automatically unmarked.
+   
+   Response:
+   Success: 200 - { "Success": true, "Message": "Student Publication marked as important/not important successfully.", "data": [{ "studentPublications_id": 1, "is_important": 1 }] }
+
+---
+
+9. GET STUDENT PUBLICATIONS BY ACADEMIC ID
+   Method: GET
+   Endpoint: /getStudentPublicationsByAcademic/:academic_id
+   Authentication: NO
+   
+   URL Parameters:
+     - academic_id: integer (required)
+   
+   Response:
+   Success: 200 - Returns all student publications for specified academic
+
+---
+
+10. GET STUDENT PUBLICATIONS BY DEPARTMENT ID
+    Method: GET
+    Endpoint: /getStudentPublicationsByDepartment/:department_id
+    Authentication: NO
+    
+    URL Parameters:
+      - department_id: integer (required)
+    
+    Response:
+    Success: 200 - Returns all student publications for specified department
+
+---
+
+11. GET ALL ACADEMICS WITH STUDENT PUBLICATIONS
+    Method: GET
+    Endpoint: /getAcademicsWithStudentPublications
+    Authentication: NO
+    Parameters: None
+    
+    Response:
+    Success: 200 - Returns all academics that have student publications (with nested publication data)
+
+---
+
+12. GET DEPARTMENTS BY ACADEMIC IN STUDENT PUBLICATIONS
+    Method: GET
+    Endpoint: /getDepartmentsByAcademicInStudentPublications/:academic_id
+    Authentication: NO
+    
+    URL Parameters:
+      - academic_id: integer (required)
+    
+    Response:
+    Success: 200 - Returns all departments under specific academic with nested student publications
+
+---
+
+13. ADVANCED FILTER - STUDENT PUBLICATIONS
+    Method: GET
+    Endpoint: /filterStudentPublications
+    Authentication: NO
+    
+    Query Parameters (All Optional - Can be combined):
+      - keyword: string - Searches in title, publisher, description, student_name, isbn
+      - academic_id: integer - Filter by academic
+      - department_id: integer - Filter by department
+      - year: integer - Filter by year
+    
+    Examples:
+      GET /filterStudentPublications
+      GET /filterStudentPublications?keyword=machine%20learning
+      GET /filterStudentPublications?academic_id=1&department_id=2
+      GET /filterStudentPublications?year=2024
+    
+    Response:
+    Success: 200 - Returns filtered results sorted by newest first (updatedAt DESC)
+
+
+14. GET ALL STUDENT PUBLICATIONS GROUPED BY YEAR
+    Method: GET
+    Endpoint: /getAllStudentPublicationsYear
+    Authentication: NO
+    Parameters: None
+    
+    Response:
+    Success: 200 - Returns student publications grouped by year
+    Response Format:
+    {
+      "Success": true,
+      "Message": "Student Publications grouped by year retrieved successfully.",
+      "data": {
+        "2024": [
+          { "studentPublications_id": 1 },
+          { "studentPublications_id": 2 }
+        ],
+        "2023": [
+          { "studentPublications_id": 3 }
+        ],
+        "No Year": [
+          { "studentPublications_id": 4 }
+        ]
+      }
+    }
+
+
+================================================================================
+                        FACULTY PUBLICATIONS APIS
+================================================================================
+
+1. ADD FACULTY PUBLICATION (Create)
+   Method: POST
+   Endpoint: /addFacultyPublication
+   Authentication: YES (Required)
+   
+   Request Body (JSON):
+   {
+     "title": "string (required)",
+     "publisher": "string",
+     "description": "string",
+     "faculty_name": "string",
+     "academic_id": "integer (required)",
+     "department_id": "integer (required)",
+     "year": "integer",
+     "isbn": "string",
+     "mark_as_important": "boolean (optional) - Set to true to mark as important (max 4)"
+   }
+   
+   Response:
+   Success: 201 - { "Success": true, "Message": "Faculty Publication added successfully.", "data": [{ "facultyPublications_id": 1 }] }
+   Error: 400/500 - { "Success": false, "Message": "Error message" }
+
+---
+
+2. GET ALL FACULTY PUBLICATIONS
+   Method: GET
+   Endpoint: /getAllFacultyPublications
+   Authentication: NO
+   Parameters: None
+   
+   Response:
+   Success: 200 - { "Success": true, "Message": "Faculty Publications retrieved successfully.", "data": [...] }
+
+---
+
+3. GET IMPORTANT FACULTY PUBLICATIONS ONLY
+   Method: GET
+   Endpoint: /getImportantFacultyPublications
+   Authentication: NO
+   Parameters: None
+   
+   Response:
+   Success: 200 - Returns only records where is_important = 1, ordered by newest first
+
+---
+
+4. GET FACULTY PUBLICATION BY ID
+   Method: GET
+   Endpoint: /getFacultyPublicationById/:facultyPublications_id
+   Authentication: NO
+   
+   URL Parameters:
+     - facultyPublications_id: integer (required)
+   
+   Response:
+   Success: 200 - Returns single faculty publication with all fields
+   Error: 404 - Record not found
+
+---
+
+5. UPDATE FACULTY PUBLICATION
+   Method: PUT
+   Endpoint: /updateFacultyPublication/:facultyPublications_id
+   Authentication: NO
+   
+   URL Parameters:
+     - facultyPublications_id: integer (required)
+   
+   Request Body (JSON) - All fields optional:
+   {
+     "title": "string",
+     "publisher": "string",
+     "description": "string",
+     "faculty_name": "string",
+     "academic_id": "integer",
+     "department_id": "integer",
+     "year": "integer",
+     "isbn": "string"
+   }
+   
+   Response:
+   Success: 200 - { "Success": true, "Message": "Faculty Publication updated successfully.", "data": [{ "facultyPublications_id": 1 }] }
+
+---
+
+6. DELETE FACULTY PUBLICATION (Soft Delete)
+   Method: DELETE
+   Endpoint: /deleteFacultyPublication/:facultyPublications_id
+   Authentication: NO
+   
+   URL Parameters:
+     - facultyPublications_id: integer (required)
+   
+   Response:
+   Success: 200 - Record marked as deleted
+
+---
+
+7. RESTORE FACULTY PUBLICATION
+   Method: PATCH
+   Endpoint: /restoreFacultyPublication/restore/:facultyPublications_id
+   Authentication: NO
+   
+   URL Parameters:
+     - facultyPublications_id: integer (required)
+   
+   Response:
+   Success: 200 - Record restored
+
+---
+
+8. MARK FACULTY PUBLICATION AS IMPORTANT / NOT IMPORTANT
+   Method: PATCH
+   Endpoint: /markFacultyPublicationAsImportant/:facultyPublications_id
+   Authentication: NO
+   
+   URL Parameters:
+     - facultyPublications_id: integer (required)
+   
+   Request Body (JSON):
+   {
+     "is_important": 0 or 1 (required)
+   }
+   
+   Note: Maximum 4 records can be marked as important. When marking 5th record, oldest is automatically unmarked.
+   
+   Response:
+   Success: 200 - { "Success": true, "Message": "Faculty Publication marked as important/not important successfully.", "data": [{ "facultyPublications_id": 1, "is_important": 1 }] }
+
+---
+
+9. GET FACULTY PUBLICATIONS BY ACADEMIC ID
+   Method: GET
+   Endpoint: /getFacultyPublicationsByAcademic/:academic_id
+   Authentication: NO
+   
+   URL Parameters:
+     - academic_id: integer (required)
+   
+   Response:
+   Success: 200 - Returns all faculty publications for specified academic
+
+---
+
+10. GET FACULTY PUBLICATIONS BY DEPARTMENT ID
+    Method: GET
+    Endpoint: /getFacultyPublicationsByDepartment/:department_id
+    Authentication: NO
+    
+    URL Parameters:
+      - department_id: integer (required)
+    
+    Response:
+    Success: 200 - Returns all faculty publications for specified department
+
+---
+
+11. GET ALL ACADEMICS WITH FACULTY PUBLICATIONS
+    Method: GET
+    Endpoint: /getAcademicsWithFacultyPublications
+    Authentication: NO
+    Parameters: None
+    
+    Response:
+    Success: 200 - Returns all academics that have faculty publications (with nested publication data)
+
+---
+
+12. GET DEPARTMENTS BY ACADEMIC IN FACULTY PUBLICATIONS
+    Method: GET
+    Endpoint: /getDepartmentsByAcademicInFacultyPublications/:academic_id
+    Authentication: NO
+    
+    URL Parameters:
+      - academic_id: integer (required)
+    
+    Response:
+    Success: 200 - Returns all departments under specific academic with nested faculty publications
+
+---
+
+13. ADVANCED FILTER - FACULTY PUBLICATIONS
+    Method: GET
+    Endpoint: /filterFacultyPublications
+    Authentication: NO
+    
+    Query Parameters (All Optional - Can be combined):
+      - keyword: string - Searches in title, publisher, description, faculty_name, isbn
+      - academic_id: integer - Filter by academic
+      - department_id: integer - Filter by department
+      - year: integer - Filter by year
+    
+    Examples:
+      GET /filterFacultyPublications
+      GET /filterFacultyPublications?keyword=research
+      GET /filterFacultyPublications?academic_id=1&year=2024
+    
+    Response:
+    Success: 200 - Returns filtered results sorted by newest first (updatedAt DESC)
+
+
+14. GET ALL FACULTY PUBLICATIONS GROUPED BY YEAR
+    Method: GET
+    Endpoint: /getAllFacultyPublicationsYear
+    Authentication: NO
+    Parameters: None
+    
+    Response:
+    Success: 200 - Returns faculty publications grouped by year
+    Response Format:
+    {
+      "Success": true,
+      "Message": "Faculty Publications grouped by year retrieved successfully.",
+      "data": {
+        "2024": [
+          { "facultyPublications_id": 1 },
+          { "facultyPublications_id": 2 }
+        ],
+        "2023": [
+          { "facultyPublications_id": 3 }
+        ],
+        "No Year": [
+          { "facultyPublications_id": 4 }
+        ]
+      }
+    }
+
+
+================================================================================
+                    RESEARCH HIGHLIGHTS YEAR-GROUPED API
+================================================================================
+
+GET ALL RESEARCH HIGHLIGHTS GROUPED BY YEAR
+   Method: GET
+   Endpoint: /getAllResearchHighlightsYear
+   Authentication: NO
+   Parameters: None
+   
+   Response:
+   Success: 200 - Returns research highlights grouped by year
+   Response Format:
+   {
+     "Success": true,
+     "Message": "Research Highlights grouped by year retrieved successfully.",
+     "data": {
+       "2024": [
+         { "researchHighlights_id": 1 },
+         { "researchHighlights_id": 2 }
+       ],
+       "2023": [
+         { "researchHighlights_id": 3 }
+       ],
+       "No Year": [
+         { "researchHighlights_id": 4 }
+       ]
+     }
+   }
+
+
+================================================================================
+                            COMMON RESPONSE FORMAT
+================================================================================
+
+Success Response:
+{
+  "Success": true,
+  "Message": "Operation message",
+  "data": [
+    {
+      "researchHighlights_id/studentPublications_id/facultyPublications_id/examination_id": 1,
+      "title": "string",
+      "publisher": "string",
+      "description": "string",
+      "faculty_name/student_name": "string",
+      "academic_id": 1,
+      "department_id": 1,
+      "year": 2024,
+      "isbn": "string (for publications only)",
+      "is_important": 0 or 1,
+      "delete_status": 0,
+      "createdAt": "ISO date",
+      "updatedAt": "ISO date",
+      "deletedAt": null,
+      "academic": {
+        "academic_id": 1,
+        "name": "string",
+        ...
+      },
+      "department": {
+        "department_id": 1,
+        "name": "string",
+        ...
+      }
+    }
+  ]
+}
+
+Error Response:
+{
+  "Success": false,
+  "Message": "Error message",
+  "data": null
+}
+
+
+================================================================================
+                        EXAMINATIONS APIS
+================================================================================
+
+1. ADD EXAMINATIONS SECTION (Create)
+   Method: POST
+   Endpoint: /addExaminationsSection
+   Authentication: YES (Required)
+   
+   Request Body (JSON):
+   {
+     "section_name": "string (required)",
+     "heading": "string (required)",
+     "sub_heading": "string",
+     "content": "string (required)",
+     "additional_data": "object/array (optional) - Flexible data field for cards, accordions, buttons, etc."
+   }
+   
+   Response:
+   Success: 201 - { "Success": true, "Message": "Examinations section added successfully.", "data": [{ "examination_id": 1 }] }
+   Error: 400/500 - { "Success": false, "Message": "Error message" }
+
+---
+
+2. GET ALL EXAMINATIONS SECTIONS
+   Method: GET
+   Endpoint: /getAllExaminationsSections
+   Authentication: NO
+   Parameters: None
+   
+   Response:
+   Success: 200 - { "Success": true, "Message": "Examinations sections retrieved successfully.", "data": [...] }
+   Returns fields: examination_id, page_name, section_name, heading, sub_heading, content, additional_data, delete_status, timestamps
+
+---
+
+3. GET EXAMINATIONS SECTION BY ID
+   Method: GET
+   Endpoint: /getExaminationsSectionById/:examination_id
+   Authentication: NO
+   
+   URL Parameters:
+     - examination_id: integer (required)
+   
+   Response:
+   Success: 200 - Returns single examinations section with all fields
+   Error: 404 - Record not found
+
+---
+
+4. GET EXAMINATIONS SECTIONS BY SECTION NAME
+   Method: POST
+   Endpoint: /getAllExaminationsSectionsBySectionName
+   Authentication: NO
+   
+   Request Body (JSON):
+   {
+     "section_name": "string (required)"
+   }
+   
+   Response:
+   Success: 200 - Returns all sections matching the provided section_name
+
+---
+
+5. UPDATE EXAMINATIONS SECTION
+   Method: PUT
+   Endpoint: /updateExaminationsSection/:examination_id
+   Authentication: NO
+   
+   URL Parameters:
+     - examination_id: integer (required)
+   
+   Request Body (JSON) - All fields optional:
+   {
+     "section_name": "string",
+     "heading": "string",
+     "sub_heading": "string",
+     "content": "string",
+     "additional_data": "object/array"
+   }
+   
+   Response:
+   Success: 200 - { "Success": true, "Message": "Examinations section updated successfully.", "data": [] }
+
+---
+
+6. DELETE EXAMINATIONS SECTION (Soft Delete)
+   Method: DELETE
+   Endpoint: /deleteExaminationsSection/:examination_id
+   Authentication: NO
+   
+   URL Parameters:
+     - examination_id: integer (required)
+   
+   Response:
+   Success: 200 - Record marked as deleted (delete_status = 1)
+
+---
+
+7. RESTORE EXAMINATIONS SECTION
+   Method: PATCH
+   Endpoint: /restoreExaminationsSection/restore/:examination_id
+   Authentication: NO
+   
+   URL Parameters:
+     - examination_id: integer (required)
+   
+   Response:
+   Success: 200 - Record restored (delete_status = 0)
+
+
+================================================================================
+                            COMMON RESPONSE FORMAT
+================================================================================
+
+Success Response:
+{
+  "Success": true,
+  "Message": "Operation message",
+  "data": [
+    {
+      "researchHighlights_id/studentPublications_id/facultyPublications_id": 1,
+      "title": "string",
+      "publisher": "string",
+      "description": "string",
+      "faculty_name/student_name": "string",
+      "academic_id": 1,
+      "department_id": 1,
+      "year": 2024,
+      "is_important": 0 or 1,
+      "delete_status": 0,
+      "createdAt": "ISO date",
+      "updatedAt": "ISO date",
+      "deletedAt": null,
+      "academic": {
+        "academic_id": 1,
+        "name": "string",
+        ...
+      },
+      "department": {
+        "department_id": 1,
+        "name": "string",
+        ...
+      }
+    }
+  ]
+}
+
+Error Response:
+{
+  "Success": false,
+  "Message": "Error message",
+  "data": null
+}
+
+
+================================================================================
+                            STATUS CODES
+================================================================================
+
+200 OK - Successful GET, PUT, PATCH request
+201 CREATED - Successful POST request
+400 BAD_REQUEST - Invalid input or validation failed
+404 NOT_FOUND - Record not found
+500 SERVER_ERROR - Server error
+
+
+================================================================================
+                            IMPORTANT NOTES
+================================================================================
+
+1. SOFT DELETE: Deleting a record marks it as deleted (delete_status = 1) but keeps it in database
+   - Deleted records are not returned in GET queries
+   - Can be restored using restore endpoint
+
+2. IS_IMPORTANT LIMIT: Maximum 4 records per module can be marked as important (is_important = 1)
+   - When marking 5th record as important, the oldest (by updatedAt) is automatically unmarked
+   - Works across all records, not per academic or department
+
+3. AUTHENTICATION:
+   - POST endpoints (Create) require authentication (JWT Bearer token)
+   - All other endpoints (GET, PUT, DELETE, PATCH) do not require authentication
+
+4. FILTER COMBINATIONS:
+   - All parameters in filter endpoints are optional
+   - Multiple parameters are combined with AND logic
+   - Keyword search works across multiple fields
+   - Empty result returns empty array (no error)
+
+5. ASSOCIATIONS:
+   - Each publication record includes nested academic and department objects
+   - Use hierarchical endpoints (getAcademicsWith*, getDepartmentsByAcademicIn*) for structured data
+
+6. TIMESTAMPS:
+   - createdAt, updatedAt automatically managed by Sequelize
+   - deletedAt set only on soft delete
+
+================================================================================

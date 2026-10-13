@@ -1,0 +1,21 @@
+.customDropdown-input {
+  height: 40px;
+  width: 100%;
+  padding-left: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none; /* Remove outline when focused */
+  border: 1px solid #ced4da;
+}
+/* .input-heading {
+  color: black;
+  margin-top: 7.5px;
+} */
+.customDropdown-disabled-option {
+  color: rgba(0, 0, 0, 0.3);
+  height: 37px;
+}
+
+.customDropdown-input:focus {
+  border-color: black;
+}

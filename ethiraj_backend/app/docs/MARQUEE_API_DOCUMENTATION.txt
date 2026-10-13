@@ -1,0 +1,361 @@
+================================================================================
+                         MARQUEE MODULE APIS
+================================================================================
+
+This document contains API documentation for the Marquee Module.
+The Marquee module manages scrolling text/announcements displayed on different pages.
+
+Database Table: marquees
+Primary Key: marquee_id
+Fields: marquee_id, page_name, text, link, delete_status, createdAt, updatedAt, deletedAt
+
+
+================================================================================
+                         MARQUEE MODULE ENDPOINTS
+================================================================================
+
+1. ADD MARQUEE (Create)
+   Method: POST
+   Endpoint: /addMarquee
+   Authentication: YES (Required)
+
+   Request Body (JSON):
+   {
+     "page_name": "string (optional, default: 'home page')",
+     "text": "string (required)",
+     "link": "string (required)"
+   }
+
+   Response:
+   Success: 201 - { "Success": true, "Message": "Marquee added successfully.", "data": [{ "marquee_id": 1 }] }
+   Error: 400/401/500 - { "Success": false, "Message": "Error message" }
+
+   Example Request:
+   {
+     "page_name": "home page",
+     "text": "Welcome to our college! New admissions open now.",
+     "link": "https://example.com/admissions"
+   }
+
+   Notes:
+   - Requires valid authentication token (JWT)
+   - page_name defaults to "home page" if not provided
+   - text and link are mandatory fields
+
+---
+
+2. GET ALL MARQUEES
+   Method: GET
+   Endpoint: /getAllMarquees
+   Authentication: NO
+   Parameters: None
+
+   Response:
+   Success: 200 - { "Success": true, "Message": "Marquees retrieved successfully.", "data": [...] }
+
+   Example Response:
+   {
+     "Success": true,
+     "Message": "Marquees retrieved successfully.",
+     "data": [
+       {
+         "marquee_id": 1,
+         "page_name": "home page",
+         "text": "Welcome to our college!",
+         "link": "https://example.com",
+         "delete_status": 0,
+         "createdAt": "2026-05-02T10:30:00.000Z",
+         "updatedAt": "2026-05-02T10:30:00.000Z",
+         "deletedAt": null
+       }
+     ]
+   }
+
+   Notes:
+   - Returns only active marquees (delete_status = 0)
+   - No authentication required
+
+---
+
+3. GET MARQUEES BY PAGE NAME
+   Method: POST
+   Endpoint: /getAllMarqueesByPageName
+   Authentication: NO
+
+   Request Body (JSON):
+   {
+     "page_name": "string (optional, default: 'home page')"
+   }
+
+   Response:
+   Success: 200 - { "Success": true, "Message": "Marquees retrieved successfully.", "data": [...] }
+
+   Example Request:
+   {
+     "page_name": "home page"
+   }
+
+   Example Response:
+   {
+     "Success": true,
+     "Message": "Marquees retrieved successfully.",
+     "data": [
+       {
+         "marquee_id": 1,
+         "page_name": "home page",
+         "text": "Announcement text here",
+         "link": "https://example.com",
+         "delete_status": 0,
+         "createdAt": "2026-05-02T10:30:00.000Z",
+         "updatedAt": "2026-05-02T10:30:00.000Z",
+         "deletedAt": null
+       }
+     ]
+   }
+
+   Notes:
+   - Filters marquees by specific page_name
+   - If page_name not provided, defaults to "home page"
+   - Returns only active records
+
+---
+
+4. GET MARQUEE BY ID
+   Method: GET
+   Endpoint: /getMarqueeById/:marquee_id
+   Authentication: NO
+
+   URL Parameters:
+     - marquee_id: integer (required)
+
+   Response:
+   Success: 200 - Returns single marquee record
+   Error: 404 - { "Success": false, "Message": "Marquee not found." }
+
+   Example URL: /getMarqueeById/1
+
+   Example Response:
+   {
+     "Success": true,
+     "Message": "Marquee retrieved successfully.",
+     "data": {
+       "marquee_id": 1,
+       "page_name": "home page",
+       "text": "Important announcement",
+       "link": "https://example.com/details",
+       "delete_status": 0,
+       "createdAt": "2026-05-02T10:30:00.000Z",
+       "updatedAt": "2026-05-02T10:30:00.000Z",
+       "deletedAt": null
+     }
+   }
+
+   Notes:
+   - Returns only active marquees (delete_status = 0)
+
+---
+
+5. UPDATE MARQUEE
+   Method: PUT
+   Endpoint: /updateMarquee/:marquee_id
+   Authentication: NO
+
+   URL Parameters:
+     - marquee_id: integer (required)
+
+   Request Body (JSON) - All fields optional:
+   {
+     "page_name": "string",
+     "text": "string",
+     "link": "string"
+   }
+
+   Response:
+   Success: 200 - { "Success": true, "Message": "Marquee updated successfully.", "data": [] }
+   Error: 404 - { "Success": false, "Message": "Marquee not found or is deleted." }
+
+   Example Request:
+   {
+     "page_name": "about page",
+     "text": "Updated announcement text",
+     "link": "https://example.com/new-link"
+   }
+
+   Example URL: /updateMarquee/1
+
+   Notes:
+   - All fields are optional
+   - If page_name not provided in update, it defaults to "home page"
+   - Cannot update deleted marquees
+
+---
+
+6. DELETE MARQUEE (Soft Delete)
+   Method: DELETE
+   Endpoint: /deleteMarquee/:marquee_id
+   Authentication: NO
+
+   URL Parameters:
+     - marquee_id: integer (required)
+
+   Response:
+   Success: 200 - { "Success": true, "Message": "Marquee soft deleted successfully.", "data": [] }
+   Error: 404 - { "Success": false, "Message": "Marquee not found." }
+
+   Example URL: /deleteMarquee/1
+
+   Notes:
+   - Performs soft delete (sets delete_status = 1, records deletedAt timestamp)
+   - Record is not permanently removed from database
+   - Soft-deleted records won't appear in GET queries
+   - Can be restored using restore endpoint
+
+---
+
+7. RESTORE MARQUEE
+   Method: PATCH
+   Endpoint: /restoreMarquee/restore/:marquee_id
+   Authentication: NO
+
+   URL Parameters:
+     - marquee_id: integer (required)
+
+   Response:
+   Success: 200 - { "Success": true, "Message": "Marquee restored successfully.", "data": [] }
+   Error: 404 - { "Success": false, "Message": "Marquee not found or is not soft-deleted." }
+
+   Example URL: /restoreMarquee/restore/1
+
+   Notes:
+   - Restores a soft-deleted marquee (sets delete_status = 0, clears deletedAt)
+   - Only works on soft-deleted records
+   - Makes record visible again in GET queries
+
+
+================================================================================
+                         FIELD DEFINITIONS
+================================================================================
+
+marquee_id (Integer):
+   - Primary key, auto-incremented
+   - Unique identifier for each marquee record
+   - Cannot be null
+
+page_name (String):
+   - Name of the page where marquee will be displayed
+   - Default value: "home page"
+   - Cannot be null
+   - Examples: "home page", "about page", "news page", "events page"
+
+text (String/Text):
+   - Marquee announcement text/content
+   - Cannot be null
+   - Can contain longer text content
+
+link (String):
+   - URL to redirect when marquee is clicked
+   - Cannot be null
+   - Must be valid URL format
+
+delete_status (Tiny Integer):
+   - Soft delete flag
+   - 0 = Active/Not deleted
+   - 1 = Deleted/Inactive
+   - Default: 0
+   - Cannot be null
+
+createdAt (DateTime):
+   - Timestamp when record was created
+   - Automatically set to current date/time
+   - Cannot be null
+
+updatedAt (DateTime):
+   - Timestamp when record was last updated
+   - Automatically updated on every modification
+   - Cannot be null
+
+deletedAt (DateTime):
+   - Timestamp when record was soft-deleted
+   - Only populated if delete_status = 1
+   - Initially null
+   - Cleared when record is restored
+
+
+================================================================================
+                         HTTP STATUS CODES
+================================================================================
+
+200 OK:
+   - Successful GET, PUT, DELETE, PATCH requests
+
+201 CREATED:
+   - POST request successful, new resource created
+
+400 BAD REQUEST:
+   - Missing required fields (text, link)
+   - Missing authentication credentials
+   - Invalid data format
+
+401 UNAUTHORIZED:
+   - Invalid or expired authentication token
+   - User not found or inactive
+   - Invalid user role
+
+404 NOT FOUND:
+   - Marquee record not found
+   - Marquee already deleted (for delete operations)
+
+500 INTERNAL SERVER ERROR:
+   - Unexpected server error
+   - Database connection issues
+   - Server processing error
+
+
+================================================================================
+                         AUTHENTICATION NOTES
+================================================================================
+
+Required for:
+   - POST /addMarquee - Requires valid JWT token in Authorization header
+
+Not Required for:
+   - GET /getAllMarquees
+   - POST /getAllMarqueesByPageName
+   - GET /getMarqueeById/:marquee_id
+   - PUT /updateMarquee/:marquee_id
+   - DELETE /deleteMarquee/:marquee_id
+   - PATCH /restoreMarquee/restore/:marquee_id
+
+Authentication Header Format:
+   Authorization: Bearer <JWT_TOKEN>
+
+
+================================================================================
+                         EXAMPLE USE CASES
+================================================================================
+
+1. Display Latest Announcements on Home Page:
+   - Call GET /getAllMarqueesByPageName with page_name="home page"
+   - Display returned marquees in scrolling format on frontend
+
+2. Add New Marquee Announcement:
+   - Call POST /addMarquee with authentication
+   - Provide page_name, text, and link
+   - Display returned marquee_id to confirm creation
+
+3. Update Existing Marquee:
+   - Call PUT /updateMarquee/:marquee_id
+   - Send only fields that need updating
+   - Confirm with success message
+
+4. Temporarily Hide Marquee:
+   - Call DELETE /deleteMarquee/:marquee_id
+   - Record is soft-deleted, can be restored later
+   - Record won't appear in GET queries
+
+5. Restore Hidden Marquee:
+   - Call PATCH /restoreMarquee/restore/:marquee_id
+   - Record becomes visible again
+   - Can be displayed in frontend marquee areas
+
+================================================================================

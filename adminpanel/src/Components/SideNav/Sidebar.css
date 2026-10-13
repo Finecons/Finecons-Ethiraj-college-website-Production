@@ -1,0 +1,44 @@
+.basic_account{
+    font-size: 10px;
+    border-radius: 10px;
+    /* border: 1px solid blue; */
+    padding-left: 5px;
+    padding-right: 5px;
+    color:  rgb(66 66 62);;
+    background-color: hsl(33deg 42.59% 95.24% / 96.7%);
+}
+.upgrade_button{
+    font-size: 12px;
+    font-weight: 700;
+    color: rgb(232 169 0);
+    background-color: #ffc93333;
+    border-radius: 20px;
+
+}
+.create_button{
+    background-color: rgb(136 84 192);
+    height: 40px;
+    color: white;
+    box-shadow: 0 4px #6c4298;
+}
+
+.css-ka7ti6-MuiAutocomplete-root .MuiOutlinedInput-root {
+    padding: 0px;
+}
+
+.sidenav-text{
+    font-size: var(--sidenav-fontsize);
+    font-weight: var(--sidenav-fontweight);
+    color: var(--sidenav-color);
+    /* background-color: red; */
+    
+}
+
+.sidebar-icon{
+    font-size: 24px;
+    margin-right: 5px;
+}
+
+
+
+

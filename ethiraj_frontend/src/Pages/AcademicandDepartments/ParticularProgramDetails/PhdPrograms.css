@@ -1,0 +1,52 @@
+.course-title{
+    max-width: 55%;
+}
+
+/* Mobile - xs: 320px */
+@media (max-width: 319px) {
+    .course-title {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+}
+
+/* Mobile - xs: 320px to 767px */
+@media (min-width: 320px) and (max-width: 767px) {
+    .course-title {
+        max-width: 100%;
+        padding: 0 12px;
+    }
+}
+
+/* Tablet - sm: 768px to 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .course-title {
+        max-width: 90%;
+        padding: 0 20px;
+    }
+}
+
+/* Small Desktop - md: 1024px to 1365px */
+@media (min-width: 1024px) and (max-width: 1365px) {
+    .course-title {
+        max-width: 85%;
+        padding: 0 30px;
+    }
+}
+
+/* Large Desktop - lg: 1366px to 1727px */
+@media (min-width: 1366px) and (max-width: 1727px) {
+    .course-title {
+        max-width: 75%;
+        padding: 0 40px;
+    }
+}
+
+/* Extra Large - xl: 1728px and above */
+@media (min-width: 1728px) {
+    .course-title {
+        max-width: 65%;
+        padding: 0 50px;
+    }
+}
+

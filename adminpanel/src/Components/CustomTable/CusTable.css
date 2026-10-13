@@ -1,0 +1,135 @@
+/* cusTable.css
+-------------- */
+
+
+.table_search_form {
+  display: flex;
+  align-items: center;
+
+}
+
+.table_search_label {
+  padding-left: -9999999px;
+}
+
+/* h3, form {
+    margin: 0;
+  } */
+
+/* form {
+    display: flex; 
+    justify-content: flex-end;
+  } */
+
+.Table_heading {
+
+  font-size: 20px;
+  font-weight: 650;
+}
+
+.table_search_grid {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.table_search {
+  /* text-align: center; */
+  width: 30%;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: -7%;
+}
+
+.nav_pagination {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.table-borderless {
+  font-size: 12px;
+  /* text-align: center; */
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.thead_data {
+  color: #959595;
+}
+
+.pagination {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.pagination .page-item {
+  display: inline;
+  margin-right: 5px;
+  /* border: 1px solid blue; */
+}
+
+.pagination .page-link {
+  text-decoration: none;
+  border: none;
+  /* background-color: var(--pagination-bgcolor); */
+  /* --pagination-color: #50c5d1; */
+  color: var(--pagination-color);
+  font-weight: 650;
+
+}
+.page-item.active .page-link {
+  background-color: var(--pagination-bgcolor); /* Change this to the desired background color */
+  color: white; /* Optional: Change text color */
+  /* border-color: var(--pagination-bgcolor); */
+  border-color: red; /* Optional: Change border color */
+  
+}
+
+
+
+.custom-table td,
+th {
+  padding: 5px !important;
+}
+
+
+.search-container {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+.search-container input[type="text"] {
+  padding-left: 30px;
+  /* Adjust as necessary */
+}
+
+.Table_search_input {
+  width: 150px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 9px;
+  padding: 5px;
+  font-size: 14px;
+  background-color: var(--tablesearch-bgcolor);
+
+  border: none;
+}
+
+.Table_search_input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+  /* Adjust placeholder color */
+}
+
+.Table_search_input:focus {
+  outline: 1px solid black;
+}

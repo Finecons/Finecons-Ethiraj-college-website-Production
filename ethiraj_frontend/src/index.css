@@ -1,0 +1,92 @@
+:root {
+  --main-color: #287eb9;
+
+  /* --main-color: red; */
+  --table-headbackgroungcolor: gray;
+  --main-contentbackgroundcolor: #edf2f6;
+  --button-color: linear-gradient(90deg, #f78b5f, #fca36e);
+  --button-redcolor: #f85a47;
+
+  /* Brand Palette/Text/primary */
+  --brand-palatte-text-color: #212529;
+  --brand-active-primary-color: #5d5a84;
+
+  /* Brand Palette/Text/tertiary */
+  --brand-palette-text-tertiary: #868e96;
+  --brand-palette-text-secondary: #495057;
+  --brand-palette-border-strong: #343a40;
+  --heading-text-primary: #303030;
+
+  --heading-text-primary2: #000000;
+  --border-color-default: #6c757d;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("/src/fonts//Newsreader/NewsreaderDisplay-SemiBold.ttf")
+    format("truetype");
+  font-weight: 600;
+  /* font-style: normal; */
+}
+@font-face {
+  font-family: "Newsreader";
+  src: url("/src/fonts//Newsreader/NewsreaderText-Regular.ttf")
+    format("truetype");
+  font-weight: 400;
+  /* font-style: normal; */
+}
+@font-face {
+  font-family: "Newsreader";
+  src: url("/src/fonts//Newsreader/NewsreaderText-Medium.ttf")
+    format("truetype");
+  font-weight: 500;
+  /* font-style: normal; */
+}
+@font-face {
+  font-family: "Newsreader";
+  src: url("/src/fonts//Newsreader/NewsreaderText-Bold.ttf") format("truetype");
+  font-weight: 700;
+  /* font-style: normal; */
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/src/fonts/Inter/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/src/fonts/Inter/Inter-Medium.woff2") format("woff2");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/src/fonts/Inter/Inter-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/src/fonts/Inter/Inter-Bold.woff2") format("woff2");
+  font-weight: 700;
+}
+
+body {
+  background: linear-gradient(180deg, #fff 80.05%, #b7a0d6 109.23%);
+  background-attachment: fixed;
+
+}
+
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);  
+}
+
+input:focus,
+textarea:focus {
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+textarea {
+  font-family: inherit;
+}

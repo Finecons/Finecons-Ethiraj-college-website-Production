@@ -1,0 +1,10 @@
+.tabledataview-content-textheading{
+    color: #7A7A7A;
+}
+.content-layout{
+    /* color: red; */
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+}
