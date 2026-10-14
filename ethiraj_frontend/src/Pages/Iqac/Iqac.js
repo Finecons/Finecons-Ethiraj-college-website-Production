@@ -317,11 +317,11 @@ const Iqac = () => {
         card_design: [
           {
             name: "Certificate - Cycle IV",
-            pdf: "https://ethirajcollegeblob.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
+            pdf: "https://ethirajsitedata.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
           },
           {
             name: "SSR - Cycle IV",
-            pdf: "https://ethirajcollegeblob.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
+            pdf: "https://ethirajsitedata.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
           },
         ],
       },
@@ -335,15 +335,15 @@ const Iqac = () => {
         card_design: [
           {
             name: "2024-2025",
-            pdf: "https://ethirajcollegeblob.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
+            pdf: "https://ethirajsitedata.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
           },
           {
             name: "2023-2024",
-            pdf: "https://ethirajcollegeblob.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
+            pdf: "https://ethirajsitedata.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
           },
           {
             name: "2022-2023",
-            pdf: "https://ethirajcollegeblob.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
+            pdf: "https://ethirajsitedata.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
           },
         ],
       },
@@ -357,15 +357,15 @@ const Iqac = () => {
         card_design: [
           {
             name: "2025",
-            pdf: "https://ethirajcollegeblob.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
+            pdf: "https://ethirajsitedata.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
           },
           {
             name: "2024",
-            pdf: "https://ethirajcollegeblob.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
+            pdf: "https://ethirajsitedata.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
           },
           {
             name: "2023",
-            pdf: "https://ethirajcollegeblob.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
+            pdf: "https://ethirajsitedata.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
           },
         ],
       },
@@ -379,19 +379,19 @@ const Iqac = () => {
         card_design: [
           {
             name: "Report 2021 - 2022",
-            pdf: "https://ethirajcollegeblob.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
+            pdf: "https://ethirajsitedata.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
           },
           {
             name: "Report 2022 - 2023",
-            pdf: "https://ethirajcollegeblob.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
+            pdf: "https://ethirajsitedata.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
           },
           {
             name: "Best Practices",
-            pdf: "https://ethirajcollegeblob.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
+            pdf: "https://ethirajsitedata.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
           },
           {
             name: "Student Satisfaction Survey 2023 - 2024",
-            pdf: "https://ethirajcollegeblob.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
+            pdf: "https://ethirajsitedata.blob.core.windows.net/pdfs/1768906056475-607949832.pdf?sv=2025-11-05&se=2026-01-21T10%3A47%3A36Z&sr=b&sp=r&sig=SixRi2Q4y5JxADM385GglCIw7tw5uTUC8c8bgZZhCEM%3D",
           },
         ],
       },
