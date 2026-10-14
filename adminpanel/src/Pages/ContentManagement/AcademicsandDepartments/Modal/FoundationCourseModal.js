@@ -559,7 +559,17 @@ const FoundationCourseModal = ({ open, onClose }) => {
             administration_img_url: additionalData?.administration_img_url || null,
             facultyCards:
               additionalData?.facultyCards?.length > 0
-                ? additionalData?.facultyCards
+                ? additionalData?.facultyCards.map((fc) => ({
+                    name: fc?.name || "",
+                    position: fc?.position || "",
+                    qualification: fc?.qualification || "",
+                    areaofspecilization: fc?.areaofspecilization || "",
+                    profilelink: fc?.profilelink || "",
+                    faculty_img_url: fc?.faculty_img_url || null,
+                    aided: Boolean(fc?.aided),
+                    self_supporting: Boolean(fc?.self_supporting),
+                    email: fc?.email || "",
+                  }))
                 : [
                     {
                       name: "",
@@ -570,6 +580,7 @@ const FoundationCourseModal = ({ open, onClose }) => {
                       faculty_img_url: null,
                       aided: false,
                       self_supporting: false,
+                      email: "",
                     },
                   ],
           }}
@@ -1185,6 +1196,15 @@ const FoundationCourseModal = ({ open, onClose }) => {
                               </Grid>
 
                               <Grid item size={{ xs: 12 }}>
+                                <CustomInputLogin
+                                  form={form}
+                                  label="Email ID"
+                                  name={`facultyCards.${index}.email`}
+                                  custPlaceholder="e.g. name@ethirajcollege.edu.in"
+                                />
+                              </Grid>
+
+                              <Grid item size={{ xs: 12 }}>
                                 <Typography
                                   variant="body1"
                                   sx={{  fontSize: "15px", fontWeight: "450" }}
@@ -1275,6 +1295,7 @@ const FoundationCourseModal = ({ open, onClose }) => {
                                   faculty_img_url: null,
                                   aided: false,
                                   self_supporting: false,
+                                  email: "",
                                 })
                               }
                               sx={{

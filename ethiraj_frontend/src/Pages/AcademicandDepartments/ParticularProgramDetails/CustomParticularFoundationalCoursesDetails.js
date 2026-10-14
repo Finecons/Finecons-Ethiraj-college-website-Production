@@ -899,9 +899,7 @@ const CustomParticularFoundationalCoursesDetails = () => {
           )}
         </Grid>
       )}
-      {hasValidFacultyData &&
-        (aidedFacultyData.length > 0 ||
-          selfSupportingFacultyData.length > 0) && (
+      {hasValidFacultyData && (
           <Box sx={{ mt: { lg: "96px", md: "80px", sm: "46px", xs: "46px" } }}>
             <Typography variant="headingTextNewsreaderMedium" fontWeight={600}>
               Faculty Members
@@ -917,7 +915,6 @@ const CustomParticularFoundationalCoursesDetails = () => {
                 <CustomImageSliderNext items={aidedFacultyData} link={true} />
               </Box>
             )}
-            ``
             {selfSupportingFacultyData.length > 0 && (
               <Box sx={{ mt: aidedFacultyData.length > 0 ? 6 : 3 }}>
                 <Typography
@@ -932,6 +929,12 @@ const CustomParticularFoundationalCoursesDetails = () => {
                 />
               </Box>
             )}
+            {aidedFacultyData.length === 0 &&
+              selfSupportingFacultyData.length === 0 && (
+                <Box sx={{ mt: 3 }}>
+                  <CustomImageSliderNext items={facultyData} link={true} />
+                </Box>
+              )}
           </Box>
         )}
 

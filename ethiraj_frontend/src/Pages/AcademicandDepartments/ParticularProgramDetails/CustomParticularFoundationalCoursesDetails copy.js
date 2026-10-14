@@ -182,6 +182,9 @@ const ConvertProgramData = (apiData) => {
       qualification: f.qualification,
       image: `${f.faculty_img_url}`,
       profileLink: f.profilelink,
+      email: f.email || "",
+      aided: Boolean(f.aided),
+      self_supporting: Boolean(f.self_supporting),
     })),
 
     activitiesData:
