@@ -70,6 +70,8 @@ import CustomNavbar from "./CustomNavbar";
 import AnnouncementsBanner from "../AnnouncementsBanner/AnnouncementsBanner";
 import actions from "../../ReduxStore/actions";
 import calenderPdf from "../../Assets/Calendar_July_Oct2026.pdf"
+import SiteSearchModal from "../Search/SiteSearchModal";
+import searchService from "../../services/searchService";
 
 /* ---------------- Configs ---------------- */
 
@@ -947,6 +949,29 @@ export default function Navbar({ isMainTabsActive }) {
     fetchButtonData();
   }, [dispatch]);
 
+  // Hydrate Search Index dynamically from Academics API
+  useEffect(() => {
+    const hydrateSearchIndex = async () => {
+      try {
+        const payload = {
+          method: "get",
+          apiName: "getAllAcademicsWithAllDetails",
+        };
+        const response = await dispatch(
+          actions.GETALLACADEMICSWITALLDETAILS(payload)
+        );
+        if (response?.payload?.data) {
+          searchService.ingestDynamicData({
+            academicsData: response.payload.data,
+          });
+        }
+      } catch (err) {
+        console.warn("Dynamic search hydration notice:", err);
+      }
+    };
+    hydrateSearchIndex();
+  }, [dispatch]);
+
   return (
     <>
       {/* ---------------- Row 1 (Hide on scroll) ---------------- */}
@@ -1618,13 +1643,8 @@ export default function Navbar({ isMainTabsActive }) {
       {/* Announcements Banner */}
       {location.pathname === "/" && <AnnouncementsBanner />}
 
-      {/* </Grid>   */}
-
-      {/* Extra Sections */}
-
-      {/* <Footer /> */}
-      {/* </Toolbar>
-    </AppBar> */}
+      {/* Global Site Search Modal */}
+      <SiteSearchModal />
     </>
   );
 }

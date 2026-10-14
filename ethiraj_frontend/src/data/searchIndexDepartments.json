@@ -1,0 +1,592 @@
+{
+  "items": [
+    {
+      "id": "dept-1",
+      "departmentId": 1,
+      "title": "Commerce",
+      "division": "Business Studies",
+      "type": "Department",
+      "path": "/academics/commerce/1",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Commerce (Business Studies)",
+      "tags": [
+        "commerce",
+        "b.com",
+        "bcom",
+        "b com",
+        "m.com",
+        "mcom",
+        "accounts",
+        "accountancy"
+      ]
+    },
+    {
+      "id": "dept-24",
+      "departmentId": 24,
+      "title": "BBA & MA HRM",
+      "division": "Business Studies",
+      "type": "Department",
+      "path": "/academics/bba&mahrm/24",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of BBA & MA HRM (Business Studies)",
+      "tags": [
+        "bba",
+        "hrm",
+        "human resource management",
+        "hr",
+        "human resources",
+        "business administration",
+        "ma hrm"
+      ]
+    },
+    {
+      "id": "dept-8",
+      "departmentId": 8,
+      "title": "Commerce (Hons.)",
+      "division": "Business Studies",
+      "type": "Department",
+      "path": "/academics/commerce(hons.)/8",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Commerce (Hons.) (Business Studies)",
+      "tags": [
+        "commerce honours",
+        "b.com hons",
+        "bcom hons",
+        "honours"
+      ]
+    },
+    {
+      "id": "dept-5",
+      "departmentId": 5,
+      "title": "Accounting and Finance",
+      "division": "Business Studies",
+      "type": "Department",
+      "path": "/academics/accountingandfinance/5",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Accounting and Finance (Business Studies)",
+      "tags": [
+        "accounting and finance",
+        "a&f",
+        "accounting",
+        "finance",
+        "accounts"
+      ]
+    },
+    {
+      "id": "dept-4",
+      "departmentId": 4,
+      "title": "Bank Management",
+      "division": "Business Studies",
+      "type": "Department",
+      "path": "/academics/bankmanagement/4",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Bank Management (Business Studies)",
+      "tags": [
+        "bank management",
+        "banking",
+        "insurance",
+        "banking and insurance"
+      ]
+    },
+    {
+      "id": "dept-3",
+      "departmentId": 3,
+      "title": "Corporate Secretaryship",
+      "division": "Business Studies",
+      "type": "Department",
+      "path": "/academics/corporatesecretaryship/3",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Corporate Secretaryship (Business Studies)",
+      "tags": [
+        "corporate secretaryship",
+        "cs",
+        "corporate sec",
+        "company secretary"
+      ]
+    },
+    {
+      "id": "dept-16",
+      "departmentId": 16,
+      "title": "Nutrition",
+      "division": "Science",
+      "type": "Department",
+      "path": "/academics/nutrition/16",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Nutrition (Science)",
+      "tags": [
+        "nutrition",
+        "dietetics",
+        "food science",
+        "clinical nutrition",
+        "food service management",
+        "cnd",
+        "nfsmd",
+        "food and nutrition"
+      ]
+    },
+    {
+      "id": "dept-17",
+      "departmentId": 17,
+      "title": "Biochemistry",
+      "division": "Science",
+      "type": "Department",
+      "path": "/academics/biochemistry/17",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Biochemistry (Science)",
+      "tags": [
+        "biochemistry",
+        "biochem",
+        "life science"
+      ]
+    },
+    {
+      "id": "dept-18",
+      "departmentId": 18,
+      "title": "Microbiology",
+      "division": "Science",
+      "type": "Department",
+      "path": "/academics/microbiology/18",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Microbiology (Science)",
+      "tags": [
+        "microbiology",
+        "micro",
+        "applied microbiology",
+        "life science"
+      ]
+    },
+    {
+      "id": "dept-19",
+      "departmentId": 19,
+      "title": "Plant Biology and Plant Biotechnology",
+      "division": "Science",
+      "type": "Department",
+      "path": "/academics/plantbiologyandplantbiotechnology/19",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Plant Biology and Plant Biotechnology (Science)",
+      "tags": [
+        "plant biology",
+        "plant biotechnology",
+        "botany",
+        "biotechnology",
+        "biotech",
+        "pbpb"
+      ]
+    },
+    {
+      "id": "dept-26",
+      "departmentId": 26,
+      "title": "Psychology",
+      "division": "Science",
+      "type": "Department",
+      "path": "/academics/psychology/26",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Psychology (Science)",
+      "tags": [
+        "psychology",
+        "psych",
+        "applied psychology",
+        "counselling"
+      ]
+    },
+    {
+      "id": "dept-15",
+      "departmentId": 15,
+      "title": "Zoology",
+      "division": "Science",
+      "type": "Department",
+      "path": "/academics/zoology/15",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Zoology (Science)",
+      "tags": [
+        "zoology",
+        "zoo",
+        "animal science",
+        "biotechnology",
+        "advanced zoology"
+      ]
+    },
+    {
+      "id": "dept-7",
+      "departmentId": 7,
+      "title": "Chemistry",
+      "division": "Science",
+      "type": "Department",
+      "path": "/academics/chemistry/7",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Chemistry (Science)",
+      "tags": [
+        "chemistry",
+        "chem"
+      ]
+    },
+    {
+      "id": "dept-10",
+      "departmentId": 10,
+      "title": "Physics",
+      "division": "Science",
+      "type": "Department",
+      "path": "/academics/physics/10",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Physics (Science)",
+      "tags": [
+        "physics"
+      ]
+    },
+    {
+      "id": "dept-11",
+      "departmentId": 11,
+      "title": "Mathematics",
+      "division": "Science",
+      "type": "Department",
+      "path": "/academics/mathematics/11",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Mathematics (Science)",
+      "tags": [
+        "mathematics",
+        "maths",
+        "math"
+      ]
+    },
+    {
+      "id": "dept-13",
+      "departmentId": 13,
+      "title": "Mathematics with Computer Applications",
+      "division": "Information Technology",
+      "type": "Department",
+      "path": "/academics/mathematicswithcomputerapplications/13",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Mathematics with Computer Applications (Information Technology)",
+      "tags": [
+        "mathematics with computer applications",
+        "maths with ca",
+        "computer applications",
+        "mca maths"
+      ]
+    },
+    {
+      "id": "dept-33",
+      "departmentId": 33,
+      "title": "Cybersecurity",
+      "division": "Information Technology",
+      "type": "Department",
+      "path": "/academics/cybersecurity/33",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Cybersecurity (Information Technology)",
+      "tags": [
+        "cybersecurity",
+        "cyber security",
+        "cyber",
+        "information security",
+        "ethical hacking"
+      ]
+    },
+    {
+      "id": "dept-22",
+      "departmentId": 22,
+      "title": "MCA",
+      "division": "Information Technology",
+      "type": "Department",
+      "path": "/academics/mca/22",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of MCA (Information Technology)",
+      "tags": [
+        "mca",
+        "master of computer applications",
+        "computer applications"
+      ]
+    },
+    {
+      "id": "dept-14",
+      "departmentId": 14,
+      "title": "Mathematics with Data Science",
+      "division": "Information Technology",
+      "type": "Department",
+      "path": "/academics/mathematicswithdatascience/14",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Mathematics with Data Science (Information Technology)",
+      "tags": [
+        "data science",
+        "mathematics with data science",
+        "ds",
+        "data analytics",
+        "m.sc mathematics"
+      ]
+    },
+    {
+      "id": "dept-12",
+      "departmentId": 12,
+      "title": "BCA",
+      "division": "Information Technology",
+      "type": "Department",
+      "path": "/academics/bca/12",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of BCA (Information Technology)",
+      "tags": [
+        "bca",
+        "bachelor of computer applications",
+        "computer applications"
+      ]
+    },
+    {
+      "id": "dept-2",
+      "departmentId": 2,
+      "title": "Computer Science",
+      "division": "Information Technology",
+      "type": "Department",
+      "path": "/academics/computerscience/2",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Computer Science (Information Technology)",
+      "tags": [
+        "computer science",
+        "cs",
+        "cse",
+        "artificial intelligence",
+        "ai",
+        "csai",
+        "computers"
+      ]
+    },
+    {
+      "id": "dept-9",
+      "departmentId": 9,
+      "title": "Economics",
+      "division": "Arts & Humanities",
+      "type": "Department",
+      "path": "/academics/economics/9",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Economics (Arts & Humanities)",
+      "tags": [
+        "economics",
+        "eco",
+        "econ",
+        "business economics",
+        "data analytics"
+      ]
+    },
+    {
+      "id": "dept-34",
+      "departmentId": 34,
+      "title": "Social Work",
+      "division": "Arts & Humanities",
+      "type": "Department",
+      "path": "/academics/socialwork/34",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Social Work (Arts & Humanities)",
+      "tags": [
+        "social work",
+        "msw",
+        "master of social work"
+      ]
+    },
+    {
+      "id": "dept-30",
+      "departmentId": 30,
+      "title": "Geography",
+      "division": "Arts & Humanities",
+      "type": "Department",
+      "path": "/academics/geography/30",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Geography (Arts & Humanities)",
+      "tags": [
+        "geography",
+        "geo"
+      ]
+    },
+    {
+      "id": "dept-25",
+      "departmentId": 25,
+      "title": "History & TTM",
+      "division": "Arts & Humanities",
+      "type": "Department",
+      "path": "/academics/history&ttm/25",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of History & TTM (Arts & Humanities)",
+      "tags": [
+        "history",
+        "tourism",
+        "travel",
+        "ttm",
+        "tourism and travel management"
+      ]
+    },
+    {
+      "id": "dept-21",
+      "departmentId": 21,
+      "title": "Tamil",
+      "division": "Arts & Humanities",
+      "type": "Department",
+      "path": "/academics/tamil/21",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Tamil (Arts & Humanities)",
+      "tags": [
+        "tamil",
+        "tamil literature"
+      ]
+    },
+    {
+      "id": "dept-20",
+      "departmentId": 20,
+      "title": "English",
+      "division": "Arts & Humanities",
+      "type": "Department",
+      "path": "/academics/english/20",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of English (Arts & Humanities)",
+      "tags": [
+        "english",
+        "english literature"
+      ]
+    },
+    {
+      "id": "dept-6",
+      "departmentId": 6,
+      "title": "Media Studies",
+      "division": "Media Studies",
+      "type": "Department",
+      "path": "/academics/mediastudies/6",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Media Studies (Media Studies)",
+      "tags": [
+        "media studies",
+        "visual communication",
+        "viscom",
+        "vis com",
+        "journalism",
+        "mass communication",
+        "media",
+        "communication"
+      ]
+    },
+    {
+      "id": "dept-27",
+      "departmentId": 27,
+      "title": "Hindi",
+      "division": "Foundation Courses",
+      "type": "Department",
+      "path": "/academics/hindi/27",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Hindi (Foundation Courses)",
+      "tags": [
+        "hindi",
+        "language",
+        "second language",
+        "foundation course"
+      ]
+    },
+    {
+      "id": "dept-28",
+      "departmentId": 28,
+      "title": "French",
+      "division": "Foundation Courses",
+      "type": "Department",
+      "path": "/academics/french/28",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of French (Foundation Courses)",
+      "tags": [
+        "french",
+        "language",
+        "second language",
+        "foundation course"
+      ]
+    },
+    {
+      "id": "dept-29",
+      "departmentId": 29,
+      "title": "Tamil",
+      "division": "Foundation Courses",
+      "type": "Department",
+      "path": "/academics/tamil/29",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Tamil (Foundation Courses)",
+      "tags": [
+        "tamil",
+        "language",
+        "part 1",
+        "foundation course"
+      ]
+    },
+    {
+      "id": "dept-31",
+      "departmentId": 31,
+      "title": "Sanskrit",
+      "division": "Foundation Courses",
+      "type": "Department",
+      "path": "/academics/sanskrit/31",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of Sanskrit (Foundation Courses)",
+      "tags": [
+        "sanskrit",
+        "language",
+        "second language",
+        "foundation course"
+      ]
+    },
+    {
+      "id": "dept-32",
+      "departmentId": 32,
+      "title": "English",
+      "division": "Foundation Courses",
+      "type": "Department",
+      "path": "/academics/english/32",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of English (Foundation Courses)",
+      "tags": [
+        "english",
+        "general english",
+        "part 2",
+        "foundation course"
+      ]
+    },
+    {
+      "id": "dept-23",
+      "departmentId": 23,
+      "title": "MBA",
+      "division": "Management Studies",
+      "type": "Department",
+      "path": "/academics/mba/23",
+      "url": null,
+      "scrollTo": null,
+      "description": "Department of MBA (Management Studies)",
+      "tags": [
+        "mba",
+        "management",
+        "business administration",
+        "master of business administration"
+      ]
+    }
+  ]
+}

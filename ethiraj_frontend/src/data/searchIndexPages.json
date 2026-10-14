@@ -1,0 +1,1675 @@
+{
+  "generated": "2026-10-12",
+  "source": "ethirajcollege.edu.in live menus",
+  "items": [
+    {
+      "id": "page-1",
+      "title": "Home",
+      "type": "Page",
+      "section": "Home",
+      "path": "/",
+      "url": null,
+      "scrollTo": null,
+      "description": "Ethiraj College for Women home page",
+      "tags": [
+        "home",
+        "main page",
+        "ethiraj college",
+        "ethiraj college for women",
+        "egmore",
+        "chennai"
+      ]
+    },
+    {
+      "id": "page-2",
+      "title": "About Us",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus",
+      "url": null,
+      "scrollTo": null,
+      "description": "About Ethiraj College for Women",
+      "tags": [
+        "about",
+        "about us",
+        "about college",
+        "college info",
+        "overview",
+        "introduction"
+      ]
+    },
+    {
+      "id": "page-3",
+      "title": "About Ethiraj",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus",
+      "url": null,
+      "scrollTo": "about-ethiraj",
+      "description": "History and overview of the college",
+      "tags": [
+        "about ethiraj",
+        "history",
+        "founder",
+        "v.l. ethiraj",
+        "established 1948",
+        "overview",
+        "background"
+      ]
+    },
+    {
+      "id": "page-4",
+      "title": "Fast Facts",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus",
+      "url": null,
+      "scrollTo": "fast-facts",
+      "description": "Key facts and figures about the college",
+      "tags": [
+        "fast facts",
+        "facts",
+        "figures",
+        "statistics",
+        "numbers",
+        "student strength",
+        "rankings",
+        "at a glance"
+      ]
+    },
+    {
+      "id": "page-5",
+      "title": "Milestones",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus",
+      "url": null,
+      "scrollTo": "milestones",
+      "description": "Important milestones since 1948",
+      "tags": [
+        "milestones",
+        "timeline",
+        "history",
+        "achievements",
+        "since 1948",
+        "landmarks",
+        "journey"
+      ]
+    },
+    {
+      "id": "page-6",
+      "title": "Vision & Mission",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus",
+      "url": null,
+      "scrollTo": "vision-mission",
+      "description": "The college's vision and mission",
+      "tags": [
+        "vision",
+        "mission",
+        "motto",
+        "values",
+        "goals",
+        "objectives",
+        "vision and mission"
+      ]
+    },
+    {
+      "id": "page-7",
+      "title": "Chairman's Message",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus",
+      "url": null,
+      "scrollTo": "chairman-message",
+      "description": "Message from the Chairman",
+      "tags": [
+        "chairman",
+        "chairman message",
+        "chairman's message",
+        "management",
+        "trust chairman"
+      ]
+    },
+    {
+      "id": "page-8",
+      "title": "Principal's Message",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus",
+      "url": null,
+      "scrollTo": "principal-message",
+      "description": "Message from the Principal",
+      "tags": [
+        "principal",
+        "principal message",
+        "principal's message",
+        "head of college",
+        "principal desk"
+      ]
+    },
+    {
+      "id": "page-9",
+      "title": "Board of Trustees",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus/boardoftrustee",
+      "url": null,
+      "scrollTo": null,
+      "description": "Members of the Board of Trustees",
+      "tags": [
+        "board of trustees",
+        "trustees",
+        "trust",
+        "ethiraj trust",
+        "management",
+        "board members"
+      ]
+    },
+    {
+      "id": "page-10",
+      "title": "Former Chairpersons",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus/formerchairpersons",
+      "url": null,
+      "scrollTo": null,
+      "description": "Former Chairpersons of the college",
+      "tags": [
+        "former chairpersons",
+        "past chairman",
+        "former chairman",
+        "previous chairpersons",
+        "history"
+      ]
+    },
+    {
+      "id": "page-11",
+      "title": "Former Principals",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus/formerprincipals",
+      "url": null,
+      "scrollTo": null,
+      "description": "Former Principals of the college",
+      "tags": [
+        "former principals",
+        "past principals",
+        "previous principals",
+        "principals list",
+        "history"
+      ]
+    },
+    {
+      "id": "page-12",
+      "title": "Governing Body",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus/governingbody",
+      "url": null,
+      "scrollTo": null,
+      "description": "Members of the Governing Body",
+      "tags": [
+        "governing body",
+        "governing council",
+        "gb",
+        "governance",
+        "members"
+      ]
+    },
+    {
+      "id": "page-13",
+      "title": "Statutory Bodies",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus/statutorybody",
+      "url": null,
+      "scrollTo": null,
+      "description": "Statutory bodies of the autonomous college",
+      "tags": [
+        "statutory bodies",
+        "statutory body",
+        "academic council",
+        "board of studies",
+        "finance committee",
+        "governance"
+      ]
+    },
+    {
+      "id": "page-14",
+      "title": "Non-Statutory Bodies",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus/nonstatutorybody",
+      "url": null,
+      "scrollTo": null,
+      "description": "Non-statutory committees",
+      "tags": [
+        "non statutory bodies",
+        "non-statutory",
+        "committees",
+        "college committees"
+      ]
+    },
+    {
+      "id": "page-15",
+      "title": "Anti-Ragging Committee",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus/institutionalresponsiblities",
+      "url": null,
+      "scrollTo": "anti-ragging-committee",
+      "description": "Anti-ragging committee and contacts",
+      "tags": [
+        "anti ragging",
+        "ragging",
+        "anti-ragging committee",
+        "ragging complaint",
+        "helpline",
+        "squad"
+      ]
+    },
+    {
+      "id": "page-16",
+      "title": "Anti-Drug Committee",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus/institutionalresponsiblities",
+      "url": null,
+      "scrollTo": "anti-drug-committee",
+      "description": "Anti-drug committee",
+      "tags": [
+        "anti drug",
+        "anti-drug committee",
+        "drugs",
+        "substance abuse",
+        "narcotics"
+      ]
+    },
+    {
+      "id": "page-17",
+      "title": "Organogram",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus/institutionalresponsiblities",
+      "url": null,
+      "scrollTo": "flowchart",
+      "description": "Organisational structure of the college",
+      "tags": [
+        "organogram",
+        "organisation chart",
+        "org chart",
+        "organizational structure",
+        "hierarchy",
+        "flowchart"
+      ]
+    },
+    {
+      "id": "page-18",
+      "title": "RTI",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/aboutus/institutionalresponsiblities",
+      "url": null,
+      "scrollTo": "rti-mandatory-disclosure",
+      "description": "RTI and mandatory disclosure",
+      "tags": [
+        "rti",
+        "right to information",
+        "mandatory disclosure",
+        "public information officer",
+        "pio",
+        "disclosure"
+      ]
+    },
+    {
+      "id": "page-19",
+      "title": "Centre for International Relations",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/internationalrelations",
+      "url": null,
+      "scrollTo": null,
+      "description": "International relations, exchange and global programmes",
+      "tags": [
+        "international relations",
+        "cir",
+        "international",
+        "foreign students",
+        "exchange programme",
+        "study abroad",
+        "global",
+        "nri"
+      ]
+    },
+    {
+      "id": "page-20",
+      "title": "MoUs & Collaborations",
+      "type": "Page",
+      "section": "About Us",
+      "path": "/internationalrelations",
+      "url": null,
+      "scrollTo": "mous-collaborations",
+      "description": "MoUs and collaborations with institutions",
+      "tags": [
+        "mou",
+        "mous",
+        "collaborations",
+        "partnerships",
+        "tie up",
+        "tie-ups",
+        "agreements",
+        "linkages"
+      ]
+    },
+    {
+      "id": "page-21",
+      "title": "Academics",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics",
+      "url": null,
+      "scrollTo": null,
+      "description": "Academics overview",
+      "tags": [
+        "academics",
+        "academic",
+        "courses",
+        "programmes",
+        "programs",
+        "study"
+      ]
+    },
+    {
+      "id": "page-22",
+      "title": "All Departments",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics/allacademicdivisions",
+      "url": null,
+      "scrollTo": null,
+      "description": "List of all academic divisions and departments",
+      "tags": [
+        "departments",
+        "all departments",
+        "department list",
+        "divisions",
+        "faculties",
+        "schools"
+      ]
+    },
+    {
+      "id": "page-23",
+      "title": "Business Studies",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics/allacademicdivisions/business-studies",
+      "url": null,
+      "scrollTo": null,
+      "description": "Business Studies division and its departments",
+      "tags": [
+        "business studies",
+        "commerce",
+        "b.com",
+        "bcom",
+        "m.com",
+        "bba",
+        "management",
+        "accounting",
+        "finance",
+        "banking"
+      ]
+    },
+    {
+      "id": "page-24",
+      "title": "Science",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics/allacademicdivisions/science",
+      "url": null,
+      "scrollTo": null,
+      "description": "Science division and its departments",
+      "tags": [
+        "science",
+        "b.sc",
+        "bsc",
+        "m.sc",
+        "msc",
+        "chemistry",
+        "physics",
+        "zoology",
+        "biology",
+        "maths",
+        "nutrition",
+        "psychology"
+      ]
+    },
+    {
+      "id": "page-25",
+      "title": "Information Technology (I.T.)",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics/allacademicdivisions/information-technology",
+      "url": null,
+      "scrollTo": null,
+      "description": "Information Technology (I.T.) division and its departments",
+      "tags": [
+        "information technology",
+        "it",
+        "computer science",
+        "bca",
+        "mca",
+        "cybersecurity",
+        "data science",
+        "computers"
+      ]
+    },
+    {
+      "id": "page-26",
+      "title": "Arts & Humanities",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics/allacademicdivisions/arts-and-humanities",
+      "url": null,
+      "scrollTo": null,
+      "description": "Arts & Humanities division and its departments",
+      "tags": [
+        "arts",
+        "humanities",
+        "ba",
+        "b.a",
+        "m.a",
+        "english",
+        "tamil",
+        "history",
+        "economics",
+        "social work",
+        "geography"
+      ]
+    },
+    {
+      "id": "page-27",
+      "title": "Media Studies",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics/allacademicdivisions/media-studies",
+      "url": null,
+      "scrollTo": null,
+      "description": "Media Studies division and its departments",
+      "tags": [
+        "media studies",
+        "media",
+        "visual communication",
+        "viscom",
+        "journalism",
+        "mass communication"
+      ]
+    },
+    {
+      "id": "page-28",
+      "title": "Management Studies",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics/allacademicdivisions/management-studies",
+      "url": null,
+      "scrollTo": null,
+      "description": "Management Studies division and its departments",
+      "tags": [
+        "management studies",
+        "mba",
+        "management",
+        "business administration"
+      ]
+    },
+    {
+      "id": "page-29",
+      "title": "Foundation Courses",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics/allacademicdivisions/foundation-courses",
+      "url": null,
+      "scrollTo": null,
+      "description": "Foundation Courses division and its departments",
+      "tags": [
+        "foundation courses",
+        "languages",
+        "part 1",
+        "second language",
+        "hindi",
+        "french",
+        "sanskrit",
+        "tamil",
+        "english"
+      ]
+    },
+    {
+      "id": "page-30",
+      "title": "Aided Stream",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics/programlist",
+      "url": null,
+      "scrollTo": null,
+      "description": "Programmes in the aided stream",
+      "tags": [
+        "aided",
+        "aided stream",
+        "aided courses",
+        "government aided",
+        "shift 1",
+        "day college"
+      ]
+    },
+    {
+      "id": "page-31",
+      "title": "Self Supporting Stream",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics/programlist",
+      "url": null,
+      "scrollTo": null,
+      "description": "Programmes in the self-supporting stream",
+      "tags": [
+        "self supporting",
+        "self-supporting",
+        "ss",
+        "self financing",
+        "self-financing",
+        "shift 2",
+        "sfs"
+      ]
+    },
+    {
+      "id": "page-32",
+      "title": "Undergraduate Programs",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics/programlist",
+      "url": null,
+      "scrollTo": null,
+      "description": "All undergraduate programmes",
+      "tags": [
+        "ug",
+        "undergraduate",
+        "ug courses",
+        "ug programs",
+        "degree",
+        "bachelor",
+        "b.a",
+        "b.sc",
+        "b.com",
+        "after 12th"
+      ]
+    },
+    {
+      "id": "page-33",
+      "title": "Postgraduate Programs",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics/postgraduateprogramlist",
+      "url": null,
+      "scrollTo": null,
+      "description": "All postgraduate programmes",
+      "tags": [
+        "pg",
+        "postgraduate",
+        "post graduate",
+        "pg courses",
+        "masters",
+        "m.a",
+        "m.sc",
+        "m.com",
+        "mba",
+        "mca"
+      ]
+    },
+    {
+      "id": "page-34",
+      "title": "Ph.D Programs",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/phdprograms",
+      "url": null,
+      "scrollTo": null,
+      "description": "Doctoral (Ph.D.) programmes",
+      "tags": [
+        "phd",
+        "ph.d",
+        "ph.d.",
+        "doctorate",
+        "doctoral",
+        "research programme",
+        "research scholar"
+      ]
+    },
+    {
+      "id": "page-35",
+      "title": "Academic Calendar",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics/academiccalendar",
+      "url": null,
+      "scrollTo": null,
+      "description": "Academic calendars for the Aided and Self-Supporting streams",
+      "tags": [
+        "academic calendar",
+        "calendar",
+        "college calendar",
+        "schedule",
+        "holidays",
+        "holiday list",
+        "working days",
+        "term dates",
+        "semester dates"
+      ]
+    },
+    {
+      "id": "page-36",
+      "title": "Scholarships",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics/scholorships",
+      "url": null,
+      "scrollTo": null,
+      "description": "Scholarships available to students",
+      "tags": [
+        "scholarship",
+        "scholarships",
+        "financial aid",
+        "fee concession",
+        "merit scholarship",
+        "government scholarship",
+        "stipend"
+      ]
+    },
+    {
+      "id": "page-37",
+      "title": "Controller of Examinations",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/academics/controllerofexaminations",
+      "url": null,
+      "scrollTo": null,
+      "description": "Examinations, results and the Controller of Examinations",
+      "tags": [
+        "coe",
+        "controller of examinations",
+        "exams",
+        "examination",
+        "exam cell",
+        "results",
+        "hall ticket",
+        "revaluation",
+        "marksheet",
+        "arrear",
+        "supplementary"
+      ]
+    },
+    {
+      "id": "page-38",
+      "title": "Exam Schedule",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/examshedule",
+      "url": null,
+      "scrollTo": null,
+      "description": "Examination schedule / timetable",
+      "tags": [
+        "exam schedule",
+        "exam timetable",
+        "timetable",
+        "exam dates",
+        "time table",
+        "examination schedule"
+      ]
+    },
+    {
+      "id": "page-39",
+      "title": "Transcript",
+      "type": "Page",
+      "section": "Academics",
+      "path": "/transcript",
+      "url": null,
+      "scrollTo": null,
+      "description": "Apply for transcripts",
+      "tags": [
+        "transcript",
+        "transcripts",
+        "academic transcript",
+        "mark statement",
+        "wes",
+        "certificate request"
+      ]
+    },
+    {
+      "id": "page-40",
+      "title": "COE Portal",
+      "type": "External",
+      "section": "Academics",
+      "path": null,
+      "url": "https://coe.ethirajcollege.in/",
+      "scrollTo": null,
+      "description": "Controller of Examinations portal",
+      "tags": [
+        "coe portal",
+        "exam portal",
+        "results portal",
+        "results",
+        "hall ticket"
+      ]
+    },
+    {
+      "id": "page-41",
+      "title": "Admissions",
+      "type": "Page",
+      "section": "Admissions",
+      "path": "/admissions",
+      "url": null,
+      "scrollTo": null,
+      "description": "Admissions information",
+      "tags": [
+        "admission",
+        "admissions",
+        "apply",
+        "join",
+        "enrol",
+        "enroll",
+        "application",
+        "how to join"
+      ]
+    },
+    {
+      "id": "page-42",
+      "title": "Apply Now",
+      "type": "Page",
+      "section": "Admissions",
+      "path": "/admissions/applynow",
+      "url": null,
+      "scrollTo": null,
+      "description": "Start an application",
+      "tags": [
+        "apply now",
+        "apply",
+        "application form",
+        "online application",
+        "register"
+      ]
+    },
+    {
+      "id": "page-43",
+      "title": "Eligibility Criteria",
+      "type": "Page",
+      "section": "Admissions",
+      "path": "/admissions/eligibility-criteria",
+      "url": null,
+      "scrollTo": null,
+      "description": "Eligibility for each programme",
+      "tags": [
+        "eligibility",
+        "eligibility criteria",
+        "qualification required",
+        "cut off",
+        "cutoff",
+        "marks required",
+        "who can apply"
+      ]
+    },
+    {
+      "id": "page-44",
+      "title": "How to Apply",
+      "type": "Page",
+      "section": "Admissions",
+      "path": "/admissions/how-to-apply",
+      "url": null,
+      "scrollTo": null,
+      "description": "Step-by-step application process",
+      "tags": [
+        "how to apply",
+        "application process",
+        "admission process",
+        "procedure",
+        "steps"
+      ]
+    },
+    {
+      "id": "page-45",
+      "title": "Admission Policy",
+      "type": "Page",
+      "section": "Admissions",
+      "path": "/admissions/policy",
+      "url": null,
+      "scrollTo": null,
+      "description": "Admission policy",
+      "tags": [
+        "admission policy",
+        "policy",
+        "reservation",
+        "quota",
+        "rules"
+      ]
+    },
+    {
+      "id": "page-46",
+      "title": "Merit List",
+      "type": "Page",
+      "section": "Admissions",
+      "path": "/admissions/merit-list",
+      "url": null,
+      "scrollTo": null,
+      "description": "Admission merit / selection lists",
+      "tags": [
+        "merit list",
+        "selection list",
+        "rank list",
+        "selected list",
+        "shortlist",
+        "admission list",
+        "results"
+      ]
+    },
+    {
+      "id": "page-47",
+      "title": "Pre-registration Policy – NRI",
+      "type": "Page",
+      "section": "Admissions",
+      "path": "/admissions/pre-registration-policy-nri",
+      "url": null,
+      "scrollTo": null,
+      "description": "Pre-registration policy for NRI applicants",
+      "tags": [
+        "nri",
+        "nri admission",
+        "foreign",
+        "overseas",
+        "pre registration",
+        "pre-registration"
+      ]
+    },
+    {
+      "id": "page-48",
+      "title": "Pre-registration Policy – PG Self-Supporting",
+      "type": "Page",
+      "section": "Admissions",
+      "path": "/admissions/pre-registration-policy-pg-ss",
+      "url": null,
+      "scrollTo": null,
+      "description": "Pre-registration policy for PG self-supporting programmes",
+      "tags": [
+        "pg self supporting",
+        "pre registration",
+        "pre-registration",
+        "pg admission",
+        "ss"
+      ]
+    },
+    {
+      "id": "page-49",
+      "title": "Track Application Status",
+      "type": "External",
+      "section": "Admissions",
+      "path": null,
+      "url": "https://ethiraj.ibossems.com/default/onlineappln/applnsearch",
+      "scrollTo": null,
+      "description": "Check the status of an application",
+      "tags": [
+        "track application",
+        "application status",
+        "check status",
+        "application number"
+      ]
+    },
+    {
+      "id": "page-50",
+      "title": "Transfer & Refunds",
+      "type": "External",
+      "section": "Admissions",
+      "path": null,
+      "url": "https://ethiraj.ibossems.com/default/onlineappln/applntransfer",
+      "scrollTo": null,
+      "description": "Application transfer and refunds",
+      "tags": [
+        "refund",
+        "transfer",
+        "fee refund",
+        "cancel admission",
+        "withdrawal"
+      ]
+    },
+    {
+      "id": "page-51",
+      "title": "Student Login",
+      "type": "External",
+      "section": "Admissions",
+      "path": null,
+      "url": "https://ethiraj.ibossems.com/",
+      "scrollTo": null,
+      "description": "Student portal login",
+      "tags": [
+        "student login",
+        "login",
+        "student portal",
+        "erp",
+        "ibossems"
+      ]
+    },
+    {
+      "id": "page-57",
+      "title": "Pay Fees",
+      "type": "External",
+      "section": "Pay Now",
+      "path": null,
+      "url": "https://ethiraj.ibossems.com/",
+      "scrollTo": null,
+      "description": "Pay college fees online",
+      "tags": [
+        "fees",
+        "fee",
+        "pay fees",
+        "fee payment",
+        "pay online",
+        "tuition fee",
+        "exam fee",
+        "hostel fee",
+        "payment",
+        "challan"
+      ]
+    },
+    {
+      "id": "page-58",
+      "title": "ECRIC",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/ecric",
+      "url": null,
+      "scrollTo": null,
+      "description": "Ethiraj College Research and Innovation Council",
+      "tags": [
+        "ecric",
+        "research council",
+        "research",
+        "innovation",
+        "research centre"
+      ]
+    },
+    {
+      "id": "page-59",
+      "title": "ECRIC Committee",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/ecric",
+      "url": null,
+      "scrollTo": "ecric-committee",
+      "description": "ECRIC committee members",
+      "tags": [
+        "ecric committee",
+        "research committee",
+        "members"
+      ]
+    },
+    {
+      "id": "page-60",
+      "title": "Research Highlights (ECRIC)",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/ecric",
+      "url": null,
+      "scrollTo": "research-highlights",
+      "description": "Highlights of research at the college",
+      "tags": [
+        "research highlights",
+        "highlights",
+        "achievements"
+      ]
+    },
+    {
+      "id": "page-61",
+      "title": "Patents",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/ecric",
+      "url": null,
+      "scrollTo": "patents",
+      "description": "Patents filed and granted",
+      "tags": [
+        "patents",
+        "patent",
+        "ipr",
+        "intellectual property",
+        "innovation"
+      ]
+    },
+    {
+      "id": "page-62",
+      "title": "Annual Publications",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/ecric",
+      "url": null,
+      "scrollTo": "annual-publications",
+      "description": "Annual research publications",
+      "tags": [
+        "annual publications",
+        "catalyst",
+        "publications",
+        "annual report"
+      ]
+    },
+    {
+      "id": "page-63",
+      "title": "Research Events",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/events",
+      "url": null,
+      "scrollTo": null,
+      "description": "Research events, seminars and conferences",
+      "tags": [
+        "research events",
+        "seminars",
+        "conferences",
+        "workshops",
+        "symposium"
+      ]
+    },
+    {
+      "id": "page-64",
+      "title": "Fellowships & Projects",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/fellowshipsandprojects",
+      "url": null,
+      "scrollTo": null,
+      "description": "Fellowships and research projects",
+      "tags": [
+        "fellowships",
+        "projects",
+        "research projects",
+        "funding",
+        "grants"
+      ]
+    },
+    {
+      "id": "page-65",
+      "title": "Ph.D Fellowship",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/fellowshipsandprojects",
+      "url": null,
+      "scrollTo": "phd-fellowship",
+      "description": "Ph.D. fellowships",
+      "tags": [
+        "phd fellowship",
+        "fellowship",
+        "jrf",
+        "srf",
+        "research scholar",
+        "stipend"
+      ]
+    },
+    {
+      "id": "page-66",
+      "title": "Student Summer Project",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/fellowshipsandprojects",
+      "url": null,
+      "scrollTo": "student-summer-project",
+      "description": "Summer research projects for students",
+      "tags": [
+        "summer project",
+        "student project",
+        "internship",
+        "summer research"
+      ]
+    },
+    {
+      "id": "page-67",
+      "title": "Externally Funded Projects",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/fellowshipsandprojects",
+      "url": null,
+      "scrollTo": "externally-funded-projects",
+      "description": "Projects funded by external agencies",
+      "tags": [
+        "funded projects",
+        "ugc",
+        "dst",
+        "dbt",
+        "icssr",
+        "external funding",
+        "grants"
+      ]
+    },
+    {
+      "id": "page-68",
+      "title": "ECRIC Funded Faculty Research Projects",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/fellowshipsandprojects",
+      "url": null,
+      "scrollTo": "ecric-funded-faculty-projects",
+      "description": "Faculty research funded by ECRIC",
+      "tags": [
+        "faculty projects",
+        "seed money",
+        "ecric funding",
+        "minor projects"
+      ]
+    },
+    {
+      "id": "page-69",
+      "title": "Consultancy",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/fellowshipsandprojects",
+      "url": null,
+      "scrollTo": "consultancy",
+      "description": "Consultancy services",
+      "tags": [
+        "consultancy",
+        "consulting",
+        "industry projects",
+        "services"
+      ]
+    },
+    {
+      "id": "page-70",
+      "title": "Instrumentation Centre",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/instrumentationcentre",
+      "url": null,
+      "scrollTo": null,
+      "description": "Central instrumentation facility",
+      "tags": [
+        "instrumentation centre",
+        "instruments",
+        "lab",
+        "laboratory",
+        "equipment",
+        "facility"
+      ]
+    },
+    {
+      "id": "page-71",
+      "title": "FIST (DST) Funded Instruments",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/instrumentationcentre",
+      "url": null,
+      "scrollTo": "fist-dst-instruments",
+      "description": "Instruments funded under DST-FIST",
+      "tags": [
+        "fist",
+        "dst",
+        "dst fist",
+        "instruments"
+      ]
+    },
+    {
+      "id": "page-72",
+      "title": "UGC Funded Instruments",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/instrumentationcentre",
+      "url": null,
+      "scrollTo": "ugc-funded-instruments",
+      "description": "Instruments funded by UGC",
+      "tags": [
+        "ugc",
+        "ugc instruments",
+        "equipment"
+      ]
+    },
+    {
+      "id": "page-73",
+      "title": "Reserve an Instrument",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/instrumentationcentre",
+      "url": null,
+      "scrollTo": "reserve-an-instrument",
+      "description": "Book time on an instrument",
+      "tags": [
+        "reserve instrument",
+        "book instrument",
+        "booking",
+        "instrument booking"
+      ]
+    },
+    {
+      "id": "page-74",
+      "title": "Research Publications",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/researchpublications",
+      "url": null,
+      "scrollTo": null,
+      "description": "Research publications",
+      "tags": [
+        "research publications",
+        "publications",
+        "papers",
+        "journals",
+        "articles"
+      ]
+    },
+    {
+      "id": "page-75",
+      "title": "Research Highlights",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/researchallhighlights",
+      "url": null,
+      "scrollTo": null,
+      "description": "All research highlights",
+      "tags": [
+        "research highlights",
+        "highlights",
+        "research news"
+      ]
+    },
+    {
+      "id": "page-76",
+      "title": "Student Publications",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/studentpublications",
+      "url": null,
+      "scrollTo": null,
+      "description": "Publications by students",
+      "tags": [
+        "student publications",
+        "student papers",
+        "student research"
+      ]
+    },
+    {
+      "id": "page-77",
+      "title": "Faculty Publications",
+      "type": "Page",
+      "section": "Research",
+      "path": "/research/facultypublications",
+      "url": null,
+      "scrollTo": null,
+      "description": "Publications by faculty",
+      "tags": [
+        "faculty publications",
+        "faculty papers",
+        "staff publications",
+        "journals"
+      ]
+    },
+    {
+      "id": "page-78",
+      "title": "Campus Life",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife",
+      "url": null,
+      "scrollTo": null,
+      "description": "Life on campus – facilities, clubs, events and more",
+      "tags": [
+        "campus life",
+        "campus",
+        "student life",
+        "college life",
+        "facilities",
+        "activities"
+      ]
+    },
+    {
+      "id": "page-79",
+      "title": "Hostel",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife/hostel",
+      "url": null,
+      "scrollTo": null,
+      "description": "College hostel",
+      "tags": [
+        "hostel",
+        "accommodation",
+        "stay",
+        "rooms",
+        "boarding",
+        "residence",
+        "warden",
+        "hostel admission",
+        "hostel fees"
+      ]
+    },
+    {
+      "id": "page-80",
+      "title": "Facilities",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife/facilities",
+      "url": null,
+      "scrollTo": null,
+      "description": "Campus facilities",
+      "tags": [
+        "facilities",
+        "infrastructure",
+        "auditorium",
+        "labs",
+        "classrooms",
+        "wifi",
+        "transport",
+        "amenities"
+      ]
+    },
+    {
+      "id": "page-81",
+      "title": "Health & Wellness",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife/healthandwellness",
+      "url": null,
+      "scrollTo": null,
+      "description": "Health, wellness and counselling services",
+      "tags": [
+        "health",
+        "wellness",
+        "medical",
+        "doctor",
+        "clinic",
+        "counselling",
+        "counseling",
+        "apollo",
+        "first aid",
+        "mental health"
+      ]
+    },
+    {
+      "id": "page-82",
+      "title": "Library",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife/library",
+      "url": null,
+      "scrollTo": null,
+      "description": "College library",
+      "tags": [
+        "library",
+        "books",
+        "e-resources",
+        "reading room",
+        "journals",
+        "opac",
+        "borrow books"
+      ]
+    },
+    {
+      "id": "page-83",
+      "title": "Dining & Canteen",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife",
+      "url": null,
+      "scrollTo": null,
+      "description": "Dining and canteen",
+      "tags": [
+        "canteen",
+        "cafeteria",
+        "food",
+        "dining",
+        "mess",
+        "snacks"
+      ]
+    },
+    {
+      "id": "page-84",
+      "title": "Clubs",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife/clubs",
+      "url": null,
+      "scrollTo": null,
+      "description": "Student clubs and associations",
+      "tags": [
+        "clubs",
+        "associations",
+        "societies",
+        "nss",
+        "ncc",
+        "rotaract",
+        "extracurricular",
+        "activities"
+      ]
+    },
+    {
+      "id": "page-85",
+      "title": "Sports",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife/sports",
+      "url": null,
+      "scrollTo": null,
+      "description": "Sports facilities and teams",
+      "tags": [
+        "sports",
+        "games",
+        "athletics",
+        "physical education",
+        "pe",
+        "ground",
+        "gym",
+        "teams",
+        "tournaments"
+      ]
+    },
+    {
+      "id": "page-86",
+      "title": "Student Union",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife/studentunion",
+      "url": null,
+      "scrollTo": null,
+      "description": "Student union",
+      "tags": [
+        "student union",
+        "student council",
+        "union",
+        "student leaders",
+        "elections"
+      ]
+    },
+    {
+      "id": "page-88",
+      "title": "Activities & Events",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife",
+      "url": null,
+      "scrollTo": "activities-events",
+      "description": "Campus traditions and events",
+      "tags": [
+        "activities",
+        "events",
+        "cultural",
+        "fest",
+        "festival",
+        "celebrations",
+        "programmes",
+        "extracurricular"
+      ]
+    },
+    {
+      "id": "page-89",
+      "title": "Career Development",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife/careerdevelopment",
+      "url": null,
+      "scrollTo": null,
+      "description": "Career development and guidance",
+      "tags": [
+        "career",
+        "career development",
+        "guidance",
+        "career guidance",
+        "counselling",
+        "jobs"
+      ]
+    },
+    {
+      "id": "page-90",
+      "title": "Centre for Women's Studies",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife/careerdevelopment/womencentre",
+      "url": null,
+      "scrollTo": "centre-for-womens-studies",
+      "description": "Centre for Women's Studies",
+      "tags": [
+        "women's studies",
+        "womens studies",
+        "women centre",
+        "gender studies",
+        "women empowerment"
+      ]
+    },
+    {
+      "id": "page-91",
+      "title": "Incubation Centre",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife/careerdevelopment/incubationcentre",
+      "url": null,
+      "scrollTo": null,
+      "description": "Start-up incubation centre",
+      "tags": [
+        "incubation",
+        "incubation centre",
+        "startup",
+        "start-up",
+        "entrepreneurship",
+        "innovation",
+        "business ideas"
+      ]
+    },
+    {
+      "id": "page-92",
+      "title": "Swayam MOOCs",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife/careerdevelopment/swayammoocs",
+      "url": null,
+      "scrollTo": null,
+      "description": "Online courses through SWAYAM / NPTEL",
+      "tags": [
+        "swayam",
+        "moocs",
+        "mooc",
+        "nptel",
+        "online courses",
+        "certification",
+        "e-learning"
+      ]
+    },
+    {
+      "id": "page-93",
+      "title": "Placement Cell",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife/careerdevelopment/placementcell",
+      "url": null,
+      "scrollTo": null,
+      "description": "Placements and recruiters",
+      "tags": [
+        "placement",
+        "placements",
+        "placement cell",
+        "jobs",
+        "recruitment",
+        "campus interview",
+        "recruiters",
+        "companies",
+        "internship"
+      ]
+    },
+    {
+      "id": "page-94",
+      "title": "ACCA",
+      "type": "Page",
+      "section": "Campus Life",
+      "path": "/campuslife/careerdevelopment/acca",
+      "url": null,
+      "scrollTo": null,
+      "description": "ACCA programme",
+      "tags": [
+        "acca",
+        "chartered accountant",
+        "accounting certification",
+        "accca",
+        "professional accounting"
+      ]
+    },
+    {
+      "id": "page-95",
+      "title": "News & Events",
+      "type": "Page",
+      "section": "News & Events",
+      "path": "/allnewsevents",
+      "url": null,
+      "scrollTo": null,
+      "description": "Latest news, events and announcements",
+      "tags": [
+        "news",
+        "events",
+        "announcements",
+        "notices",
+        "updates",
+        "circulars",
+        "latest",
+        "upcoming events"
+      ]
+    },
+    {
+      "id": "page-96",
+      "title": "Alumni",
+      "type": "Page",
+      "section": "Information For",
+      "path": "/alumni",
+      "url": null,
+      "scrollTo": null,
+      "description": "Alumni Connect – alumnae association and registration",
+      "tags": [
+        "alumni",
+        "alumnae",
+        "alumni association",
+        "ecaa",
+        "old students",
+        "former students",
+        "alumni registration",
+        "ethibandhan"
+      ]
+    },
+    {
+      "id": "page-97",
+      "title": "IQAC",
+      "type": "Page",
+      "section": "Information For",
+      "path": "/iqac",
+      "url": null,
+      "scrollTo": null,
+      "description": "Internal Quality Assurance Cell – NAAC, NIRF, AQAR",
+      "tags": [
+        "iqac",
+        "naac",
+        "nirf",
+        "aqar",
+        "quality",
+        "accreditation",
+        "ranking",
+        "internal quality assurance cell",
+        "ssr",
+        "feedback"
+      ]
+    }
+  ]
+}

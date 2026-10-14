@@ -1,75 +1,85 @@
-
-import React, { useState } from "react";
+import React from "react";
 import { styled } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
 import Box from "@mui/material/Box";
 import Search_icon from "../../Assets/Search_icon.svg";
+import { openSiteSearch } from "../Search/SiteSearchModal";
 
-const Search = styled("div")(({ theme, open }) => ({
+const SearchWrapper = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: "20px",
   fontSize: "14px",
-  transition: "all 0.3s ease",
-  overflow: "hidden",
   display: "flex",
   alignItems: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  width: "100%",
-  padding: "0px 20px",
-  fontSize: "14px",
-  color: "#495057",
-  transition: "all 0.3s ease",
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  position: "absolute",
-  right: 10,
-  top: "50%",
-  transform: "translateY(-50%)",
-  color: "#8D959D",
+  justifyContent: "space-between",
   cursor: "pointer",
+  transition: "all 0.2s ease",
+  backgroundColor: "#fff",
+  userSelect: "none",
 }));
 
 export default function CustomSearchFeild() {
-  const [open, setOpen] = useState(false);
-
-  const toggleOpen = () => {
-    setOpen((prev) => !prev);
+  const handleOpen = () => {
+    openSiteSearch();
   };
 
   return (
-    <Search
-      open={open}
+    <SearchWrapper
+      onClick={handleOpen}
+      role="button"
+      tabIndex={0}
+      aria-label="Open search"
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleOpen();
+        }
+      }}
       sx={{
-        width: { xs: "100%", md: open ? "170px" : "40px" },
-        height: { xs: "40px", md: "30px" },
-        border: { xs: "1px solid #343A40", md: open ? "1px solid #8D959D" : "none" },
-        transition: "width 0.3s ease",
+        width: { xs: "100%", md: "165px" },
+        height: { xs: "40px", md: "32px" },
+        border: "1px solid #CED4DA",
+        px: 1.5,
+        "&:hover": {
+          borderColor: "#6B3C58",
+          backgroundColor: "#FDF8FA",
+        },
       }}
     >
-      {/* Input field: visible only when open on md, always visible on xs */}
-      <StyledInputBase
+      <Box
+        component="span"
         sx={{
-          opacity: { xs: 1,  md: open ? 1 : 0 },
-          width: { xs: "100%", md: open ? "100%" : "0px" },
-          padding: { xs: "5px 20px", md: open ? "0 20px" : "0px" },
-          transition: "all 0.3s ease",
-          color: { md: "#8D959D", xs: "#212529" },
-          fontSize: { xs: "14px", md: "14px" },
+          color: "#8D959D",
+          fontSize: "13px",
+          fontFamily: "Inter, sans-serif",
         }}
-        placeholder="Search…"
-        inputProps={{
-          "aria-label": "search",
-        }}
-        autoFocus={open}
-      />
+      >
+        Search…
+      </Box>
 
-      {/* Icon: always visible, click toggles open/close */}
-      <SearchIconWrapper onClick={toggleOpen}>
-        <Box component="img" src={Search_icon} sx={{ width: 18, height: 18 }} />
-      </SearchIconWrapper>
-    </Search>
+      <Box sx={{ display: "flex", alignItems: "center", gap: 0.8 }}>
+        <Box
+          component="span"
+          sx={{
+            display: { xs: "none", md: "inline-block" },
+            fontSize: "10px",
+            fontWeight: 600,
+            backgroundColor: "#F1F3F5",
+            color: "#868E96",
+            px: 0.6,
+            py: 0.2,
+            borderRadius: "4px",
+            lineHeight: 1,
+          }}
+        >
+          Ctrl K
+        </Box>
+        <Box
+          component="img"
+          src={Search_icon}
+          sx={{ width: 16, height: 16, opacity: 0.8 }}
+          alt="Search"
+        />
+      </Box>
+    </SearchWrapper>
   );
 }
