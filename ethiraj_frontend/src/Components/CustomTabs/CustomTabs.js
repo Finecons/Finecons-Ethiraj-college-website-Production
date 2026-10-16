@@ -95,9 +95,8 @@ export default function CustomTabs({ sections, isStickyActive, padding }) {
         width: "100%",
         position: isStickyActive ? "sticky" : "relative",
         top: isStickyActive ? 0 : "auto",
-        // zIndex: 1200,
         background: "#fff",
-        zIndex: 1,
+        zIndex: isStickyActive ? 1100 : 1,
       }}
     >
       {/* ---------------- DESKTOP ---------------- */}
@@ -108,10 +107,9 @@ export default function CustomTabs({ sections, isStickyActive, padding }) {
             position: isStickyActive ? "sticky" : "relative",
             top: 0,
             background: "#fff",
-            // zIndex: 1200,
             borderTop: "1px solid #e0e0e0",
             borderBottom: "1px solid #e0e0e0",
-        zIndex: 1,
+            zIndex: isStickyActive ? 1100 : 1,
             
           }}
         >

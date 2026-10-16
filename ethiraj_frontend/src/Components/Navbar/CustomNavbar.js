@@ -69,7 +69,7 @@ export default function CustomNavbar({ navData,isMainTabsActive }) {
         backgroundColor: "#fff",
         borderBottom: isMainTabsActive ? "none" : "1px solid #eee",
         display: { xs: "none", md: "block" },
-        zIndex: isMainTabsActive ? 0 : 100,
+        zIndex: isMainTabsActive ? 0 : 1300,
         boxShadow: "none",
         transition: "opacity 0.4s ease, transform 0.4s ease, z-index 0.4s ease",
       }}

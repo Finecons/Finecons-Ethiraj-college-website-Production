@@ -624,8 +624,7 @@ export default function MainTabs({ isStickyActive, ourProgramDatas }) {
           position: isStickyActive ? "sticky" : "relative",
           top: isStickyActive ? 0 : "auto",
           background: "#fff",
-            zIndex: 1200,
-          // zIndex: 1,
+          zIndex: isStickyActive ? 1100 : 1,
               borderBottom: "1px solid lightgray",
             borderTop: "1px solid lightgray",
         }}
