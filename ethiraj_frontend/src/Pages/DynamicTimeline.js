@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography, IconButton } from "@mui/material";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import gsap from "gsap";
 import timelineImage1 from "../Assets/timelineImage1.png";
 import timelineImage2 from "../Assets/timelineImage2.jpg";
@@ -74,7 +76,7 @@ const MILESTONES = [
   },
 ];
 
-export default function LineMinimap({ scrollProgress = null }) {
+export default function LineMinimap({ scrollProgress = null, onJumpToProgress = null }) {
   const sectionRef = useRef(null);
   const scrollRef = useRef(null);
   const pointerRef = useRef(null);
@@ -89,16 +91,50 @@ export default function LineMinimap({ scrollProgress = null }) {
 
   const lines = Array.from({ length: TOTAL_LINES });
 
-  // Check if current year is at a milestone (exact year only)
-  const isAtMilestone = MILESTONES.some((milestone) => {
-    const diff = Math.abs(parseInt(milestone.year) - currentYear);
-    return diff === 0;
-  });
-
-  // Show card if at milestone OR hovering over a milestone
-  const shouldShowCard = isAtMilestone;
+  // Persistent Card: Always show active milestone card so it never abruptly vanishes
   const displayMilestone = activeMilestone;
   const displayCardLeft = cardLeft;
+
+  const currentIndex = MILESTONES.findIndex(
+    (m) => m.year === (activeMilestone?.year || MILESTONES[0].year)
+  );
+
+  const handleJumpToMilestone = useCallback(
+    (milestone) => {
+      if (!milestone) return;
+      const milestoneYear = parseInt(milestone.year);
+      const yearRange = END_YEAR - START_YEAR;
+      const targetProgress = Math.max(
+        0,
+        Math.min(1, (milestoneYear - START_YEAR) / yearRange)
+      );
+
+      setActiveMilestone(milestone);
+      setCurrentYear(milestoneYear);
+
+      if (typeof onJumpToProgress === "function") {
+        onJumpToProgress(targetProgress);
+      } else {
+        syncFromProgress(targetProgress);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [onJumpToProgress]
+  );
+
+  const handlePrev = (e) => {
+    if (e) e.stopPropagation();
+    if (currentIndex > 0) {
+      handleJumpToMilestone(MILESTONES[currentIndex - 1]);
+    }
+  };
+
+  const handleNext = (e) => {
+    if (e) e.stopPropagation();
+    if (currentIndex < MILESTONES.length - 1) {
+      handleJumpToMilestone(MILESTONES[currentIndex + 1]);
+    }
+  };
 
   useEffect(() => {
     const el = pointerRef.current;
@@ -125,10 +161,10 @@ export default function LineMinimap({ scrollProgress = null }) {
     }
 
     // Clamp card position so it stays visible within section bounds
-    const cardWidth = 290;
+    const cardGroupWidth = 380;
     const sectionWidth = section.clientWidth;
-    const minCardLeft = cardWidth / 2 + 10;
-    const maxCardLeft = sectionWidth - cardWidth / 2 - 10;
+    const minCardLeft = cardGroupWidth / 2 + 15;
+    const maxCardLeft = Math.max(minCardLeft, sectionWidth - cardGroupWidth / 2 - 15);
     const clampedCardLeft = Math.max(
       minCardLeft,
       Math.min(maxCardLeft, newPointerLeft),
@@ -218,28 +254,63 @@ export default function LineMinimap({ scrollProgress = null }) {
         paddingBottom: "50px",
       }}
     >
-      {/* Active Milestone Display */}
-      {shouldShowCard && (
+      {/* Active Milestone Display with Navigation Arrows */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 20,
+          left: `${displayCardLeft}px`,
+          transform: "translateX(-50%)",
+          zIndex: 10,
+          transition: "left 80ms linear",
+          display: "flex",
+          alignItems: "center",
+          gap: 1.5,
+          width: "max-content",
+        }}
+      >
+        {/* Previous Milestone Arrow */}
+        <IconButton
+          onClick={handlePrev}
+          disabled={currentIndex <= 0}
+          aria-label="Previous milestone"
+          sx={{
+            backgroundColor: "#ffffff",
+            color: "#6B3C58",
+            boxShadow: "0 4px 14px rgba(0,0,0,0.1)",
+            border: "1px solid rgba(107, 60, 88, 0.15)",
+            width: 38,
+            height: 38,
+            transition: "all 0.2s ease",
+            "&:hover": {
+              backgroundColor: "#6B3C58",
+              color: "#ffffff",
+              transform: "scale(1.08)",
+            },
+            "&.Mui-disabled": {
+              opacity: 0.3,
+              backgroundColor: "#ffffff",
+            },
+          }}
+        >
+          <ChevronLeftIcon />
+        </IconButton>
+
+        {/* Milestone Card */}
         <Box
           sx={{
-            position: "absolute",
-            top: 20,
-            left: `${displayCardLeft}px`,
-            transform: "translateX(-50%)",
-            // background: "#FFE6FF",
-            // border: "2px solid #6B3C58",
-            // borderRadius: "12px",
+            backgroundColor: "#ffffff",
+            borderRadius: "14px",
+            border: "1px solid rgba(107, 60, 88, 0.12)",
+            boxShadow: "0 10px 30px rgba(107, 60, 88, 0.1)",
             overflow: "hidden",
-            // maxWidth: "320px",
-            width: "100%",
-            zIndex: 10,
-            transition: "left 100ms linear, opacity 0.3s ease",
-            opacity: shouldShowCard ? 1 : 0,
+            width: "300px",
+            p: "14px",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
             alignItems: "center",
-            maxWidth: "300px",
+            textAlign: "center",
+            transition: "transform 0.2s ease",
           }}
         >
           {/* Image */}
@@ -247,46 +318,71 @@ export default function LineMinimap({ scrollProgress = null }) {
             <Box
               component="img"
               src={displayMilestone.img}
+              alt={displayMilestone.title}
               sx={{
-                width: "241px",
-                height: "164px",
+                width: "100%",
+                height: "160px",
                 objectFit: "cover",
+                borderRadius: "8px",
                 display: "block",
+                backgroundColor: "#f0f0f0",
               }}
             />
           )}
+
           {/* Content */}
-          <Box sx={{ padding: "14px 12px" }}>
-            <Box
+          <Box sx={{ pt: 1.5, width: "100%" }}>
+            <Typography
               sx={{
-                fontSize: "14px",
-                color: "#666",
-                lineHeight: "1.5",
-                marginBottom: "12px",
-              }}
-            >
-              {displayMilestone.description}
-            </Box>
-            <Box
-              sx={{
-                fontSize: "18px",
+                fontSize: "20px",
                 color: "#6B3C58",
-                fontWeight: "bold",
-                textAlign:
-                  displayMilestone.year === 2018 ||
-                  displayMilestone.year === "2018"
-                    ? "left"
-                    : displayMilestone.year === 1948 ||
-                        displayMilestone.year === "1948"
-                      ? "left"
-                      : "center",
+                fontWeight: 700,
+                fontFamily: "Inter, sans-serif",
+                mb: 0.8,
               }}
             >
               {displayMilestone.year}
-            </Box>
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: "13px",
+                color: "#495057",
+                lineHeight: 1.5,
+                textAlign: "center",
+              }}
+            >
+              {displayMilestone.description}
+            </Typography>
           </Box>
         </Box>
-      )}
+
+        {/* Next Milestone Arrow */}
+        <IconButton
+          onClick={handleNext}
+          disabled={currentIndex >= MILESTONES.length - 1}
+          aria-label="Next milestone"
+          sx={{
+            backgroundColor: "#ffffff",
+            color: "#6B3C58",
+            boxShadow: "0 4px 14px rgba(0,0,0,0.1)",
+            border: "1px solid rgba(107, 60, 88, 0.15)",
+            width: 38,
+            height: 38,
+            transition: "all 0.2s ease",
+            "&:hover": {
+              backgroundColor: "#6B3C58",
+              color: "#ffffff",
+              transform: "scale(1.08)",
+            },
+            "&.Mui-disabled": {
+              opacity: 0.3,
+              backgroundColor: "#ffffff",
+            },
+          }}
+        >
+          <ChevronRightIcon />
+        </IconButton>
+      </Box>
 
       {/* Timeline Container */}
       <Box
@@ -402,6 +498,7 @@ export default function LineMinimap({ scrollProgress = null }) {
           {/* Milestone Markers */}
           {MILESTONES.map((milestone, idx) => {
             const milestoneYear = parseInt(milestone.year);
+            const isCurrentActive = activeMilestone?.year === milestone.year;
             const yearRange = END_YEAR - START_YEAR;
             const progress = (milestoneYear - START_YEAR) / yearRange;
 
@@ -413,24 +510,26 @@ export default function LineMinimap({ scrollProgress = null }) {
             const position = EDGE_PADDING + progress * totalWidth;
             const dotSize = 16;
             const verticalLineLength = 35;
-            const isHovered = false;
 
             return (
               <Box
                 key={`milestone-${milestone.year}`}
+                onClick={() => handleJumpToMilestone(milestone)}
                 sx={{
                   position: "absolute",
                   left: `${position}px`,
                   top: "10px",
-                  transform: "translateX(-50%)",
+                  transform: isCurrentActive
+                    ? "translateX(-50%) scale(1.15)"
+                    : "translateX(-50%)",
                   width: dotSize,
                   height: dotSize + verticalLineLength,
-                  zIndex: 5,
+                  zIndex: isCurrentActive ? 6 : 5,
                   pointerEvents: "auto",
                   cursor: "pointer",
                   transition: "transform 0.2s ease",
                   "&:hover": {
-                    transform: "translateX(-50%) scale(1.2)",
+                    transform: "translateX(-50%) scale(1.25)",
                   },
                 }}
               >
@@ -445,8 +544,8 @@ export default function LineMinimap({ scrollProgress = null }) {
                         : "translateX(calc(-50% + 8px))",
                     fontSize: "16px",
                     lineHeight: 1,
-                    fontWeight: 500,
-                    color: "#1a1a1a",
+                    fontWeight: isCurrentActive ? 700 : 500,
+                    color: isCurrentActive ? "#6B3C58" : "#1a1a1a",
                     whiteSpace: "nowrap",
                     pointerEvents: "none",
                   }}
@@ -475,7 +574,7 @@ export default function LineMinimap({ scrollProgress = null }) {
                       width: "100%",
                       height: "100%",
                       borderRadius: "50%",
-                      border: `2px solid ${isHovered ? "#ff6a00" : "#6B3C58"}`,
+                      border: `2px solid ${isCurrentActive ? "#ff6a00" : "#6B3C58"}`,
                       transition: "border-color 0.2s ease",
                     }}
                   />
@@ -487,7 +586,7 @@ export default function LineMinimap({ scrollProgress = null }) {
                       width: `${dotSize / 2}px`,
                       height: `${dotSize / 2}px`,
                       borderRadius: "50%",
-                      background: isHovered ? "#ff6a00" : "#6B3C58",
+                      background: isCurrentActive ? "#ff6a00" : "#6B3C58",
                       top: "50%",
                       left: "50%",
                       transform: "translate(-50%, -50%)",
@@ -504,7 +603,7 @@ export default function LineMinimap({ scrollProgress = null }) {
                     top: `${dotSize}px`,
                     width: "2px",
                     height: `${verticalLineLength}px`,
-                    borderLeft: `2px dotted ${isHovered ? "#ff6a00" : "#6B3C58"}`,
+                    borderLeft: `2px dotted ${isCurrentActive ? "#ff6a00" : "#6B3C58"}`,
                     transform: "translateX(-50%)",
                     zIndex: 1,
                     transition: "border-left-color 0.2s ease",
@@ -542,6 +641,22 @@ export default function LineMinimap({ scrollProgress = null }) {
               borderTop: "7px solid #ff6a00",
             }}
           />
+
+          {/* Current Year beneath playhead */}
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: "-25px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              fontSize: "13px",
+              fontWeight: 700,
+              color: "#ff6a00",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {currentYear}
+          </Box>
         </Box>
       </Box>
     </Box>

@@ -22,6 +22,7 @@ export default function TimelineSection({historyOfEthirajDatas}) {
       x: () => -getScrollDistance(),
       ease: "none",
       scrollTrigger: {
+        id: "timelineTrigger",
         trigger: section,
         start: "top top+=80",
         end: () => `+=${getScrollDistance() * 4}`, // 4x scroll distance = very slow (increase for even slower)
@@ -37,6 +38,19 @@ export default function TimelineSection({historyOfEthirajDatas}) {
 
     return () => ScrollTrigger.getAll().forEach(t => t.kill());
   }, []);
+
+  const handleJumpToProgress = (progress) => {
+    const st = ScrollTrigger.getById("timelineTrigger");
+    if (st) {
+      const targetScroll = st.start + progress * (st.end - st.start);
+      window.scrollTo({
+        top: targetScroll,
+        behavior: "smooth",
+      });
+    } else {
+      setScrollProgress(progress);
+    }
+  };
 
   return (
     <section
@@ -63,6 +77,7 @@ export default function TimelineSection({historyOfEthirajDatas}) {
         <TimelineScale
           historyOfEthirajDatas={historyOfEthirajDatas}
           scrollProgress={scrollProgress}
+          onJumpToProgress={handleJumpToProgress}
         />
 
       </div>
