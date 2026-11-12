@@ -30,8 +30,7 @@ const fetchData = async (input, method, apiName) => {
 			Authorization: `Bearer ${token}`,
 		},
 	}).catch((err) => {
-		// eslint-disable-next-line no-alert
-		alert(err.code);
+		console.error("API Error:", err);
 	});
 
 	return res;
