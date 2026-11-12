@@ -912,13 +912,24 @@ const Sidebar = ({ open, onClose }) => {
       variant={isMobile ? "temporary" : "permanent"}
       sx={{
         width: 280,
+        flexShrink: 0,
+        height: "100%",
         "& .MuiDrawer-paper": {
           width: 280,
           background: "black",
           borderRadius: "10px",
-          // margin:1.5
-
-          position: { xs: "fixed", md: "static" }, // Fixed for small screens, static for larger screens
+          position: { xs: "fixed", md: "relative" },
+          height: "100%",
+          maxHeight: "100%",
+          overflowY: "auto",
+          boxSizing: "border-box",
+          "&::-webkit-scrollbar": {
+            width: "4px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "#333",
+            borderRadius: "4px",
+          },
         },
       }}
     >
@@ -972,6 +983,12 @@ const Sidebar = ({ open, onClose }) => {
           to="/campuslife"
           icon={<RiFileSettingsLine className="sidebar-icon" />}
           label="Campus Life"
+        />
+
+        <SidebarLink
+          to="/newsandevents"
+          icon={<RiFileSettingsLine className="sidebar-icon" />}
+          label="News & Events"
         />
 
         <SidebarLink

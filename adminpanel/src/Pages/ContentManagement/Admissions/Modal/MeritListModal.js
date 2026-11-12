@@ -8,7 +8,11 @@ import {
   Box,
   Typography,
   Grid,
+  Paper,
 } from "@mui/material";
+import { MdDragIndicator } from "react-icons/md";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { AiOutlineDelete } from "react-icons/ai";
 import { Formik, Form, FieldArray } from "formik";
 import * as Yup from "yup";
 import { MdCancel } from "react-icons/md";
@@ -168,36 +172,137 @@ const MeritListModal = ({ open, onClose, editData, onSuccess }) => {
                 <Grid container spacing={2}>
                   <Grid size={{ xs: 12 }}>
                     <FieldArray name="cards">
-                      {({ push, remove }) => (
+                      {({ push, remove, move }) => (
                         <Box>
                           {values.cards.map((card, cardIndex) => (
-                            <Box
+                            <Paper
+                              variant="outlined"
                               key={`card-${cardIndex}`}
+                              draggable
+                              onDragStart={(e) => {
+                                e.dataTransfer.setData("text/plain", String(cardIndex));
+                                e.dataTransfer.effectAllowed = "move";
+                              }}
+                              onDragOver={(e) => {
+                                e.preventDefault();
+                                e.dataTransfer.dropEffect = "move";
+                              }}
+                              onDrop={(e) => {
+                                e.preventDefault();
+                                const fromIdx = parseInt(
+                                  e.dataTransfer.getData("text/plain"),
+                                  10
+                                );
+                                if (!isNaN(fromIdx) && fromIdx !== cardIndex) {
+                                  move(fromIdx, cardIndex);
+                                }
+                              }}
                               sx={{
-                                border: "2px solid #3B4056",
+                                p: 2.5,
+                                mb: 2.5,
                                 borderRadius: "10px",
-                                padding: 3,
-                                mb: 3,
-                                backgroundColor: "#F9F9F9",
+                                borderColor: "#E5E5E5",
+                                backgroundColor: "#FCFBFA",
+                                transition: "all 0.2s ease",
+                                "&:hover": {
+                                  borderColor: "#6B3C58",
+                                  boxShadow: "0 2px 8px rgba(107,60,88,0.08)",
+                                },
                               }}
                             >
-                              <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
-                                <Typography sx={{ fontWeight: 700, fontSize: "16px", color: "#3B4056" }}>
-                                  Card {cardIndex + 1}
-                                </Typography>
-                                <Button
-                                  type="button"
-                                  variant="text"
-                                  disabled={values.cards.length === 1}
-                                  onClick={() => remove(cardIndex)}
-                                  sx={{
-                                    textTransform: "none",
-                                    color: "#D32F2F",
-                                    fontSize: "14px",
-                                  }}
-                                >
-                                  Remove Card
-                                </Button>
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  alignItems: "center",
+                                  pb: 1.5,
+                                  mb: 2,
+                                  borderBottom: "1px solid #ECECEC",
+                                  flexWrap: "wrap",
+                                  gap: 1,
+                                }}
+                              >
+                                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                                  <Box
+                                    sx={{
+                                      cursor: "grab",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      color: "#6B3C58",
+                                      p: 0.6,
+                                      borderRadius: "6px",
+                                      backgroundColor: "#F3EBF0",
+                                      "&:active": { cursor: "grabbing" },
+                                    }}
+                                    title="Drag to reorder card"
+                                  >
+                                    <MdDragIndicator size={20} />
+                                  </Box>
+                                  <Typography
+                                    variant="subtitle2"
+                                    sx={{ fontWeight: 700, color: "#6B3C58", fontSize: "15px" }}
+                                  >
+                                    Merit Category {cardIndex + 1} {card.main_title ? `— ${card.main_title}` : ""}
+                                  </Typography>
+                                </Box>
+
+                                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                                  <Button
+                                    size="small"
+                                    variant="outlined"
+                                    disabled={cardIndex === 0}
+                                    onClick={() => move(cardIndex, cardIndex - 1)}
+                                    startIcon={<IoIosArrowUp />}
+                                    sx={{
+                                      textTransform: "none",
+                                      fontSize: "12px",
+                                      py: 0.4,
+                                      px: 1,
+                                      color: "#6B3C58",
+                                      borderColor: "#D9C7D2",
+                                      "&:disabled": { borderColor: "#E5E5E5", color: "#BBB" },
+                                      "&:hover": { borderColor: "#6B3C58", backgroundColor: "#FBF7F9" },
+                                    }}
+                                  >
+                                    Move Up
+                                  </Button>
+
+                                  <Button
+                                    size="small"
+                                    variant="outlined"
+                                    disabled={cardIndex === values.cards.length - 1}
+                                    onClick={() => move(cardIndex, cardIndex + 1)}
+                                    startIcon={<IoIosArrowDown />}
+                                    sx={{
+                                      textTransform: "none",
+                                      fontSize: "12px",
+                                      py: 0.4,
+                                      px: 1,
+                                      color: "#6B3C58",
+                                      borderColor: "#D9C7D2",
+                                      "&:disabled": { borderColor: "#E5E5E5", color: "#BBB" },
+                                      "&:hover": { borderColor: "#6B3C58", backgroundColor: "#FBF7F9" },
+                                    }}
+                                  >
+                                    Move Down
+                                  </Button>
+
+                                  {values.cards.length > 1 && (
+                                    <IconButton
+                                      size="small"
+                                      onClick={() => remove(cardIndex)}
+                                      title="Remove Card"
+                                      sx={{
+                                        color: "#D32F2F",
+                                        border: "1px solid #FFCDD2",
+                                        p: 0.6,
+                                        "&:hover": { backgroundColor: "#FFEBEE" },
+                                      }}
+                                    >
+                                      <AiOutlineDelete size={17} />
+                                    </IconButton>
+                                  )}
+                                </Box>
                               </Box>
 
                               <Grid container spacing={2} sx={{ mb: 2 }}>
@@ -210,24 +315,114 @@ const MeritListModal = ({ open, onClose, editData, onSuccess }) => {
                                 </Grid>
                               </Grid>
 
-                              <Typography sx={{ fontWeight: 600, mb: 2, fontSize: "14px" }}>
+                              <Typography sx={{ fontWeight: 600, mb: 2, fontSize: "14px", color: "#6B3C58" }}>
                                 Title & Link Items
                               </Typography>
 
                               <FieldArray name={`cards[${cardIndex}].items`}>
-                                {({ push: pushItem, remove: removeItem }) => (
+                                {({ push: pushItem, remove: removeItem, move: moveItem }) => (
                                   <Box>
                                     {card.items.map((item, itemIndex) => (
                                       <Box
                                         key={`item-${cardIndex}-${itemIndex}`}
+                                        draggable
+                                        onDragStart={(e) => {
+                                          e.stopPropagation();
+                                          e.dataTransfer.setData("text/plain", String(itemIndex));
+                                          e.dataTransfer.effectAllowed = "move";
+                                        }}
+                                        onDragOver={(e) => {
+                                          e.preventDefault();
+                                          e.dataTransfer.dropEffect = "move";
+                                        }}
+                                        onDrop={(e) => {
+                                          e.stopPropagation();
+                                          e.preventDefault();
+                                          const fromIdx = parseInt(
+                                            e.dataTransfer.getData("text/plain"),
+                                            10
+                                          );
+                                          if (!isNaN(fromIdx) && fromIdx !== itemIndex) {
+                                            moveItem(fromIdx, itemIndex);
+                                          }
+                                        }}
                                         sx={{
-                                          border: "1px solid #D8D8D8",
+                                          border: "1px solid #E5E5E5",
                                           borderRadius: "8px",
                                           padding: 2,
                                           mb: 2,
                                           backgroundColor: "white",
                                         }}
                                       >
+                                        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 1.5 }}>
+                                          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                                            <Box
+                                              sx={{
+                                                cursor: "grab",
+                                                display: "flex",
+                                                alignItems: "center",
+                                                color: "#6B3C58",
+                                                p: 0.4,
+                                                borderRadius: "4px",
+                                                backgroundColor: "#F3EBF0",
+                                                "&:active": { cursor: "grabbing" },
+                                              }}
+                                              title="Drag to reorder link"
+                                            >
+                                              <MdDragIndicator size={18} />
+                                            </Box>
+                                            <Typography sx={{ fontSize: "13px", fontWeight: 600, color: "#555" }}>
+                                              Item {itemIndex + 1}
+                                            </Typography>
+                                          </Box>
+
+                                          <Box sx={{ display: "flex", alignItems: "center", gap: 0.8 }}>
+                                            <Button
+                                              size="small"
+                                              variant="outlined"
+                                              disabled={itemIndex === 0}
+                                              onClick={() => moveItem(itemIndex, itemIndex - 1)}
+                                              sx={{
+                                                textTransform: "none",
+                                                fontSize: "11px",
+                                                py: 0.2,
+                                                px: 0.8,
+                                                minWidth: "auto",
+                                                color: "#6B3C58",
+                                                borderColor: "#D9C7D2",
+                                              }}
+                                            >
+                                              ▲
+                                            </Button>
+                                            <Button
+                                              size="small"
+                                              variant="outlined"
+                                              disabled={itemIndex === card.items.length - 1}
+                                              onClick={() => moveItem(itemIndex, itemIndex + 1)}
+                                              sx={{
+                                                textTransform: "none",
+                                                fontSize: "11px",
+                                                py: 0.2,
+                                                px: 0.8,
+                                                minWidth: "auto",
+                                                color: "#6B3C58",
+                                                borderColor: "#D9C7D2",
+                                              }}
+                                            >
+                                              ▼
+                                            </Button>
+                                            {card.items.length > 1 && (
+                                              <IconButton
+                                                size="small"
+                                                onClick={() => removeItem(itemIndex)}
+                                                sx={{ color: "#D32F2F" }}
+                                              >
+                                                <AiOutlineDelete size={15} />
+                                              </IconButton>
+                                            )}
+                                          </Box>
+                                        </Box>
+
                                         <Grid container spacing={2}>
                                           <Grid size={{ xs: 12, md: 6 }}>
                                             <CustomInputLogin
@@ -243,22 +438,6 @@ const MeritListModal = ({ open, onClose, editData, onSuccess }) => {
                                               custPlaceholder="Enter link URL"
                                             />
                                           </Grid>
-
-                                          <Grid size={{ xs: 12 }} sx={{ display: "flex", justifyContent: "flex-end" }}>
-                                            <Button
-                                              type="button"
-                                              variant="text"
-                                              disabled={card.items.length === 1}
-                                              onClick={() => removeItem(itemIndex)}
-                                              sx={{
-                                                textTransform: "none",
-                                                color: "#D32F2F",
-                                                fontSize: "14px",
-                                              }}
-                                            >
-                                              Remove Item
-                                            </Button>
-                                          </Grid>
                                         </Grid>
                                       </Box>
                                     ))}
@@ -270,7 +449,10 @@ const MeritListModal = ({ open, onClose, editData, onSuccess }) => {
                                       sx={{
                                         textTransform: "none",
                                         borderRadius: "8px",
-                                        fontSize: "14px",
+                                        fontSize: "13px",
+                                        color: "#6B3C58",
+                                        borderColor: "#6B3C58",
+                                        "&:hover": { borderColor: "#6B3C58", backgroundColor: "#FBF7F9" },
                                       }}
                                     >
                                       + Add Item to Card
@@ -278,7 +460,7 @@ const MeritListModal = ({ open, onClose, editData, onSuccess }) => {
                                   </Box>
                                 )}
                               </FieldArray>
-                            </Box>
+                            </Paper>
                           ))}
 
                           <Button
@@ -293,9 +475,10 @@ const MeritListModal = ({ open, onClose, editData, onSuccess }) => {
                             sx={{
                               textTransform: "none",
                               borderRadius: "8px",
-                              background: "var(--main-color)",
+                              background: "#6B3C58",
                               color: "white",
                               mb: 3,
+                              "&:hover": { backgroundColor: "#532E44" },
                             }}
                           >
                             + Add Another Card

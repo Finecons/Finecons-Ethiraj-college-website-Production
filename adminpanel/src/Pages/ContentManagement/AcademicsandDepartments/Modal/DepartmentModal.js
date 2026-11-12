@@ -1464,7 +1464,11 @@ import {
   Box,
   Typography,
   Grid,
+  Paper,
 } from "@mui/material";
+import { MdDragIndicator } from "react-icons/md";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { AiOutlineDelete } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
 import { Formik, Form, FieldArray } from "formik";
 import * as Yup from "yup";
@@ -2221,85 +2225,172 @@ const DepartmentModal = ({ open, onClose }) => {
 
                   <Grid item size={{ xs: 12 }}>
                     <FieldArray name="researchCards">
-                      {({ push, remove }) => (
+                      {({ push, remove, move }) => (
                         <>
                           {values.researchCards.map((card, index) => (
-                            <Grid
-                              container
-                              spacing={2}
+                            <Paper
+                              variant="outlined"
                               key={index}
-                              sx={{ mt: index > 0 ? 1 : 0, mb: 2 }}
+                              draggable
+                              onDragStart={(e) => {
+                                e.dataTransfer.setData("text/plain", String(index));
+                                e.dataTransfer.effectAllowed = "move";
+                              }}
+                              onDragOver={(e) => {
+                                e.preventDefault();
+                                e.dataTransfer.dropEffect = "move";
+                              }}
+                              onDrop={(e) => {
+                                e.preventDefault();
+                                const fromIdx = parseInt(e.dataTransfer.getData("text/plain"), 10);
+                                if (!isNaN(fromIdx) && fromIdx !== index) {
+                                  move(fromIdx, index);
+                                }
+                              }}
+                              sx={{
+                                p: 2.5,
+                                mb: 2.5,
+                                borderRadius: "10px",
+                                borderColor: "#E5E5E5",
+                                backgroundColor: "#FCFBFA",
+                                transition: "all 0.2s ease",
+                                "&:hover": {
+                                  borderColor: "#6B3C58",
+                                  boxShadow: "0 2px 8px rgba(107,60,88,0.08)",
+                                },
+                              }}
                             >
-                              <Grid item size={{ xs: 12 }}>
-                                <Typography
-                                  variant="body2"
-                                  sx={{ color: "#6B3C58" }}
-                                >
-                                  Research {index + 1}
-                                </Typography>
-                              </Grid>
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  alignItems: "center",
+                                  pb: 1.5,
+                                  mb: 2,
+                                  borderBottom: "1px solid #ECECEC",
+                                  flexWrap: "wrap",
+                                  gap: 1,
+                                }}
+                              >
+                                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                                  <Box
+                                    sx={{
+                                      cursor: "grab",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      color: "#6B3C58",
+                                      p: 0.6,
+                                      borderRadius: "6px",
+                                      backgroundColor: "#F3EBF0",
+                                      "&:active": { cursor: "grabbing" },
+                                    }}
+                                    title="Drag to reorder"
+                                  >
+                                    <MdDragIndicator size={20} />
+                                  </Box>
+                                  <Typography
+                                    variant="subtitle2"
+                                    sx={{ fontWeight: 700, color: "#6B3C58", fontSize: "15px" }}
+                                  >
+                                    Research {index + 1} {card.title ? `— ${card.title.slice(0, 30)}...` : ""}
+                                  </Typography>
+                                </Box>
 
-                              <Grid item size={{ xs: 12 }}>
-                                <CustomInputLogin
-                                  label="Title"
-                                  name={`researchCards.${index}.title`}
-                                  inputType="textarea"
-                                  custPlaceholder="Enter Research Title"
-                                />
-                              </Grid>
-                              <Grid item size={{ xs: 12 }}>
-                                <CustomInputLogin
-                                  label="Faculty Name"
-                                  name={`researchCards.${index}.facultyName`}
-                                  inputType="textarea"
-                                  custPlaceholder="Enter Faculty Name"
-                                />
-                              </Grid>
-
-                              <Grid item size={{ xs: 12 }}>
-                                <CustomInputLogin
-                                  label="Publisher"
-                                  name={`researchCards.${index}.publisher`}
-                                  inputType="textarea"
-                                  textareaHeight={90}
-                                />
-                              </Grid>
-                              <Grid item size={{ xs: 12, md: 6 }}>
-                                <CustomInputLogin
-                                  label="Date"
-                                  name={`researchCards.${index}.Date`}
-                                  inputType="date"
-                                  textareaHeight={90}
-                                />
-                              </Grid>
-
-                              {index > 0 && (
-                                <Grid item size={{ xs: 12 }}>
+                                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                                   <Button
+                                    size="small"
                                     variant="outlined"
-                                    color="error"
-                                    onClick={() => remove(index)}
+                                    disabled={index === 0}
+                                    onClick={() => move(index, index - 1)}
+                                    startIcon={<IoIosArrowUp />}
                                     sx={{
                                       textTransform: "none",
-                                      color: "white",
-                                      fontSize: "16px",
-                                      boxShadow: "none",
-                                      padding: {
-                                        xs: "0px 20px",
-                                        md: "0px 40px",
-                                      },
-                                      minHeight: "40px",
-                                      borderRadius: "23px",
-                                      background: "#3B4056",
-                                      "&:hover": { backgroundColor: "#3B4056" },
+                                      fontSize: "12px",
+                                      py: 0.4,
+                                      px: 1,
+                                      color: "#6B3C58",
+                                      borderColor: "#D9C7D2",
+                                      "&:disabled": { borderColor: "#E5E5E5", color: "#BBB" },
+                                      "&:hover": { borderColor: "#6B3C58", backgroundColor: "#FBF7F9" },
                                     }}
-                                    type="button"
                                   >
-                                    Remove Card
+                                    Move Up
                                   </Button>
+
+                                  <Button
+                                    size="small"
+                                    variant="outlined"
+                                    disabled={index === values.researchCards.length - 1}
+                                    onClick={() => move(index, index + 1)}
+                                    startIcon={<IoIosArrowDown />}
+                                    sx={{
+                                      textTransform: "none",
+                                      fontSize: "12px",
+                                      py: 0.4,
+                                      px: 1,
+                                      color: "#6B3C58",
+                                      borderColor: "#D9C7D2",
+                                      "&:disabled": { borderColor: "#E5E5E5", color: "#BBB" },
+                                      "&:hover": { borderColor: "#6B3C58", backgroundColor: "#FBF7F9" },
+                                    }}
+                                  >
+                                    Move Down
+                                  </Button>
+
+                                  {values.researchCards.length > 1 && (
+                                    <IconButton
+                                      size="small"
+                                      onClick={() => remove(index)}
+                                      title="Remove Card"
+                                      sx={{
+                                        color: "#D32F2F",
+                                        border: "1px solid #FFCDD2",
+                                        p: 0.6,
+                                        "&:hover": { backgroundColor: "#FFEBEE" },
+                                      }}
+                                    >
+                                      <AiOutlineDelete size={17} />
+                                    </IconButton>
+                                  )}
+                                </Box>
+                              </Box>
+
+                              <Grid container spacing={2}>
+                                <Grid item size={{ xs: 12 }}>
+                                  <CustomInputLogin
+                                    label="Title"
+                                    name={`researchCards.${index}.title`}
+                                    inputType="textarea"
+                                    custPlaceholder="Enter Research Title"
+                                  />
                                 </Grid>
-                              )}
-                            </Grid>
+                                <Grid item size={{ xs: 12 }}>
+                                  <CustomInputLogin
+                                    label="Faculty Name"
+                                    name={`researchCards.${index}.facultyName`}
+                                    inputType="textarea"
+                                    custPlaceholder="Enter Faculty Name"
+                                  />
+                                </Grid>
+
+                                <Grid item size={{ xs: 12 }}>
+                                  <CustomInputLogin
+                                    label="Publisher"
+                                    name={`researchCards.${index}.publisher`}
+                                    inputType="textarea"
+                                    textareaHeight={90}
+                                  />
+                                </Grid>
+                                <Grid item size={{ xs: 12, md: 6 }}>
+                                  <CustomInputLogin
+                                    label="Date"
+                                    name={`researchCards.${index}.Date`}
+                                    inputType="date"
+                                    textareaHeight={90}
+                                  />
+                                </Grid>
+                              </Grid>
+                            </Paper>
                           ))}
 
                           <Grid
@@ -2360,77 +2451,165 @@ const DepartmentModal = ({ open, onClose }) => {
 
                   <Grid item size={{ xs: 12 }}>
                     <FieldArray name="acheivementCards">
-                      {({ push, remove }) => (
+                      {({ push, remove, move }) => (
                         <>
                           {values.acheivementCards.map((card, index) => (
-                            <Grid
-                              container
-                              spacing={2}
+                            <Paper
+                              variant="outlined"
                               key={index}
-                              sx={{ mt: index > 0 ? 1 : 0, mb: 2 }}
+                              draggable
+                              onDragStart={(e) => {
+                                e.dataTransfer.setData("text/plain", String(index));
+                                e.dataTransfer.effectAllowed = "move";
+                              }}
+                              onDragOver={(e) => {
+                                e.preventDefault();
+                                e.dataTransfer.dropEffect = "move";
+                              }}
+                              onDrop={(e) => {
+                                e.preventDefault();
+                                const fromIdx = parseInt(e.dataTransfer.getData("text/plain"), 10);
+                                if (!isNaN(fromIdx) && fromIdx !== index) {
+                                  move(fromIdx, index);
+                                }
+                              }}
+                              sx={{
+                                p: 2.5,
+                                mb: 2.5,
+                                borderRadius: "10px",
+                                borderColor: "#E5E5E5",
+                                backgroundColor: "#FCFBFA",
+                                transition: "all 0.2s ease",
+                                "&:hover": {
+                                  borderColor: "#6B3C58",
+                                  boxShadow: "0 2px 8px rgba(107,60,88,0.08)",
+                                },
+                              }}
                             >
-                              <Grid item size={{ xs: 12 }}>
-                                <Typography
-                                  variant="body2"
-                                  sx={{ color: "#6B3C58" }}
-                                >
-                                  Acheivement {index + 1}
-                                </Typography>
-                              </Grid>
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  alignItems: "center",
+                                  pb: 1.5,
+                                  mb: 2,
+                                  borderBottom: "1px solid #ECECEC",
+                                  flexWrap: "wrap",
+                                  gap: 1,
+                                }}
+                              >
+                                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                                  <Box
+                                    sx={{
+                                      cursor: "grab",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      color: "#6B3C58",
+                                      p: 0.6,
+                                      borderRadius: "6px",
+                                      backgroundColor: "#F3EBF0",
+                                      "&:active": { cursor: "grabbing" },
+                                    }}
+                                    title="Drag to reorder"
+                                  >
+                                    <MdDragIndicator size={20} />
+                                  </Box>
+                                  <Typography
+                                    variant="subtitle2"
+                                    sx={{ fontWeight: 700, color: "#6B3C58", fontSize: "15px" }}
+                                  >
+                                    Achievement {index + 1} {card.acheivement ? `— ${card.acheivement.slice(0, 30)}...` : ""}
+                                  </Typography>
+                                </Box>
 
-                              <Grid item size={{ xs: 12 }}>
-                                <CustomInputLogin
-                                  label="Acheivement"
-                                  name={`acheivementCards.${index}.acheivement`}
-                                  inputType="text"
-                                  custPlaceholder="Enter Card Title"
-                                />
-                              </Grid>
-
-                              <Grid item size={{ xs: 12 }}>
-                                <CustomInputLogin
-                                  label="Student Details"
-                                  name={`acheivementCards.${index}.student_details`}
-                                  inputType="textarea"
-                                  textareaHeight={90}
-                                />
-                              </Grid>
-                              <Grid item size={{ xs: 12 }}>
-                                <CustomInputLogin
-                                  label="Year"
-                                  name={`acheivementCards.${index}.year`}
-                                  inputType="text"
-                                  textareaHeight={90}
-                                  custPlaceholder="Ex. 2024"
-                                />
-                              </Grid>
-                              {index > 0 && (
-                                <Grid item size={{ xs: 12 }}>
+                                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                                   <Button
+                                    size="small"
                                     variant="outlined"
-                                    color="error"
-                                    onClick={() => remove(index)}
+                                    disabled={index === 0}
+                                    onClick={() => move(index, index - 1)}
+                                    startIcon={<IoIosArrowUp />}
                                     sx={{
                                       textTransform: "none",
-                                      color: "white",
-                                      fontSize: "16px",
-                                      boxShadow: "none",
-                                      padding: {
-                                        xs: "0px 20px",
-                                        md: "0px 40px",
-                                      },
-                                      minHeight: "40px",
-                                      borderRadius: "23px",
-                                      background: "#3B4056",
-                                      "&:hover": { backgroundColor: "#3B4056" },
+                                      fontSize: "12px",
+                                      py: 0.4,
+                                      px: 1,
+                                      color: "#6B3C58",
+                                      borderColor: "#D9C7D2",
+                                      "&:disabled": { borderColor: "#E5E5E5", color: "#BBB" },
+                                      "&:hover": { borderColor: "#6B3C58", backgroundColor: "#FBF7F9" },
                                     }}
-                                    type="button"
                                   >
-                                    Remove Card
+                                    Move Up
                                   </Button>
+
+                                  <Button
+                                    size="small"
+                                    variant="outlined"
+                                    disabled={index === values.acheivementCards.length - 1}
+                                    onClick={() => move(index, index + 1)}
+                                    startIcon={<IoIosArrowDown />}
+                                    sx={{
+                                      textTransform: "none",
+                                      fontSize: "12px",
+                                      py: 0.4,
+                                      px: 1,
+                                      color: "#6B3C58",
+                                      borderColor: "#D9C7D2",
+                                      "&:disabled": { borderColor: "#E5E5E5", color: "#BBB" },
+                                      "&:hover": { borderColor: "#6B3C58", backgroundColor: "#FBF7F9" },
+                                    }}
+                                  >
+                                    Move Down
+                                  </Button>
+
+                                  {values.acheivementCards.length > 1 && (
+                                    <IconButton
+                                      size="small"
+                                      onClick={() => remove(index)}
+                                      title="Remove Card"
+                                      sx={{
+                                        color: "#D32F2F",
+                                        border: "1px solid #FFCDD2",
+                                        p: 0.6,
+                                        "&:hover": { backgroundColor: "#FFEBEE" },
+                                      }}
+                                    >
+                                      <AiOutlineDelete size={17} />
+                                    </IconButton>
+                                  )}
+                                </Box>
+                              </Box>
+
+                              <Grid container spacing={2}>
+                                <Grid item size={{ xs: 12 }}>
+                                  <CustomInputLogin
+                                    label="Acheivement"
+                                    name={`acheivementCards.${index}.acheivement`}
+                                    inputType="text"
+                                    custPlaceholder="Enter Card Title"
+                                  />
                                 </Grid>
-                              )}
-                            </Grid>
+
+                                <Grid item size={{ xs: 12 }}>
+                                  <CustomInputLogin
+                                    label="Student Details"
+                                    name={`acheivementCards.${index}.student_details`}
+                                    inputType="textarea"
+                                    textareaHeight={90}
+                                  />
+                                </Grid>
+                                <Grid item size={{ xs: 12 }}>
+                                  <CustomInputLogin
+                                    label="Year"
+                                    name={`acheivementCards.${index}.year`}
+                                    inputType="text"
+                                    textareaHeight={90}
+                                    custPlaceholder="Ex. 2024"
+                                  />
+                                </Grid>
+                              </Grid>
+                            </Paper>
                           ))}
 
                           <Grid
@@ -2549,154 +2728,249 @@ const DepartmentModal = ({ open, onClose }) => {
 
                   <Grid item size={{ xs: 12 }}>
                     <FieldArray name="studentcards">
-                      {({ push, remove }) => (
-                        <>
-                          {values.studentcards.map((card, index) => (
-                            <Grid
-                              container
-                              spacing={2}
-                              key={index}
-                              sx={{ mt: index > 0 ? 1 : 0, mb: 2 }}
-                            >
-                              <Grid item size={{ xs: 12 }}>
-                                <Typography
-                                  variant="body2"
-                                  sx={{ color: "#6B3C58" }}
-                                >
-                                  Student {index + 1}
-                                </Typography>
-                              </Grid>
+                      {({ push, remove, move }) => {
+                        const handleMoveStudentCard = (fromIdx, toIdx) => {
+                          if (
+                            fromIdx === toIdx ||
+                            fromIdx < 0 ||
+                            toIdx < 0 ||
+                            toIdx >= values.studentcards.length
+                          )
+                            return;
+                          move(fromIdx, toIdx);
+                          setStudentUploadFiles((prev) => {
+                            const updated = [...prev];
+                            const [moved] = updated.splice(fromIdx, 1);
+                            updated.splice(toIdx, 0, moved);
+                            return updated;
+                          });
+                        };
 
-                              <Grid item size={{ xs: 12, md: 6 }}>
-                                <CustomInputLogin
-                                  label="Student Name"
-                                  name={`studentcards.${index}.student_name`}
-                                  inputType="text"
-                                  custPlaceholder="Enter Student Name"
-                                />
-                              </Grid>
-
-                              <Grid item size={{ xs: 12, md: 6 }}>
-                                <CustomInputLogin
-                                  label="Program"
-                                  name={`studentcards.${index}.program`}
-                                  inputType="text"
-                                  custPlaceholder="Enter Program"
-                                />
-                              </Grid>
-                              <Grid item size={{ xs: 12, md: 6 }}>
-                                <CustomInputLogin
-                                  label="Year"
-                                  name={`studentcards.${index}.year`}
-                                  inputType="number"
-                                  custPlaceholder="Enter Year"
-                                />
-                              </Grid>
-
-                              <Grid item size={{ xs: 12, md: 6 }}>
-                                {/* <CustomSingleFileUpload
-                                  name={`studentcards.${index}.studentImage_url`}
-                                  uploadedFile={studentUploadFile}
-                                  setUploadedFile={(file, url) => {
-                                    setStudentUploadFile(file);
-                                    // setFieldValue(`studentcards.${index}.studentImage_url`, url);
-                                  }}
-                                  setFieldValue={setFieldValue}
-                                  existingUrl={card.studentImage_url || null}
-                                /> */}
-
-                                <FileUploadComponent
-                                  name={`studentcards.${index}.studentImage_url`}
-                                  uploadedFile={studentUploadFiles?.[index]}
-                                  setUploadedFile={(fileObj) => {
-                                    setStudentUploadFiles((prev) => {
-                                      const updated = [...prev];
-                                      updated[index] = fileObj;
-                                      return updated;
-                                    });
-                                  }}
-                                  onFileUpload={(url) => {
-                                    setFieldValue(
-                                      `studentcards.${index}.studentImage_url`,
-                                      url,
-                                    );
-                                  }}
-                                  existingUrl={
-                                    values.studentcards[index].studentImage_url
+                        return (
+                          <>
+                            {values.studentcards.map((card, index) => (
+                              <Paper
+                                variant="outlined"
+                                key={index}
+                                draggable
+                                onDragStart={(e) => {
+                                  e.dataTransfer.setData("text/plain", String(index));
+                                  e.dataTransfer.effectAllowed = "move";
+                                }}
+                                onDragOver={(e) => {
+                                  e.preventDefault();
+                                  e.dataTransfer.dropEffect = "move";
+                                }}
+                                onDrop={(e) => {
+                                  e.preventDefault();
+                                  const fromIdx = parseInt(e.dataTransfer.getData("text/plain"), 10);
+                                  if (!isNaN(fromIdx) && fromIdx !== index) {
+                                    handleMoveStudentCard(fromIdx, index);
                                   }
-                                />
-                              </Grid>
+                                }}
+                                sx={{
+                                  p: 2.5,
+                                  mb: 2.5,
+                                  borderRadius: "10px",
+                                  borderColor: "#E5E5E5",
+                                  backgroundColor: "#FCFBFA",
+                                  transition: "all 0.2s ease",
+                                  "&:hover": {
+                                    borderColor: "#6B3C58",
+                                    boxShadow: "0 2px 8px rgba(107,60,88,0.08)",
+                                  },
+                                }}
+                              >
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    pb: 1.5,
+                                    mb: 2,
+                                    borderBottom: "1px solid #ECECEC",
+                                    flexWrap: "wrap",
+                                    gap: 1,
+                                  }}
+                                >
+                                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                                    <Box
+                                      sx={{
+                                        cursor: "grab",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        color: "#6B3C58",
+                                        p: 0.6,
+                                        borderRadius: "6px",
+                                        backgroundColor: "#F3EBF0",
+                                        "&:active": { cursor: "grabbing" },
+                                      }}
+                                      title="Drag to reorder"
+                                    >
+                                      <MdDragIndicator size={20} />
+                                    </Box>
+                                    <Typography
+                                      variant="subtitle2"
+                                      sx={{ fontWeight: 700, color: "#6B3C58", fontSize: "15px" }}
+                                    >
+                                      Student {index + 1} {card.student_name ? `— ${card.student_name}` : ""}
+                                    </Typography>
+                                  </Box>
 
-                              <Grid item size={{ xs: 12 }}>
-                                <CustomInputLogin
-                                  label="Decription"
-                                  name={`studentcards.${index}.description`}
-                                  inputType="textarea"
-                                  textareaHeight={90}
-                                />
-                              </Grid>
+                                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                                    <Button
+                                      size="small"
+                                      variant="outlined"
+                                      disabled={index === 0}
+                                      onClick={() => handleMoveStudentCard(index, index - 1)}
+                                      startIcon={<IoIosArrowUp />}
+                                      sx={{
+                                        textTransform: "none",
+                                        fontSize: "12px",
+                                        py: 0.4,
+                                        px: 1,
+                                        color: "#6B3C58",
+                                        borderColor: "#D9C7D2",
+                                        "&:disabled": { borderColor: "#E5E5E5", color: "#BBB" },
+                                        "&:hover": { borderColor: "#6B3C58", backgroundColor: "#FBF7F9" },
+                                      }}
+                                    >
+                                      Move Up
+                                    </Button>
 
-                              {index > 0 && (
-                                <Grid item size={{ xs: 12 }}>
-                                  <Button
-                                    variant="outlined"
-                                    color="error"
-                                    onClick={() => remove(index)}
-                                    sx={{
-                                      textTransform: "none",
-                                      color: "white",
-                                      fontSize: "16px",
-                                      boxShadow: "none",
-                                      padding: {
-                                        xs: "0px 20px",
-                                        md: "0px 40px",
-                                      },
-                                      minHeight: "40px",
-                                      borderRadius: "23px",
-                                      background: "#3B4056",
-                                      "&:hover": { backgroundColor: "#3B4056" },
-                                    }}
-                                    type="button"
-                                  >
-                                    Remove Card
-                                  </Button>
+                                    <Button
+                                      size="small"
+                                      variant="outlined"
+                                      disabled={index === values.studentcards.length - 1}
+                                      onClick={() => handleMoveStudentCard(index, index + 1)}
+                                      startIcon={<IoIosArrowDown />}
+                                      sx={{
+                                        textTransform: "none",
+                                        fontSize: "12px",
+                                        py: 0.4,
+                                        px: 1,
+                                        color: "#6B3C58",
+                                        borderColor: "#D9C7D2",
+                                        "&:disabled": { borderColor: "#E5E5E5", color: "#BBB" },
+                                        "&:hover": { borderColor: "#6B3C58", backgroundColor: "#FBF7F9" },
+                                      }}
+                                    >
+                                      Move Down
+                                    </Button>
+
+                                    {values.studentcards.length > 1 && (
+                                      <IconButton
+                                        size="small"
+                                        onClick={() => remove(index)}
+                                        title="Remove Card"
+                                        sx={{
+                                          color: "#D32F2F",
+                                          border: "1px solid #FFCDD2",
+                                          p: 0.6,
+                                          "&:hover": { backgroundColor: "#FFEBEE" },
+                                        }}
+                                      >
+                                        <AiOutlineDelete size={17} />
+                                      </IconButton>
+                                    )}
+                                  </Box>
+                                </Box>
+
+                                <Grid container spacing={2}>
+                                  <Grid item size={{ xs: 12, md: 6 }}>
+                                    <CustomInputLogin
+                                      label="Student Name"
+                                      name={`studentcards.${index}.student_name`}
+                                      inputType="text"
+                                      custPlaceholder="Enter Student Name"
+                                    />
+                                  </Grid>
+
+                                  <Grid item size={{ xs: 12, md: 6 }}>
+                                    <CustomInputLogin
+                                      label="Program"
+                                      name={`studentcards.${index}.program`}
+                                      inputType="text"
+                                      custPlaceholder="Enter Program"
+                                    />
+                                  </Grid>
+                                  <Grid item size={{ xs: 12, md: 6 }}>
+                                    <CustomInputLogin
+                                      label="Year"
+                                      name={`studentcards.${index}.year`}
+                                      inputType="number"
+                                      custPlaceholder="Enter Year"
+                                    />
+                                  </Grid>
+
+                                  <Grid item size={{ xs: 12, md: 6 }}>
+                                    <FileUploadComponent
+                                      name={`studentcards.${index}.studentImage_url`}
+                                      uploadedFile={studentUploadFiles?.[index]}
+                                      setUploadedFile={(fileObj) => {
+                                        setStudentUploadFiles((prev) => {
+                                          const updated = [...prev];
+                                          updated[index] = fileObj;
+                                          return updated;
+                                        });
+                                      }}
+                                      onFileUpload={(url) => {
+                                        setFieldValue(
+                                          `studentcards.${index}.studentImage_url`,
+                                          url,
+                                        );
+                                      }}
+                                      existingUrl={
+                                        values.studentcards[index].studentImage_url
+                                      }
+                                    />
+                                  </Grid>
+
+                                  <Grid item size={{ xs: 12 }}>
+                                    <CustomInputLogin
+                                      label="Decription"
+                                      name={`studentcards.${index}.description`}
+                                      inputType="textarea"
+                                      textareaHeight={90}
+                                    />
+                                  </Grid>
                                 </Grid>
-                              )}
-                            </Grid>
-                          ))}
+                              </Paper>
+                            ))}
 
-                          <Grid
-                            item
-                            size={{ xs: 12 }}
-                            sx={{ display: "flex", justifyContent: "end" }}
-                          >
-                            <Button
-                              variant="outlined"
-                              onClick={() =>
-                                push({
-                                  student_name: "",
-                                  program: "",
-                                  year: "",
-                                  description: "",
-                                  studentImage_url: null,
-                                })
-                              }
-                              sx={{
-                                textTransform: "none",
-                                color: "#6B3C58",
-                                borderColor: "#6B3C58",
-                                "&:hover": {
-                                  backgroundColor: "#6B3C58",
-                                  color: "white",
-                                },
-                              }}
-                              type="button"
+                            <Grid
+                              item
+                              size={{ xs: 12 }}
+                              sx={{ display: "flex", justifyContent: "end" }}
                             >
-                              Add Card
-                            </Button>
-                          </Grid>
-                        </>
-                      )}
+                              <Button
+                                variant="outlined"
+                                onClick={() =>
+                                  push({
+                                    student_name: "",
+                                    program: "",
+                                    year: "",
+                                    description: "",
+                                    studentImage_url: null,
+                                  })
+                                }
+                                sx={{
+                                  textTransform: "none",
+                                  color: "#6B3C58",
+                                  borderColor: "#6B3C58",
+                                  "&:hover": {
+                                    backgroundColor: "#6B3C58",
+                                    color: "white",
+                                  },
+                                }}
+                                type="button"
+                              >
+                                Add Card
+                              </Button>
+                            </Grid>
+                          </>
+                        );
+                      }}
                     </FieldArray>
                   </Grid>
                   <Grid item size={{ xs: 12 }}>

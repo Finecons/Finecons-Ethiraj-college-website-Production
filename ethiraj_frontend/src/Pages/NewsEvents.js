@@ -298,6 +298,9 @@
 // }
 
 // NewsEvents.js
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { adminUrl } from "../constants/url";
 import {
   Box,
   Grid,
@@ -526,6 +529,53 @@ const homeEventsList = [
 ];
 
 export default function NewsEvents() {
+  const [events, setEvents] = useState(homeEventsList);
+
+  useEffect(() => {
+    let isMounted = true;
+    const apiUrl = process.env.REACT_APP_API_URL || adminUrl || "http://localhost:5005/api/v1/";
+    const endpoint = apiUrl.endsWith("/") ? `${apiUrl}getEvents` : `${apiUrl}/getEvents`;
+
+    axios
+      .get(endpoint)
+      .then((res) => {
+        const data = res?.data?.data;
+        if (isMounted && Array.isArray(data) && data.length > 0) {
+          const formatted = data.map((item) => {
+            const addData = typeof item?.additional_data === "string"
+              ? JSON.parse(item.additional_data || "{}")
+              : (item?.additional_data || {});
+
+            const day =
+              addData?.day ||
+              item?.day ||
+              (item?.event_date ? String(new Date(item.event_date).getDate()).padStart(2, "0") : "01");
+
+            const mon =
+              addData?.mon ||
+              item?.mon ||
+              (item?.event_date ? new Date(item.event_date).toLocaleString("default", { month: "short" }) : "Sep");
+
+            const title = item?.heading || item?.title || "";
+            const time = addData?.time || item?.sub_heading || item?.time || "";
+
+            return { day, mon, title, time, is_important: item?.is_important };
+          });
+
+          // Sort important first, then slice for home view (top 4)
+          const sorted = [...formatted].sort((a, b) => (b.is_important || 0) - (a.is_important || 0));
+          setEvents(sorted.slice(0, 4));
+        }
+      })
+      .catch((err) => {
+        console.warn("Unable to fetch dynamic events, keeping fallback events:", err.message);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <Box
       sx={{
@@ -563,14 +613,14 @@ export default function NewsEvents() {
 
           <Card elevation={0} sx={{ borderRadius: 0, background: "none" }}>
             <CardContent sx={{ px: 0, pt: 0 }}>
-              {homeEventsList.map((event, index) => (
+              {events.map((event, index) => (
                 <EventRow
                   key={index}
                   day={event.day}
                   mon={event.mon}
                   title={event.title}
                   time={event.time}
-                  last={index === homeEventsList.length - 1}
+                  last={index === events.length - 1}
                 />
               ))}
             </CardContent>

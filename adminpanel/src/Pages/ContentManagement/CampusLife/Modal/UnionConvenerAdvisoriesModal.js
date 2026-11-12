@@ -8,6 +8,7 @@ import {
   Box,
   Typography,
   Grid,
+  Paper,
 } from "@mui/material";
 import { Formik, Form, FieldArray } from "formik";
 
@@ -15,7 +16,8 @@ import CustomInputLogin from "../../../../Components/CustomInputLogin/CustomInpu
 // import CustomDropdownMui from "../../../../Components/CustomDropDown/CustomDropdownMui";
 import "../../../../Components/ModalCss/BannerinputGetModal.css";
 
-import { MdCancel } from "react-icons/md";
+import { MdCancel, MdDragIndicator } from "react-icons/md";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import * as Yup from "yup";
 import FileUploadComponent from "../../../../Components/FileUploadComponent/FileUploadComponent";
@@ -206,20 +208,72 @@ const UnionConvenerAdvisoriesModal = ({ open, onClose }) => {
                 <Grid container spacing={2}>
                   <FieldArray name="members">
                     {(fieldArrayProps) => {
-                      const { push, remove } = fieldArrayProps;
+                      const { push, remove, move } = fieldArrayProps;
+
+                      const handleMoveMember = (fromIdx, toIdx) => {
+                        if (
+                          fromIdx === toIdx ||
+                          fromIdx < 0 ||
+                          toIdx < 0 ||
+                          toIdx >= values.members.length
+                        )
+                          return;
+                        move(fromIdx, toIdx);
+                        setUploadedFiles((prev) => {
+                          const arr = [];
+                          for (let i = 0; i < values.members.length; i++) {
+                            arr.push(prev[i] || null);
+                          }
+                          const [moved] = arr.splice(fromIdx, 1);
+                          arr.splice(toIdx, 0, moved);
+                          const newObj = {};
+                          arr.forEach((item, idx) => {
+                            if (item) newObj[idx] = item;
+                          });
+                          return newObj;
+                        });
+                      };
 
                       return (
                         <Box sx={{ width: "100%" }}>
                           {values.members.map((member, index) => (
-                            <Box
+                            <Paper
+                              variant="outlined"
                               key={index}
+                              draggable
+                              onDragStart={(e) => {
+                                e.dataTransfer.setData(
+                                  "text/plain",
+                                  String(index)
+                                );
+                                e.dataTransfer.effectAllowed = "move";
+                              }}
+                              onDragOver={(e) => {
+                                e.preventDefault();
+                                e.dataTransfer.dropEffect = "move";
+                              }}
+                              onDrop={(e) => {
+                                e.preventDefault();
+                                const fromIdx = parseInt(
+                                  e.dataTransfer.getData("text/plain"),
+                                  10
+                                );
+                                if (!isNaN(fromIdx) && fromIdx !== index) {
+                                  handleMoveMember(fromIdx, index);
+                                }
+                              }}
                               sx={{
                                 mb: 3,
-                                pb: 3,
+                                p: 2.5,
                                 border: "1px solid #e0e0e0",
                                 borderRadius: "8px",
-                                p: 2,
-                                backgroundColor: "#f9f9f9",
+                                backgroundColor: "#FCFBFA",
+                                transition: "all 0.2s ease",
+                                "&:hover": {
+                                  borderColor: "#6B3C58",
+                                  boxShadow:
+                                    "0 2px 8px rgba(107,60,88,0.08)",
+                                },
                               }}
                             >
                               <Box
@@ -228,28 +282,130 @@ const UnionConvenerAdvisoriesModal = ({ open, onClose }) => {
                                   justifyContent: "space-between",
                                   alignItems: "center",
                                   mb: 2,
+                                  pb: 1,
+                                  borderBottom: "1px solid #ECECEC",
+                                  flexWrap: "wrap",
+                                  gap: 1,
                                 }}
                               >
-                                <Typography
-                                  variant="subtitle1"
-                                  sx={{ fontWeight: "600" }}
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 1,
+                                  }}
                                 >
-                                  Member {index + 1}
-                                </Typography>
-                                {values.members.length > 1 && (
-                                  <Button
-                                    type="button"
-                                    onClick={() => remove(index)}
+                                  <Box
                                     sx={{
-                                      color: "red",
-                                      minWidth: "40px",
-                                      p: "8px",
+                                      cursor: "grab",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      color: "#6B3C58",
+                                      p: 0.5,
+                                      borderRadius: "4px",
+                                      backgroundColor: "#F3EBF0",
+                                      "&:active": { cursor: "grabbing" },
                                     }}
-                                    startIcon={<FaTrash />}
+                                    title="Drag to reorder"
                                   >
-                                    Remove
+                                    <MdDragIndicator size={18} />
+                                  </Box>
+                                  <Typography
+                                    variant="subtitle1"
+                                    sx={{ fontWeight: "700", color: "#6B3C58" }}
+                                  >
+                                    Member {index + 1}{" "}
+                                    {member.name ? `— ${member.name}` : ""}
+                                    {member.role ? ` (${member.role})` : ""}
+                                  </Typography>
+                                </Box>
+
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 1,
+                                  }}
+                                >
+                                  <Button
+                                    size="small"
+                                    variant="outlined"
+                                    disabled={index === 0}
+                                    onClick={() =>
+                                      handleMoveMember(index, index - 1)
+                                    }
+                                    startIcon={<IoIosArrowUp />}
+                                    sx={{
+                                      textTransform: "none",
+                                      fontSize: "12px",
+                                      py: 0.3,
+                                      px: 1,
+                                      color: "#6B3C58",
+                                      borderColor: "#D9C7D2",
+                                      "&:disabled": {
+                                        borderColor: "#E5E5E5",
+                                        color: "#BBB",
+                                      },
+                                      "&:hover": {
+                                        borderColor: "#6B3C58",
+                                        backgroundColor: "#FBF7F9",
+                                      },
+                                    }}
+                                  >
+                                    Move Up
                                   </Button>
-                                )}
+
+                                  <Button
+                                    size="small"
+                                    variant="outlined"
+                                    disabled={
+                                      index === values.members.length - 1
+                                    }
+                                    onClick={() =>
+                                      handleMoveMember(index, index + 1)
+                                    }
+                                    startIcon={<IoIosArrowDown />}
+                                    sx={{
+                                      textTransform: "none",
+                                      fontSize: "12px",
+                                      py: 0.3,
+                                      px: 1,
+                                      color: "#6B3C58",
+                                      borderColor: "#D9C7D2",
+                                      "&:disabled": {
+                                        borderColor: "#E5E5E5",
+                                        color: "#BBB",
+                                      },
+                                      "&:hover": {
+                                        borderColor: "#6B3C58",
+                                        backgroundColor: "#FBF7F9",
+                                      },
+                                    }}
+                                  >
+                                    Move Down
+                                  </Button>
+
+                                  {values.members.length > 1 && (
+                                    <Button
+                                      type="button"
+                                      size="small"
+                                      onClick={() => remove(index)}
+                                      sx={{
+                                        color: "#D32F2F",
+                                        minWidth: "40px",
+                                        p: "4px 8px",
+                                        fontSize: "12px",
+                                        textTransform: "none",
+                                        "&:hover": {
+                                          backgroundColor: "#FFEBEE",
+                                        },
+                                      }}
+                                      startIcon={<FaTrash />}
+                                    >
+                                      Remove
+                                    </Button>
+                                  )}
+                                </Box>
                               </Box>
 
                               <Grid container spacing={2}>
@@ -337,7 +493,7 @@ const UnionConvenerAdvisoriesModal = ({ open, onClose }) => {
                                   />
                                 </Grid>
                               </Grid>
-                            </Box>
+                            </Paper>
                           ))}
 
                           <Grid size={{ xs: 12 }} sx={{ mt: 2, mb: 3 }}>

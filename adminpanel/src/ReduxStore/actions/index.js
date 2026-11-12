@@ -103,6 +103,11 @@ import { updateMarqueeAction } from "../Slices/ContentManagement/Marquee/updateM
 import { deleteMarqueeAction } from "../Slices/ContentManagement/Marquee/deleteMarquee";
 import { restoreMarqueeAction } from "../Slices/ContentManagement/Marquee/restoreMarquee";
 
+import { getEventsAction } from "../Slices/ContentManagement/NewsAndEvents/getEventsSlice";
+import { addNewsEventAction } from "../Slices/ContentManagement/NewsAndEvents/addNewsEventSlice";
+import { updateNewsEventAction } from "../Slices/ContentManagement/NewsAndEvents/updateNewsEventSlice";
+import { deleteNewsEventAction } from "../Slices/ContentManagement/NewsAndEvents/deleteNewsEventSlice";
+
 
 const actions = {
   // ...RptLoadNoDropDownAction,
@@ -231,6 +236,12 @@ const actions = {
   ...updateMarqueeAction,
   ...deleteMarqueeAction,
   ...restoreMarqueeAction,
+
+  // NEWS AND EVENTS ACTIONS
+  ...getEventsAction,
+  ...addNewsEventAction,
+  ...updateNewsEventAction,
+  ...deleteNewsEventAction,
   
 };
 

@@ -88,6 +88,7 @@ import Admissions from "./Pages/Admissions/Admissions.js";
 import { Box } from "@mui/material";
 import ACCA from "./Pages/CampusLife/ACCA/ACCA.js";
 import CareerDevelopment from "./Pages/CampusLife/CareerDevelopment/CareerDevelpment.js";
+import Newsletter from "./Pages/CampusLife/Newsletter/Newsletter";
 function App() {
   const [isMainTabsActive, setIsMainTabsActive] = useState(false);
   const mainTabsRef = useRef(null);
@@ -656,6 +657,16 @@ function App() {
               path="/campuslife/careerdevelopment/placementcell"
               element={
                 <PlacementCell
+                  isMainTabsActive={isMainTabsActive}
+                  mainTabsRef={mainTabsRef}
+                />
+              }
+            />
+
+            <Route
+              path="/campuslife/newsletter"
+              element={
+                <Newsletter
                   isMainTabsActive={isMainTabsActive}
                   mainTabsRef={mainTabsRef}
                 />

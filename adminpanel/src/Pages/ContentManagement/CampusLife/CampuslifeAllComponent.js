@@ -10,6 +10,7 @@ import AboutStudentUnion from "./AboutStudentUnion";
 import UnionMembersStudentUnion from "./UnionMembersStudentUnion";
 import UnionConvenerAdvisories from "./UnionConvenerAdvisories";
 import EventsAndAnnualActivities from "./EventsAndAnnualActivities";
+import NewsletterAdmin from "./NewsletterAdmin";
 
 const CampuslifeAllComponent = () => {
   const mainTabs = [
@@ -26,6 +27,8 @@ const CampuslifeAllComponent = () => {
         { label: "Union Convener & Advisories", component: <UnionConvenerAdvisories /> },
 
         { label: "Events & Annual Activities", component: <EventsAndAnnualActivities /> },
+
+        { label: "Newsletter", component: <NewsletterAdmin /> },
       ],
     },
     

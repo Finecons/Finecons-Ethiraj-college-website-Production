@@ -556,6 +556,8 @@ import { format } from "date-fns";
 import { setTableGetId } from "../../ReduxStore/Slices/TableId/TableIdGetSlice";
 import { toast, ToastContainer } from "react-toastify";
 import actions from "../../ReduxStore/actions";
+import { MdDragIndicator } from "react-icons/md";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 const CustomTable = ({
   notModalTable,
@@ -587,6 +589,8 @@ const CustomTable = ({
   allShowModal,
   userApprovalModel,
   handleTableEdit,
+  reorderable = false,
+  onReorder,
 }) => {
   // const rowsPerPage = rowPerPage ? rowPerPage : 5; // Display only 3 rows per page
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -594,6 +598,10 @@ const CustomTable = ({
   const [currentPage, setCurrentPage] = useState(0);
   const [isBannerInputModalOpen, setBannerInputModalOpen] = useState(false);
   const [isTableViewModalOpen, setTableViewModalOpen] = useState(false);
+
+  // Drag and Drop reordering state
+  const [draggedIndex, setDraggedIndex] = useState(null);
+  const [dropTargetIndex, setDropTargetIndex] = useState(null);
 
   console.log(tableData, "tableDatatableData");
   // modal for operator user Registration
@@ -716,6 +724,29 @@ const CustomTable = ({
     currentPage * rowsPerPage + rowsPerPage
   );
   console.log(paginatedData, "paginatedDatapaginatedData");
+
+  // Handle reorder functionality
+  const handleRowReorder = (fromPaginatedIdx, toPaginatedIdx) => {
+    if (fromPaginatedIdx === toPaginatedIdx) return;
+    const actualFrom = currentPage * rowsPerPage + fromPaginatedIdx;
+    const actualTo = currentPage * rowsPerPage + toPaginatedIdx;
+    if (
+      actualFrom < 0 ||
+      actualFrom >= data.length ||
+      actualTo < 0 ||
+      actualTo >= data.length
+    )
+      return;
+
+    const updated = [...data];
+    const [movedItem] = updated.splice(actualFrom, 1);
+    updated.splice(actualTo, 0, movedItem);
+    setData(updated);
+    if (onReorder) {
+      onReorder(updated);
+    }
+    toast.success("Order updated successfully!");
+  };
 
   // Handle delete functionality
   const handleDeleteRow = async (index, id) => {
@@ -984,6 +1015,21 @@ const CustomTable = ({
           <Table>
             <TableHead>
               <TableRow sx={{ background: "#6B3C58" }}>
+                {reorderable && (
+                  <TableCell
+                    sx={{
+                      color: "white",
+                      padding: "8px",
+                      fontSize: "14px",
+                      width: "65px",
+                      textAlign: "center",
+                    }}
+                  >
+                    <Typography variant="subtitle2" sx={{ fontSize: "14px" }}>
+                      Order
+                    </Typography>
+                  </TableCell>
+                )}
                 {tableHeadData.map((header, index) => (
                   <TableCell
                     key={index}
@@ -1012,10 +1058,130 @@ const CustomTable = ({
               {paginatedData.map((row, index) => (
                 <TableRow
                   key={row.id || index}
+                  draggable={!!reorderable}
+                  onDragStart={(e) => {
+                    if (!reorderable) return;
+                    setDraggedIndex(index);
+                    e.dataTransfer.setData("text/plain", String(index));
+                    e.dataTransfer.effectAllowed = "move";
+                  }}
+                  onDragOver={(e) => {
+                    if (!reorderable) return;
+                    e.preventDefault();
+                    e.dataTransfer.dropEffect = "move";
+                    if (dropTargetIndex !== index) {
+                      setDropTargetIndex(index);
+                    }
+                  }}
+                  onDragLeave={() => {
+                    if (dropTargetIndex === index) {
+                      setDropTargetIndex(null);
+                    }
+                  }}
+                  onDrop={(e) => {
+                    if (!reorderable) return;
+                    e.preventDefault();
+                    const fromIdx = parseInt(
+                      e.dataTransfer.getData("text/plain"),
+                      10
+                    );
+                    if (!isNaN(fromIdx) && fromIdx !== index) {
+                      handleRowReorder(fromIdx, index);
+                    }
+                    setDraggedIndex(null);
+                    setDropTargetIndex(null);
+                  }}
+                  onDragEnd={() => {
+                    setDraggedIndex(null);
+                    setDropTargetIndex(null);
+                  }}
                   sx={{
-                    backgroundColor: index % 2 === 0 ? "#FFFFFF" : "#FFFFFF",
+                    backgroundColor:
+                      dropTargetIndex === index ? "#F3EBF0" : "#FFFFFF",
+                    borderTop:
+                      dropTargetIndex === index
+                        ? "2px solid #6B3C58"
+                        : "none",
+                    opacity: draggedIndex === index ? 0.45 : 1,
+                    transition: "all 0.15s ease",
                   }}
                 >
+                  {reorderable && (
+                    <TableCell
+                      sx={{
+                        textAlign: "center",
+                        width: "65px",
+                        padding: "4px",
+                        borderBottomColor: "#6B3C58",
+                        userSelect: "none",
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          gap: 0.5,
+                        }}
+                      >
+                        <Box
+                          component="span"
+                          sx={{
+                            cursor: "grab",
+                            color: "#6B3C58",
+                            display: "flex",
+                            alignItems: "center",
+                            "&:active": { cursor: "grabbing" },
+                          }}
+                          title="Drag to reorder"
+                        >
+                          <MdDragIndicator size={20} />
+                        </Box>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: 0.1,
+                          }}
+                        >
+                          <IconButton
+                            size="small"
+                            disabled={currentPage * rowsPerPage + index === 0}
+                            onClick={() => handleRowReorder(index, index - 1)}
+                            sx={{
+                              p: 0.2,
+                              color:
+                                currentPage * rowsPerPage + index === 0
+                                  ? "#CCC"
+                                  : "#6B3C58",
+                            }}
+                            title="Move Up"
+                          >
+                            <IoIosArrowUp size={13} />
+                          </IconButton>
+                          <IconButton
+                            size="small"
+                            disabled={
+                              currentPage * rowsPerPage + index ===
+                              data.length - 1
+                            }
+                            onClick={() => handleRowReorder(index, index + 1)}
+                            sx={{
+                              p: 0.2,
+                              color:
+                                currentPage * rowsPerPage + index ===
+                                data.length - 1
+                                  ? "#CCC"
+                                  : "#6B3C58",
+                            }}
+                            title="Move Down"
+                          >
+                            <IoIosArrowDown size={13} />
+                          </IconButton>
+                        </Box>
+                      </Box>
+                    </TableCell>
+                  )}
                   <TableCell
                     sx={{
                       borderBottomColor: "#6B3C58",

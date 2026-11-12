@@ -10,8 +10,11 @@ import {
   Grid,
   Checkbox,
   FormControlLabel,
+  Paper,
 } from "@mui/material";
-import { MdCancel } from "react-icons/md";
+import { MdCancel, MdDragIndicator } from "react-icons/md";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { AiOutlineDelete } from "react-icons/ai";
 import { Formik, Form, FieldArray } from "formik";
 import * as Yup from "yup";
 import { toast, ToastContainer } from "react-toastify";
@@ -1099,183 +1102,310 @@ const FoundationCourseModal = ({ open, onClose }) => {
 
                   <Grid item size={{ xs: 12 }}>
                     <FieldArray name="facultyCards">
-                      {({ push, remove }) => (
+                      {({ push, remove, move }) => (
                         <>
                           {values.facultyCards.map((card, index) => (
-                            <Grid
-                              container
-                              spacing={2}
+                            <Paper
+                              variant="outlined"
                               key={index}
-                              sx={{ mt: index > 0 ? 1 : 0, mb: 2 }}
+                              draggable
+                              onDragStart={(e) => {
+                                e.dataTransfer.setData(
+                                  "text/plain",
+                                  String(index)
+                                );
+                                e.dataTransfer.effectAllowed = "move";
+                              }}
+                              onDragOver={(e) => {
+                                e.preventDefault();
+                                e.dataTransfer.dropEffect = "move";
+                              }}
+                              onDrop={(e) => {
+                                e.preventDefault();
+                                const fromIdx = parseInt(
+                                  e.dataTransfer.getData("text/plain"),
+                                  10
+                                );
+                                if (!isNaN(fromIdx) && fromIdx !== index) {
+                                  move(fromIdx, index);
+                                }
+                              }}
+                              sx={{
+                                p: 2.5,
+                                mb: 2.5,
+                                borderRadius: "10px",
+                                borderColor: "#E5E5E5",
+                                backgroundColor: "#FCFBFA",
+                                transition: "all 0.2s ease",
+                                "&:hover": {
+                                  borderColor: "#6B3C58",
+                                  boxShadow:
+                                    "0 2px 8px rgba(107,60,88,0.08)",
+                                },
+                              }}
                             >
-                              <Grid item size={{ xs: 12 }}>
-                                <Typography
-                                  variant="body2"
-                                  sx={{ color: "#6B3C58" }}
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  alignItems: "center",
+                                  pb: 1.5,
+                                  mb: 2,
+                                  borderBottom: "1px solid #ECECEC",
+                                  flexWrap: "wrap",
+                                  gap: 1,
+                                }}
+                              >
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 1,
+                                  }}
                                 >
-                                  Faculty {index + 1}
-                                </Typography>
-                              </Grid>
+                                  <Box
+                                    sx={{
+                                      cursor: "grab",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      color: "#6B3C58",
+                                      p: 0.6,
+                                      borderRadius: "6px",
+                                      backgroundColor: "#F3EBF0",
+                                      "&:active": { cursor: "grabbing" },
+                                    }}
+                                    title="Drag to reorder"
+                                  >
+                                    <MdDragIndicator size={20} />
+                                  </Box>
+                                  <Typography
+                                    variant="subtitle2"
+                                    sx={{
+                                      fontWeight: 700,
+                                      color: "#6B3C58",
+                                      fontSize: "15px",
+                                    }}
+                                  >
+                                    Faculty {index + 1}{" "}
+                                    {card.name ? `— ${card.name}` : ""}
+                                  </Typography>
+                                </Box>
 
-                              <Grid item size={{ xs: 12, md: 6 }}>
-                                <FileUploadComponent
-                                  name={`facultyCards.${index}.faculty_img_url`}
-                                  uploadedFile={
-                                    values?.facultyCards?.[index]?.faculty_img_url
-                                      ? typeof values?.facultyCards?.[index]
-                                          ?.faculty_img_url === "string"
-                                        ? {
-                                            fileUrl:
-                                              values?.facultyCards?.[index]
-                                                ?.faculty_img_url,
-                                            type: "image/jpeg",
-                                            progress: 100,
-                                          }
-                                        : values?.facultyCards?.[index]
-                                            ?.faculty_img_url
-                                      : null
-                                  }
-                                  setUploadedFile={() => {}}
-                                  onFileUpload={(url) =>
-                                    setFieldValue(
-                                      `facultyCards.${index}.faculty_img_url`,
-                                      url,
-                                    )
-                                  }
-                                />
-                              </Grid>
-
-                              <Grid item size={{ xs: 12 }}>
-                                <CustomInputLogin
-                                  label="Name"
-                                  name={`facultyCards.${index}.name`}
-                                  inputType="text"
-                                  custPlaceholder="Enter Name"
-                                />
-                              </Grid>
-
-                              <Grid item size={{ xs: 12 }}>
-                                <CustomInputLogin
-                                  form={form}
-                                  label="Position"
-                                  name={`facultyCards.${index}.position`}
-                                  custPlaceholder="Enter Position"
-                                />
-                              </Grid>
-
-                              <Grid item size={{ xs: 12 }}>
-                                <CustomInputLogin
-                                  form={form}
-                                  label="Qualification"
-                                  name={`facultyCards.${index}.qualification`}
-                                  textareaHeight={90}
-                                  custPlaceholder="Enter Qualification"
-                                />
-                              </Grid>
-
-                              <Grid item size={{ xs: 12 }}>
-                                <CustomInputLogin
-                                  form={form}
-                                  label="Area of specialization"
-                                  name={`facultyCards.${index}.areaofspecilization`}
-                                  textareaHeight={90}
-                                  maxItems={5}
-                                  custPlaceholder="Enter Area of specialization"
-                                />
-                              </Grid>
-
-                              <Grid item size={{ xs: 12 }}>
-                                <CustomInputLogin
-                                  form={form}
-                                  label="Profile Line"
-                                  name={`facultyCards.${index}.profilelink`}
-                                  textareaHeight={90}
-                                  maxItems={5}
-                                  custPlaceholder="Enter  Profile Link"
-                                />
-                              </Grid>
-
-                              <Grid item size={{ xs: 12 }}>
-                                <CustomInputLogin
-                                  form={form}
-                                  label="Email ID"
-                                  name={`facultyCards.${index}.email`}
-                                  custPlaceholder="e.g. name@ethirajcollege.edu.in"
-                                />
-                              </Grid>
-
-                              <Grid item size={{ xs: 12 }}>
-                                <Typography
-                                  variant="body1"
-                                  sx={{  fontSize: "15px", fontWeight: "450" }}
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 1,
+                                  }}
                                 >
-                                  Stream Type
-                                </Typography>
-
-                                <FormControlLabel
-                                  control={
-                                    <Checkbox
-                                      checked={
-                                        values?.facultyCards?.[index]?.aided ||
-                                        false
-                                      }
-                                      onChange={(e) =>
-                                        setFieldValue(
-                                          `facultyCards.${index}.aided`,
-                                          e.target.checked,
-                                        )
-                                      }
-                                    />
-                                  }
-                                  label="Aided"
-                                />
-
-                                <FormControlLabel
-                                  control={
-                                    <Checkbox
-                                      checked={
-                                        values?.facultyCards?.[index]
-                                          ?.self_supporting || false
-                                      }
-                                      onChange={(e) =>
-                                        setFieldValue(
-                                          `facultyCards.${index}.self_supporting`,
-                                          e.target.checked,
-                                        )
-                                      }
-                                    />
-                                  }
-                                  label="Self Supporting"
-                                />
-                              </Grid>
-
-                              {index > 0 && (
-                                <Grid item size={{ xs: 12 }}>
                                   <Button
+                                    size="small"
                                     variant="outlined"
-                                    color="error"
-                                    onClick={() => remove(index)}
+                                    disabled={index === 0}
+                                    onClick={() => move(index, index - 1)}
+                                    startIcon={<IoIosArrowUp />}
                                     sx={{
                                       textTransform: "none",
-                                      color: "white",
-                                      fontSize: "16px",
-                                      boxShadow: "none",
-                                      padding: {
-                                        xs: "0px 20px",
-                                        md: "0px 40px",
+                                      fontSize: "12px",
+                                      py: 0.4,
+                                      px: 1,
+                                      color: "#6B3C58",
+                                      borderColor: "#D9C7D2",
+                                      "&:disabled": {
+                                        borderColor: "#E5E5E5",
+                                        color: "#BBB",
                                       },
-                                      minHeight: "40px",
-                                      borderRadius: "23px",
-                                      background: "#3B4056",
-                                      "&:hover": { backgroundColor: "#3B4056" },
+                                      "&:hover": {
+                                        borderColor: "#6B3C58",
+                                        backgroundColor: "#FBF7F9",
+                                      },
                                     }}
-                                    type="button"
                                   >
-                                    Remove Card
+                                    Move Up
                                   </Button>
+
+                                  <Button
+                                    size="small"
+                                    variant="outlined"
+                                    disabled={
+                                      index === values.facultyCards.length - 1
+                                    }
+                                    onClick={() => move(index, index + 1)}
+                                    startIcon={<IoIosArrowDown />}
+                                    sx={{
+                                      textTransform: "none",
+                                      fontSize: "12px",
+                                      py: 0.4,
+                                      px: 1,
+                                      color: "#6B3C58",
+                                      borderColor: "#D9C7D2",
+                                      "&:disabled": {
+                                        borderColor: "#E5E5E5",
+                                        color: "#BBB",
+                                      },
+                                      "&:hover": {
+                                        borderColor: "#6B3C58",
+                                        backgroundColor: "#FBF7F9",
+                                      },
+                                    }}
+                                  >
+                                    Move Down
+                                  </Button>
+
+                                  {values.facultyCards.length > 1 && (
+                                    <IconButton
+                                      size="small"
+                                      onClick={() => remove(index)}
+                                      title="Remove Faculty Card"
+                                      sx={{
+                                        color: "#D32F2F",
+                                        border: "1px solid #FFCDD2",
+                                        p: 0.6,
+                                        "&:hover": {
+                                          backgroundColor: "#FFEBEE",
+                                        },
+                                      }}
+                                    >
+                                      <AiOutlineDelete size={17} />
+                                    </IconButton>
+                                  )}
+                                </Box>
+                              </Box>
+
+                              <Grid container spacing={2}>
+                                <Grid item size={{ xs: 12, md: 6 }}>
+                                  <FileUploadComponent
+                                    name={`facultyCards.${index}.faculty_img_url`}
+                                    uploadedFile={
+                                      values?.facultyCards?.[index]?.faculty_img_url
+                                        ? typeof values?.facultyCards?.[index]
+                                            ?.faculty_img_url === "string"
+                                          ? {
+                                              fileUrl:
+                                                values?.facultyCards?.[index]
+                                                  ?.faculty_img_url,
+                                              type: "image/jpeg",
+                                              progress: 100,
+                                            }
+                                          : values?.facultyCards?.[index]
+                                              ?.faculty_img_url
+                                        : null
+                                    }
+                                    setUploadedFile={() => {}}
+                                    onFileUpload={(url) =>
+                                      setFieldValue(
+                                        `facultyCards.${index}.faculty_img_url`,
+                                        url,
+                                      )
+                                    }
+                                  />
                                 </Grid>
-                              )}
-                            </Grid>
+
+                                <Grid item size={{ xs: 12 }}>
+                                  <CustomInputLogin
+                                    label="Name"
+                                    name={`facultyCards.${index}.name`}
+                                    inputType="text"
+                                    custPlaceholder="Enter Name"
+                                  />
+                                </Grid>
+
+                                <Grid item size={{ xs: 12 }}>
+                                  <CustomInputLogin
+                                    form={form}
+                                    label="Position"
+                                    name={`facultyCards.${index}.position`}
+                                    custPlaceholder="Enter Position"
+                                  />
+                                </Grid>
+
+                                <Grid item size={{ xs: 12 }}>
+                                  <CustomInputLogin
+                                    form={form}
+                                    label="Qualification"
+                                    name={`facultyCards.${index}.qualification`}
+                                    textareaHeight={90}
+                                    custPlaceholder="Enter Qualification"
+                                  />
+                                </Grid>
+
+                                <Grid item size={{ xs: 12 }}>
+                                  <CustomInputLogin
+                                    form={form}
+                                    label="Area of specialization"
+                                    name={`facultyCards.${index}.areaofspecilization`}
+                                    textareaHeight={90}
+                                    maxItems={5}
+                                    custPlaceholder="Enter Area of specialization"
+                                  />
+                                </Grid>
+
+                                <Grid item size={{ xs: 12 }}>
+                                  <CustomInputLogin
+                                    form={form}
+                                    label="Profile Line"
+                                    name={`facultyCards.${index}.profilelink`}
+                                    textareaHeight={90}
+                                    maxItems={5}
+                                    custPlaceholder="Enter  Profile Link"
+                                  />
+                                </Grid>
+
+                                <Grid item size={{ xs: 12 }}>
+                                  <CustomInputLogin
+                                    form={form}
+                                    label="Email ID"
+                                    name={`facultyCards.${index}.email`}
+                                    custPlaceholder="e.g. name@ethirajcollege.edu.in"
+                                  />
+                                </Grid>
+
+                                <Grid item size={{ xs: 12 }}>
+                                  <Typography
+                                    variant="body1"
+                                    sx={{  fontSize: "15px", fontWeight: "450" }}
+                                  >
+                                    Stream Type
+                                  </Typography>
+
+                                  <FormControlLabel
+                                    control={
+                                      <Checkbox
+                                        checked={
+                                          values?.facultyCards?.[index]?.aided ||
+                                          false
+                                        }
+                                        onChange={(e) =>
+                                          setFieldValue(
+                                            `facultyCards.${index}.aided`,
+                                            e.target.checked,
+                                          )
+                                        }
+                                      />
+                                    }
+                                    label="Aided"
+                                  />
+
+                                  <FormControlLabel
+                                    control={
+                                      <Checkbox
+                                        checked={
+                                          values?.facultyCards?.[index]
+                                            ?.self_supporting || false
+                                        }
+                                        onChange={(e) =>
+                                          setFieldValue(
+                                            `facultyCards.${index}.self_supporting`,
+                                            e.target.checked,
+                                          )
+                                        }
+                                      />
+                                    }
+                                    label="Self Supporting"
+                                  />
+                                </Grid>
+                              </Grid>
+                            </Paper>
                           ))}
 
                           <Grid

@@ -420,6 +420,7 @@ import ResearchAllComponents from "../../Pages/ContentManagement/Research/Resear
 import CampuslifeAllComponent from "../../Pages/ContentManagement/CampusLife/CampuslifeAllComponent";
 import ExamScheduleAllComponents from "../../Pages/ContentManagement/ExamSchedule/ExamScheduleAllComponents";
 import AdmissionsAllComponents from "../../Pages/ContentManagement/Admissions/AdmissionsAllComponents";
+import NewsAndEventsAllComponents from "../../Pages/ContentManagement/NewsAndEvents/NewsAndEventsAllComponents";
 
 const Layout = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -435,17 +436,18 @@ const Layout = () => {
     <Box
       sx={{
         display: "flex",
-        minHeight: "100vh",
+        height: "100vh",
+        maxHeight: "100vh",
         backgroundColor: "#F7F7F7",
         width: "100%",
-        padding: { md: 1.5 }, // ❌ causes overflow clipping
-
-        overflow: "hidden", // prevent body overflow
+        padding: { md: 1.5 },
+        boxSizing: "border-box",
+        overflow: "hidden", // Locks outer viewport so entire window NEVER scrolls
       }}
     >
       <CssBaseline />
 
-      {/* Sidebar */}
+      {/* Sidebar - fixed on the left */}
       <Sidebar open={isSidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* Main Content Wrapper */}
@@ -454,7 +456,10 @@ const Layout = () => {
           flexGrow: 1,
           display: "flex",
           flexDirection: "column",
-          minWidth: 0, // 🔥 REQUIRED for horizontal scroll
+          minWidth: 0, // REQUIRED for horizontal scroll
+          height: "100%",
+          maxHeight: "100%",
+          overflow: "hidden",
         }}
       >
         {/* Header */}
@@ -465,7 +470,7 @@ const Layout = () => {
           isSidebarOpen={isSidebarOpen}
         />
 
-        {/* Main Page Content */}
+        {/* Main Page Content - ONLY THIS SCROLLS */}
         <Box
           component="main"
           sx={{
@@ -473,7 +478,9 @@ const Layout = () => {
             p: 2.5,
             backgroundColor: "#F7F7F7",
             width: "100%",
-            overflowX: "auto", // 🔥 TABLE SCROLL FIX
+            height: "100%",
+            overflowY: "auto", // Right side content scrolls smoothly
+            overflowX: "auto",
           }}
         >
           <Routes>
@@ -491,6 +498,7 @@ const Layout = () => {
               <Route path="/iqac" element={<IqacAllComponents />} />
               <Route path="/research" element={<ResearchAllComponents />} />
               <Route path="/campuslife" element={<CampuslifeAllComponent />} />
+              <Route path="/newsandevents" element={<NewsAndEventsAllComponents />} />
               <Route path="/examschedule" element={<ExamScheduleAllComponents />} />
               <Route path="/admissions" element={<AdmissionsAllComponents />} />
               

@@ -8,7 +8,11 @@ import {
   Box,
   Typography,
   Grid,
+  Paper,
 } from "@mui/material";
+import { MdDragIndicator } from "react-icons/md";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { AiOutlineDelete } from "react-icons/ai";
 import { Formik, Form, FieldArray } from "formik";
 import CustomInputLogin from "../../../../Components/CustomInputLogin/CustomInputLogin";
 import "../../../../Components/ModalCss/BannerinputGetModal.css";
@@ -198,113 +202,197 @@ const CatalystPublicationsModal = ({
                   <Grid size={{ xs: 12, md: 12 }}>
                     <Grid item size={{ xs: 12 }}>
                       <FieldArray name="cards">
-                        {({ push, remove }) => (
+                        {({ push, remove, move }) => (
                           <>
                             {values?.cards?.map((card, index) => (
-                              <Grid
-                                container
-                                spacing={2}
+                              <Paper
+                                variant="outlined"
                                 key={index}
-                                sx={{ mt: index > 0 ? 1 : 0 }}
+                                draggable
+                                onDragStart={(e) => {
+                                  e.dataTransfer.setData("text/plain", String(index));
+                                  e.dataTransfer.effectAllowed = "move";
+                                }}
+                                onDragOver={(e) => {
+                                  e.preventDefault();
+                                  e.dataTransfer.dropEffect = "move";
+                                }}
+                                onDrop={(e) => {
+                                  e.preventDefault();
+                                  const fromIdx = parseInt(e.dataTransfer.getData("text/plain"), 10);
+                                  if (!isNaN(fromIdx) && fromIdx !== index) {
+                                    move(fromIdx, index);
+                                  }
+                                }}
+                                sx={{
+                                  p: 2.5,
+                                  mb: 2.5,
+                                  borderRadius: "10px",
+                                  borderColor: "#E5E5E5",
+                                  backgroundColor: "#FCFBFA",
+                                  transition: "all 0.2s ease",
+                                  "&:hover": {
+                                    borderColor: "#6B3C58",
+                                    boxShadow: "0 2px 8px rgba(107,60,88,0.08)",
+                                  },
+                                }}
                               >
-                                <Grid item size={{ xs: 12 }}>
-                                  <Typography
-                                    variant="body2"
-                                    sx={{ color: "#6B3C58", fontWeight: 600 }}
-                                  >
-                                    Publication {index + 1}
-                                  </Typography>
-                                </Grid>
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    pb: 1.5,
+                                    mb: 2,
+                                    borderBottom: "1px solid #ECECEC",
+                                    flexWrap: "wrap",
+                                    gap: 1,
+                                  }}
+                                >
+                                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                                    <Box
+                                      sx={{
+                                        cursor: "grab",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        color: "#6B3C58",
+                                        p: 0.6,
+                                        borderRadius: "6px",
+                                        backgroundColor: "#F3EBF0",
+                                        "&:active": { cursor: "grabbing" },
+                                      }}
+                                      title="Drag to reorder"
+                                    >
+                                      <MdDragIndicator size={20} />
+                                    </Box>
+                                    <Typography
+                                      variant="subtitle2"
+                                      sx={{ fontWeight: 700, color: "#6B3C58", fontSize: "15px" }}
+                                    >
+                                      Publication {index + 1} {card.title ? `— ${card.title}` : ""}
+                                    </Typography>
+                                  </Box>
 
-                                <Grid item size={{ xs: 12 }}>
-                                  <CustomInputLogin
-                                    label="Title"
-                                    name={`cards.${index}.title`}
-                                    inputType="text"
-                                    custPlaceholder="Enter Title"
-                                  />
-                                </Grid>
-
-                                <Grid item size={{ xs: 12, md: 6 }}>
-                                  <Typography
-                                    variant="body2"
-                                    sx={{ color: "#6B3C58", fontWeight: 600, mb: 1 }}
-                                  >
-                                    Square Image
-                                  </Typography>
-                                  <FileUploadComponent
-                                    name={`cards.${index}.square_image`}
-                                    uploadedFile={values.cards[index].square_image}
-                                    setUploadedFile={(file) => {
-                                      setFieldValue(
-                                        `cards.${index}.square_image`,
-                                        file
-                                      );
-                                      console.log(file, "square image file");
-                                    }}
-                                    onFileUpload={(file) =>
-                                      setFieldValue(
-                                        `cards.${index}.square_image`,
-                                        file
-                                      )
-                                    }
-                                  />
-                                </Grid>
-
-                                <Grid item size={{ xs: 12, md: 6 }}>
-                                  <Typography
-                                    variant="body2"
-                                    sx={{ color: "#6B3C58", fontWeight: 600, mb: 1 }}
-                                  >
-                                    PDF
-                                  </Typography>
-                                  <PdfFileUploadComponent
-                                    name={`cards.${index}.pdf`}
-                                    uploadedFile={values.cards[index].pdf}
-                                    setUploadedFile={(file) => {
-                                      setFieldValue(
-                                        `cards.${index}.pdf`,
-                                        file
-                                      );
-                                      console.log(file, "pdf file");
-                                    }}
-                                    onFileUpload={(file) =>
-                                      setFieldValue(
-                                        `cards.${index}.pdf`,
-                                        file
-                                      )
-                                    }
-                                  />
-                                </Grid>
-
-                                {index > 0 && (
-                                  <Grid item size={{ xs: 12 }}>
+                                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                                     <Button
+                                      size="small"
                                       variant="outlined"
-                                      color="error"
-                                      onClick={() => remove(index)}
+                                      disabled={index === 0}
+                                      onClick={() => move(index, index - 1)}
+                                      startIcon={<IoIosArrowUp />}
                                       sx={{
                                         textTransform: "none",
-                                        color: "white",
-                                        fontSize: "16px",
-                                        boxShadow: "none",
-                                        padding: {
-                                          xs: "0px 20px",
-                                          md: "0px 40px",
-                                        },
-                                        minHeight: "40px",
-                                        borderRadius: "23px",
-                                        background: "#3B4056",
-                                        "&:hover": {
-                                          backgroundColor: "#3B4056",
-                                        },
+                                        fontSize: "12px",
+                                        py: 0.4,
+                                        px: 1,
+                                        color: "#6B3C58",
+                                        borderColor: "#D9C7D2",
+                                        "&:disabled": { borderColor: "#E5E5E5", color: "#BBB" },
+                                        "&:hover": { borderColor: "#6B3C58", backgroundColor: "#FBF7F9" },
                                       }}
                                     >
-                                      Remove Publication
+                                      Move Up
                                     </Button>
+
+                                    <Button
+                                      size="small"
+                                      variant="outlined"
+                                      disabled={index === values.cards.length - 1}
+                                      onClick={() => move(index, index + 1)}
+                                      startIcon={<IoIosArrowDown />}
+                                      sx={{
+                                        textTransform: "none",
+                                        fontSize: "12px",
+                                        py: 0.4,
+                                        px: 1,
+                                        color: "#6B3C58",
+                                        borderColor: "#D9C7D2",
+                                        "&:disabled": { borderColor: "#E5E5E5", color: "#BBB" },
+                                        "&:hover": { borderColor: "#6B3C58", backgroundColor: "#FBF7F9" },
+                                      }}
+                                    >
+                                      Move Down
+                                    </Button>
+
+                                    {values.cards.length > 1 && (
+                                      <IconButton
+                                        size="small"
+                                        onClick={() => remove(index)}
+                                        title="Remove Publication"
+                                        sx={{
+                                          color: "#D32F2F",
+                                          border: "1px solid #FFCDD2",
+                                          p: 0.6,
+                                          "&:hover": { backgroundColor: "#FFEBEE" },
+                                        }}
+                                      >
+                                        <AiOutlineDelete size={17} />
+                                      </IconButton>
+                                    )}
+                                  </Box>
+                                </Box>
+
+                                <Grid container spacing={2}>
+                                  <Grid item size={{ xs: 12 }}>
+                                    <CustomInputLogin
+                                      label="Title"
+                                      name={`cards.${index}.title`}
+                                      inputType="text"
+                                      custPlaceholder="Enter Title"
+                                    />
                                   </Grid>
-                                )}
-                              </Grid>
+
+                                  <Grid item size={{ xs: 12, md: 6 }}>
+                                    <Typography
+                                      variant="body2"
+                                      sx={{ color: "#6B3C58", fontWeight: 600, mb: 1 }}
+                                    >
+                                      Square Image
+                                    </Typography>
+                                    <FileUploadComponent
+                                      name={`cards.${index}.square_image`}
+                                      uploadedFile={values.cards[index].square_image}
+                                      setUploadedFile={(file) => {
+                                        setFieldValue(
+                                          `cards.${index}.square_image`,
+                                          file
+                                        );
+                                      }}
+                                      onFileUpload={(file) =>
+                                        setFieldValue(
+                                          `cards.${index}.square_image`,
+                                          file
+                                        )
+                                      }
+                                    />
+                                  </Grid>
+
+                                  <Grid item size={{ xs: 12, md: 6 }}>
+                                    <Typography
+                                      variant="body2"
+                                      sx={{ color: "#6B3C58", fontWeight: 600, mb: 1 }}
+                                    >
+                                      PDF
+                                    </Typography>
+                                    <PdfFileUploadComponent
+                                      name={`cards.${index}.pdf`}
+                                      uploadedFile={values.cards[index].pdf}
+                                      setUploadedFile={(file) => {
+                                        setFieldValue(
+                                          `cards.${index}.pdf`,
+                                          file
+                                        );
+                                      }}
+                                      onFileUpload={(file) =>
+                                        setFieldValue(
+                                          `cards.${index}.pdf`,
+                                          file
+                                        )
+                                      }
+                                    />
+                                  </Grid>
+                                </Grid>
+                              </Paper>
                             ))}
 
                             {values.cards.length < 100 && (

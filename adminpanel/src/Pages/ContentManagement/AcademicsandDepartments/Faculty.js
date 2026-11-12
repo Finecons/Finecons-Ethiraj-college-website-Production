@@ -137,10 +137,11 @@ const Faculty = () => {
           // tableDelete={true}
           tableEdit={true}
           dataCreate={true}
-          //   apiBasedName="stakeNowBannerInputModal"
-          //   tableData={rowTableData}
-          //   title="Banner"
-          //   tableHeadData={tableHeadData}
+          reorderable={true}
+          onReorder={(newOrder) => {
+            setRowTableData(newOrder);
+            toast.success("Faculty order updated!");
+          }}
           modalName={FacultyModal}
           handleTableEdit={handleTableEdit}
           editModalName={FacultyModal}

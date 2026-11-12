@@ -630,6 +630,10 @@ const secondNavMenu = [
             link: "/campuslife",
             state: { scrollTo: "activities-events" },
           },
+          {
+            label: "Newsletter",
+            link: "/campuslife/newsletter",
+          },
         ],
       },
       {
@@ -667,6 +671,10 @@ const secondNavMenu = [
         label: "Activities & Events",
         link: "/campuslife",
         state: { scrollTo: "activities-events" },
+      },
+      {
+        label: "Newsletter",
+        link: "/campuslife/newsletter",
       },
       {
         label: "Centre for Women's Studies",

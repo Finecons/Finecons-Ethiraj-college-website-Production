@@ -111,6 +111,11 @@ import updateMarqueeSlice from "../Slices/ContentManagement/Marquee/updateMarque
 import deleteMarqueeSlice from "../Slices/ContentManagement/Marquee/deleteMarquee";
 import restoreMarqueeSlice from "../Slices/ContentManagement/Marquee/restoreMarquee";
 
+import getEventsSlice from "../Slices/ContentManagement/NewsAndEvents/getEventsSlice";
+import addNewsEventSlice from "../Slices/ContentManagement/NewsAndEvents/addNewsEventSlice";
+import updateNewsEventSlice from "../Slices/ContentManagement/NewsAndEvents/updateNewsEventSlice";
+import deleteNewsEventSlice from "../Slices/ContentManagement/NewsAndEvents/deleteNewsEventSlice";
+
 const reducer = combineReducers({
   auth: authReducer,
   header: headerReducer,
@@ -240,6 +245,12 @@ const reducer = combineReducers({
   updateMarquee: updateMarqueeSlice,
   deleteMarquee: deleteMarqueeSlice,
   restoreMarquee: restoreMarqueeSlice,
+
+  // NEWS AND EVENTS SLICES
+  getEvents: getEventsSlice,
+  addNewsEvent: addNewsEventSlice,
+  updateNewsEvent: updateNewsEventSlice,
+  deleteNewsEvent: deleteNewsEventSlice,
 });
 
 const store = configureStore({

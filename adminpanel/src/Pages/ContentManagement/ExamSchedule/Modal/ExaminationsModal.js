@@ -11,8 +11,8 @@ import {
 } from "@mui/material";
 import { Formik, Form, FieldArray } from "formik";
 import * as Yup from "yup";
-import { MdCancel } from "react-icons/md";
-import { MdDeleteOutline } from "react-icons/md";
+import { MdCancel, MdDeleteOutline, MdDragIndicator } from "react-icons/md";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import CustomInputLogin from "../../../../Components/CustomInputLogin/CustomInputLogin";
 import PdfFileUploadComponent from "../../../../Components/FileUploadComponent/PdfFileUploadComponent";
 import "../../../../Components/ModalCss/BannerinputGetModal.css";
@@ -183,44 +183,132 @@ const ExaminationsModal = ({
                 <DialogContent dividers>
                   <Grid container spacing={2}>
                     <FieldArray name="cards">
-                      {({ push, remove }) => (
+                      {({ push, remove, move }) => (
                         <>
                           {values?.cards?.map((card, index) => (
                             <Grid
                               size={{ xs: 12 }}
                               key={index}
+                              draggable
+                              onDragStart={(e) => {
+                                e.dataTransfer.setData("text/plain", String(index));
+                                e.dataTransfer.effectAllowed = "move";
+                              }}
+                              onDragOver={(e) => {
+                                e.preventDefault();
+                                e.dataTransfer.dropEffect = "move";
+                              }}
+                              onDrop={(e) => {
+                                e.preventDefault();
+                                const fromIdx = parseInt(
+                                  e.dataTransfer.getData("text/plain"),
+                                  10
+                                );
+                                if (!isNaN(fromIdx) && fromIdx !== index) {
+                                  move(fromIdx, index);
+                                }
+                              }}
                               sx={{
-                                border: "1px solid #ddd",
+                                border: "1px solid #E5E5E5",
                                 p: 2,
                                 borderRadius: "8px",
+                                backgroundColor: "#FCFBFA",
+                                transition: "all 0.2s ease",
+                                "&:hover": {
+                                  borderColor: "#6B3C58",
+                                  boxShadow: "0 2px 8px rgba(107,60,88,0.08)",
+                                },
                               }}
                             >
                               <Grid container spacing={2}>
-                                <Grid size={{ xs: 12 }} sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 1 }}>
-                                  <Typography
-                                    variant="h6"
-                                    sx={{
-                                      fontWeight: "600",
-                                      color: "#333",
-                                      fontSize: "14px",
-                                    }}
-                                  >
-                                    Exam Schedule {index + 1}
-                                  </Typography>
-                                  <IconButton
-                                    type="button"
-                                    size="small"
-                                    onClick={() => remove(index)}
-                                    sx={{
-                                      color: "#d32f2f",
-                                      padding: "4px",
-                                      "&:hover": {
-                                        backgroundColor: "#ffebee",
-                                      },
-                                    }}
-                                  >
-                                    <MdDeleteOutline fontSize="20px" />
-                                  </IconButton>
+                                <Grid
+                                  size={{ xs: 12 }}
+                                  sx={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    pb: 1,
+                                    borderBottom: "1px solid #ECECEC",
+                                    mb: 1,
+                                    flexWrap: "wrap",
+                                    gap: 1,
+                                  }}
+                                >
+                                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                                    <Box
+                                      sx={{
+                                        cursor: "grab",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        color: "#6B3C58",
+                                        p: 0.5,
+                                        borderRadius: "4px",
+                                        backgroundColor: "#F3EBF0",
+                                        "&:active": { cursor: "grabbing" },
+                                      }}
+                                      title="Drag to reorder"
+                                    >
+                                      <MdDragIndicator size={18} />
+                                    </Box>
+                                    <Typography
+                                      variant="h6"
+                                      sx={{
+                                        fontWeight: "600",
+                                        color: "#6B3C58",
+                                        fontSize: "14px",
+                                      }}
+                                    >
+                                      Exam Schedule {index + 1}{card?.title ? ` — ${card.title}` : ""}
+                                    </Typography>
+                                  </Box>
+
+                                  <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+                                    <IconButton
+                                      type="button"
+                                      size="small"
+                                      disabled={index === 0}
+                                      onClick={() => move(index, index - 1)}
+                                      title="Move Up"
+                                      sx={{
+                                        color: "#6B3C58",
+                                        padding: "4px",
+                                        "&:disabled": { color: "#CCC" },
+                                        "&:hover": { backgroundColor: "#F3EBF0" },
+                                      }}
+                                    >
+                                      <IoIosArrowUp size={16} />
+                                    </IconButton>
+                                    <IconButton
+                                      type="button"
+                                      size="small"
+                                      disabled={index === (values?.cards?.length || 0) - 1}
+                                      onClick={() => move(index, index + 1)}
+                                      title="Move Down"
+                                      sx={{
+                                        color: "#6B3C58",
+                                        padding: "4px",
+                                        "&:disabled": { color: "#CCC" },
+                                        "&:hover": { backgroundColor: "#F3EBF0" },
+                                      }}
+                                    >
+                                      <IoIosArrowDown size={16} />
+                                    </IconButton>
+                                    <IconButton
+                                      type="button"
+                                      size="small"
+                                      onClick={() => remove(index)}
+                                      sx={{
+                                        color: "#d32f2f",
+                                        padding: "4px",
+                                        ml: 0.5,
+                                        "&:hover": {
+                                          backgroundColor: "#ffebee",
+                                        },
+                                      }}
+                                    >
+                                      <MdDeleteOutline fontSize="20px" />
+                                    </IconButton>
+                                  </Box>
                                 </Grid>
 
                                 <Grid size={{ xs: 12, md: 6 }}>

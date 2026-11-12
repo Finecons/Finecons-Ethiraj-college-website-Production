@@ -8,7 +8,11 @@ import {
   Box,
   Typography,
   Grid,
+  Paper,
 } from "@mui/material";
+import { MdDragIndicator } from "react-icons/md";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { AiOutlineDelete } from "react-icons/ai";
 import { Formik, Form, FieldArray } from "formik";
 
 import CustomInputLogin from "../../../../Components/CustomInputLogin/CustomInputLogin";
@@ -229,20 +233,68 @@ const EventsAndAnnualActivitiesModal = ({ open, onClose }) => {
                   </Grid>
                   <FieldArray name="images">
                     {(fieldArrayProps) => {
-                      const { push, remove } = fieldArrayProps;
+                      const { push, remove, move } = fieldArrayProps;
+
+                      const handleMoveImage = (fromIdx, toIdx) => {
+                        if (
+                          fromIdx === toIdx ||
+                          fromIdx < 0 ||
+                          toIdx < 0 ||
+                          toIdx >= values.images.length
+                        )
+                          return;
+                        move(fromIdx, toIdx);
+                        setUploadedFiles((prev) => {
+                          const arr = [];
+                          for (let i = 0; i < values.images.length; i++) {
+                            arr.push(prev[i] || null);
+                          }
+                          const [moved] = arr.splice(fromIdx, 1);
+                          arr.splice(toIdx, 0, moved);
+                          const newFiles = {};
+                          arr.forEach((file, i) => {
+                            if (file) newFiles[i] = file;
+                          });
+                          return newFiles;
+                        });
+                      };
 
                       return (
                         <Box sx={{ width: "100%" }}>
                           {values.images.map((img, index) => (
-                            <Box
+                            <Paper
+                              variant="outlined"
                               key={index}
+                              draggable
+                              onDragStart={(e) => {
+                                e.dataTransfer.setData("text/plain", String(index));
+                                e.dataTransfer.effectAllowed = "move";
+                              }}
+                              onDragOver={(e) => {
+                                e.preventDefault();
+                                e.dataTransfer.dropEffect = "move";
+                              }}
+                              onDrop={(e) => {
+                                e.preventDefault();
+                                const fromIdx = parseInt(
+                                  e.dataTransfer.getData("text/plain"),
+                                  10
+                                );
+                                if (!isNaN(fromIdx) && fromIdx !== index) {
+                                  handleMoveImage(fromIdx, index);
+                                }
+                              }}
                               sx={{
-                                mb: 3,
-                                pb: 3,
-                                border: "1px solid #e0e0e0",
-                                borderRadius: "8px",
-                                p: 2,
-                                backgroundColor: "#f9f9f9",
+                                p: 2.5,
+                                mb: 2.5,
+                                borderRadius: "10px",
+                                borderColor: "#E5E5E5",
+                                backgroundColor: "#FCFBFA",
+                                transition: "all 0.2s ease",
+                                "&:hover": {
+                                  borderColor: "#6B3C58",
+                                  boxShadow: "0 2px 8px rgba(107,60,88,0.08)",
+                                },
                               }}
                             >
                               <Box
@@ -250,29 +302,94 @@ const EventsAndAnnualActivitiesModal = ({ open, onClose }) => {
                                   display: "flex",
                                   justifyContent: "space-between",
                                   alignItems: "center",
+                                  pb: 1.5,
                                   mb: 2,
+                                  borderBottom: "1px solid #ECECEC",
+                                  flexWrap: "wrap",
+                                  gap: 1,
                                 }}
                               >
-                                <Typography
-                                  variant="subtitle1"
-                                  sx={{ fontWeight: "600" }}
-                                >
-                                  Image {index + 1}
-                                </Typography>
-                                {values.images.length > 1 && (
-                                  <Button
-                                    type="button"
-                                    onClick={() => remove(index)}
+                                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                                  <Box
                                     sx={{
-                                      color: "red",
-                                      minWidth: "40px",
-                                      p: "8px",
+                                      cursor: "grab",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      color: "#6B3C58",
+                                      p: 0.6,
+                                      borderRadius: "6px",
+                                      backgroundColor: "#F3EBF0",
+                                      "&:active": { cursor: "grabbing" },
                                     }}
-                                    startIcon={<FaTrash />}
+                                    title="Drag to reorder"
                                   >
-                                    Remove
+                                    <MdDragIndicator size={20} />
+                                  </Box>
+                                  <Typography
+                                    variant="subtitle2"
+                                    sx={{ fontWeight: 700, color: "#6B3C58", fontSize: "15px" }}
+                                  >
+                                    Image {index + 1}
+                                  </Typography>
+                                </Box>
+
+                                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                                  <Button
+                                    size="small"
+                                    variant="outlined"
+                                    disabled={index === 0}
+                                    onClick={() => handleMoveImage(index, index - 1)}
+                                    startIcon={<IoIosArrowUp />}
+                                    sx={{
+                                      textTransform: "none",
+                                      fontSize: "12px",
+                                      py: 0.4,
+                                      px: 1,
+                                      color: "#6B3C58",
+                                      borderColor: "#D9C7D2",
+                                      "&:disabled": { borderColor: "#E5E5E5", color: "#BBB" },
+                                      "&:hover": { borderColor: "#6B3C58", backgroundColor: "#FBF7F9" },
+                                    }}
+                                  >
+                                    Move Up
                                   </Button>
-                                )}
+
+                                  <Button
+                                    size="small"
+                                    variant="outlined"
+                                    disabled={index === values.images.length - 1}
+                                    onClick={() => handleMoveImage(index, index + 1)}
+                                    startIcon={<IoIosArrowDown />}
+                                    sx={{
+                                      textTransform: "none",
+                                      fontSize: "12px",
+                                      py: 0.4,
+                                      px: 1,
+                                      color: "#6B3C58",
+                                      borderColor: "#D9C7D2",
+                                      "&:disabled": { borderColor: "#E5E5E5", color: "#BBB" },
+                                      "&:hover": { borderColor: "#6B3C58", backgroundColor: "#FBF7F9" },
+                                    }}
+                                  >
+                                    Move Down
+                                  </Button>
+
+                                  {values.images.length > 1 && (
+                                    <IconButton
+                                      size="small"
+                                      onClick={() => remove(index)}
+                                      title="Remove Image"
+                                      sx={{
+                                        color: "#D32F2F",
+                                        border: "1px solid #FFCDD2",
+                                        p: 0.6,
+                                        "&:hover": { backgroundColor: "#FFEBEE" },
+                                      }}
+                                    >
+                                      <AiOutlineDelete size={17} />
+                                    </IconButton>
+                                  )}
+                                </Box>
                               </Box>
 
                               <Grid container spacing={2}>
@@ -329,7 +446,7 @@ const EventsAndAnnualActivitiesModal = ({ open, onClose }) => {
                                   />
                                 </Grid>
                               </Grid>
-                            </Box>
+                            </Paper>
                           ))}
 
                           <Grid size={{ xs: 12 }} sx={{ mt: 2, mb: 3 }}>

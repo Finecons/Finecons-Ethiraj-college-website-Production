@@ -112,6 +112,11 @@ const TextMarquee = () => {
           tableHeadData={tableHeadData}
           tableEdit={true}
           tableDelete={true}
+          reorderable={true}
+          onReorder={(newOrder) => {
+            setRowTableData(newOrder);
+            toast.success("Text Marquee order updated!");
+          }}
           // dataCreate={!getAllMarquees?.data?.length > 0}
           dataCreate={true}
           modalName={MarqueeModal}
