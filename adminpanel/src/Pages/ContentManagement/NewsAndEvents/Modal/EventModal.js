@@ -49,13 +49,25 @@ const EventModal = ({ open, onClose, editData, refreshData }) => {
     try {
       setLoading(true);
 
+      // Synthesize event_date from day + mon if not explicitly set so chronological sorting works
+      let calculatedEventDate = values.event_date;
+      if (!calculatedEventDate && values.day && values.mon) {
+        const monthIdx = monthsList.indexOf(values.mon);
+        if (monthIdx !== -1) {
+          const year = new Date().getFullYear();
+          const padDay = String(values.day).padStart(2, "0");
+          const padMonth = String(monthIdx + 1).padStart(2, "0");
+          calculatedEventDate = `${year}-${padMonth}-${padDay}`;
+        }
+      }
+
       const payloadData = {
         type: "event",
         heading: values.heading,
         sub_heading: values.time,
         content: values.time,
         status: values.status,
-        event_date: values.event_date || null,
+        event_date: calculatedEventDate || null,
         mark_as_important: values.mark_as_important,
         additional_data: {
           day: values.day,

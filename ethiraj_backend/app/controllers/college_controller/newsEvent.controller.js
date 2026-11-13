@@ -295,7 +295,7 @@ exports.getEvents = async (req, res) => {
     try {
         const events = await NewsEvent.findAll({
             where: { type: "event", delete_status: 0 },
-            order: [["event_date", "DESC"]], // optional sorting
+            order: [["event_date", "ASC"]], // sort chronological: earliest date first
         });
 
         if (!events || events.length === 0) {
