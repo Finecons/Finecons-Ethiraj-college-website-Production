@@ -630,10 +630,6 @@ const secondNavMenu = [
             link: "/campuslife",
             state: { scrollTo: "activities-events" },
           },
-          {
-            label: "Newsletter",
-            link: "/campuslife/newsletter",
-          },
         ],
       },
       {
@@ -673,10 +669,6 @@ const secondNavMenu = [
         state: { scrollTo: "activities-events" },
       },
       {
-        label: "Newsletter",
-        link: "/campuslife/newsletter",
-      },
-      {
         label: "Centre for Women's Studies",
         link: "/campuslife/careerdevelopment/womencentre",
         state: { scrollTo: "centre-for-womens-studies" },
@@ -699,10 +691,16 @@ const secondNavMenu = [
     groups: [
       {
         title: "Updates",
-        items: [{ label: "News & Events", link: "/allnewsevents" }],
+        items: [
+          { label: "News & Events", link: "/allnewsevents" },
+          { label: "Newsletter", link: "/campuslife/newsletter" },
+        ],
       },
     ],
-    items: [{ label: "News & Events", link: "/allnewsevents" }],
+    items: [
+      { label: "News & Events", link: "/allnewsevents" },
+      { label: "Newsletter", link: "/campuslife/newsletter" },
+    ],
     image: newsMenuImage,
     tabMobileIconImage: newsIconImage,
   },
